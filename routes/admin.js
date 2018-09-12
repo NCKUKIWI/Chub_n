@@ -27,7 +27,7 @@ router.get('/', helper.checkLoginAdmin(), function (req, res) {
 
 //登入頁
 router.get('/login', function (req, res) {
-    req.session.destroy(function(err) {
+    req.session.destroy(function (err) {
         res.render('admin/login');
     });
 });

@@ -2,11 +2,11 @@ var db = require("./db");
 var Sequelize = require("sequelize");
 
 var userSchema = {
-	id: {
-		type: Sequelize.INTEGER,
-		autoIncrement: true,
-		primaryKey: true,
-	},
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+    },
     username: {
         type: Sequelize.STRING,
         validate: {
@@ -15,7 +15,7 @@ var userSchema = {
                 msg: "帳號長度請大於4個字母"
             }
         },
-        unique:true
+        unique: true
     },
     email: {
         type: Sequelize.STRING
@@ -29,19 +29,19 @@ var userSchema = {
             }
         }
     },
-	role: {
+    role: {
         type: Sequelize.INTEGER,
-        defaultValue:0
-	},
-	created_at: {
-		type: 'TIMESTAMP',
-		defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-		allowNull: false
-	}
+        defaultValue: 0
+    },
+    created_at: {
+        type: 'TIMESTAMP',
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+    }
 }
 
-var User = db.define('user', userSchema,{
-  timestamps: false
+var User = db.define('user', userSchema, {
+    timestamps: false
 });
 
 module.exports = User;

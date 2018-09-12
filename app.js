@@ -13,26 +13,32 @@ app.set("view engine", "ejs");
 app.engine('ejs', require('ejs-locals'));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
 //設定 cookie 與 session 時間
 app.use(cookieParser("secretString"));
 app.use(session({
-    cookie: { maxAge: 1000 * 60 * 60 * 6 },
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 6
+    },
     secret: "secret",
-    saveUninitialized:true
+    saveUninitialized: true
 }));
 
 //設定靜態資源
 app.use("/public", express.static("public"));
 app.use(logger('dev'));
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     console.log(req.session);
     if (req.session.isLogin) {
         User.findOne({
-            where: { id: req.session.userid }
-        }).then(function(user) {
+            where: {
+                id: req.session.userid
+            }
+        }).then(function (user) {
             req.user = user;
             next();
         });
@@ -42,23 +48,25 @@ app.use(function(req, res, next) {
 });
 
 //error handle
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     res.status(500);
-    res.render('error', { error: err });
+    res.render('error', {
+        error: err
+    });
 });
 
 app.use('/users', require('./routes/users'));
 app.use('/admin', require('./routes/admin'));
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
     res.render('landingPage', {
         title: 'Home'
     });
 });
 
-app.get('*', function(req, res, next) {
-	res.status(404).send('Page not found');
+app.get('*', function (req, res, next) {
+    res.status(404).send('Page not found');
 });
 
-app.listen( process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000);
 console.log("running on port 3000");
