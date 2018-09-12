@@ -1,3 +1,8 @@
+## Version
+
+node v8
+Mariadb 5.5
+
 ## Start
 
 ### 部署
