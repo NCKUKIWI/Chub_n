@@ -36,3 +36,5 @@ Mariadb 5.5
 
 [sequelize 資料類型](http://docs.sequelizejs.com/manual/tutorial/models-definition.html#data-types)
 
+[sequelize model 使用方式](http://docs.sequelizejs.com/manual/tutorial/models-usage.html)
+
