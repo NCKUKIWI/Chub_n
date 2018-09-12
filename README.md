@@ -1,6 +1,7 @@
 ## Version
 
-node v8
+node 8.11.1
+
 Mariadb 5.5
 
 ## Start
