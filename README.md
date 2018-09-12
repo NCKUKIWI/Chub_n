@@ -17,3 +17,16 @@
 3. 執行 `node_modules/.bin/sequelize db:migrate --config config/db.json`
 
 4. 執行 `npm start`
+
+### 建 Migration
+
+1. 執行 `node_modules/.bin/sequelize migration:generate --name create-table-xxxx`
+
+2. 修改新建立的 migration file，添加欄位
+
+3. 執行 `node_modules/.bin/sequelize db:migrate --config config/db.json`
+
+4. 在 `models` 資料夾建立相對應 model 檔案
+
+[sequelize 資料類型](http://docs.sequelizejs.com/manual/tutorial/models-definition.html#data-types)
+
