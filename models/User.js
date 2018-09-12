@@ -17,6 +17,9 @@ var userSchema = {
         },
         unique:true
     },
+    email: {
+        type: Sequelize.STRING
+    },
     password: {
         type: Sequelize.STRING,
         validate: {

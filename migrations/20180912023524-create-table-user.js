@@ -2,7 +2,7 @@
 
 module.exports = {
     up: function (queryInterface, Sequelize) {
-        return queryInterface.createTable('users', {
+        return queryInterface.createTable('user', {
             id: {
                 type: Sequelize.INTEGER,
                 autoIncrement: true,
@@ -10,14 +10,17 @@ module.exports = {
             },
             username: {
                 type: Sequelize.STRING,
-                unique:true
+                unique: true
             },
             password: {
                 type: Sequelize.STRING
             },
+            email: {
+                type: Sequelize.STRING
+            },
             role: {
                 type: Sequelize.INTEGER,
-                defaultValue:0
+                defaultValue: 0
             },
             created_at: {
                 type: 'TIMESTAMP',
@@ -27,6 +30,6 @@ module.exports = {
         });
     },
     down: function (queryInterface, Sequelize) {
-        return queryInterface.dropTable('users');
+        return queryInterface.dropTable('user');
     }
 };
