@@ -57,6 +57,7 @@ app.use(function (err, req, res, next) {
 
 app.use('/users', require('./routes/users'));
 app.use('/admin', require('./routes/admin'));
+app.use('/project', require('./routes/projects'));
 
 app.get('/', function (req, res) {
     res.render('landingPage', {

@@ -36,6 +36,8 @@ router.get('/crop', function (req, res) {
     res.render('crop');
 });
 
+
+
 router.post('/upload', function (req, res) {
     coverUpload(req, res, function (err) {
         if (err) {

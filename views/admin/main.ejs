@@ -7,28 +7,27 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
-	<script src="/js/swiper.min.js"></script>
+	<script src="/public/js/swiper.min.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js'></script>
+	<script src="/public/js/backEnd_main.js"></script>
 </head>
 <body>
 	<div id="main">
 		<div id="sidebar">
 			<div class="ui secondary vertical pointing menu">
 			  <a class="item active" name="project_list">
-			    專案管理
-			  </a>
+			    ??????</a>
 			  <a class="item" name="ad_list">
-			    廣告管理
-			  </a>
+			  	?V???</a>
 			  <a class="item" name="people_list">
-			    人員管理
-			  </a>
+			    ??T??</a>
 			</div>
 		</div>
-		<!-- project -->
-		<div class="function_main" id="backend_project_list" name="project_list" style="display:none">
+		<!-- project list -->
+		<div class="function_main" id="backend_project_list" name="project_list" style="display:">
 			<div class="function_header">
-				<h1>專案列表</h1>
-				<i class="big plus icon"></i>
+				<h1>?????��</h1>
+				<i class="big plus icon" name="project" @click="add_project"></i>
 			</div>
 			<div class=function_content>
 				<table class="ui selectable celled table">
@@ -39,41 +38,33 @@
 				    </tr>
 				  </thead>
 				  <tbody>
-				    <tr>
-				      <td>John</td>
-				      <td>No Action</td>
-				    </tr>
-				    <tr>
-				      <td>John</td>
-				      <td>No Action</td>
-				    </tr>
-				    <tr>
-				      <td>John</td>
-				      <td>No Action</td>
-				    </tr>
-				    <tr>
-				      <td>John</td>
-				      <td>No Action</td>
+				    <tr v-for="item in projects" @click="show_project(item.id)">
+				    	<td>{{item.name}}</td>
+				    	<td>{{item.duration}}</td>
 				    </tr>
 				  </tbody>
 				</table>
 			</div>
 		</div>
-		<div class="function_main" id="backend_project" name="project">
-			<div class="ui breadcrumb" style="margin-bottom: 10px;">
-			  <a class="section">Home</a>
-			  <div class="divider"> / </div>
-			  <a class="section">Store</a>
-			  <div class="divider"> / </div>
-			  <div class="active section">T-Shirt</div>
-			</div>
+		<!-- project -->
+		<div class="function_main" id="backend_project" name="project" style="display: none;">
 			<div class="function_header">
-				<h1>專案內容</h1>
-				<i class="big plus icon"></i>
+				<h1>??????</h1>
+				<button v-if='id == ""' class="ui button" style="margin-left: 50px;" @click="add_project">
+				  Create
+				</button>
+				<div v-else>
+					<button class="ui button" style="margin-left: 50px;" @click="update_project(id)">
+					  Save
+					</button>
+					<button class="ui button" style="margin-left: 50px;" @click="delete_project(id)">
+					  Delete
+					</button>
+				</div>
 			</div>
 			<div class=function_content>
 				<div class="ui top attached tabular menu">
-				  <a class="item" data-tab="Info">Info</a>
+				  <a class="item active" data-tab="Info">Info</a>
 				  <a class="item" data-tab="Banner">Banner</a>
 				  <a class="item" data-tab="Video">Video</a>
 				  <a class="item" data-tab="Image">Image</a>
@@ -84,28 +75,28 @@
 					  <div class="inline fields">
 					    <div class="eight wide field">
 					      <label>Name:</label>
-					      <input type="text" placeholder="">
+					      <input type="text" placeholder="" v-model.lazy="name">
 					    </div>
 					  </div>
 					  <div class="inline fields">
 					    <div class="eight wide field">
 					      <label>Subtitle:</label>
-					      <input type="text" placeholder="">
+					      <input type="text" placeholder="" v-model.lazy="subtitle">
 					    </div>
 					  </div>
 					  <div class="inline fields">
 					    <div class="eight wide field">
-					      <label>duration:</label>
-					      <input type="text" placeholder="">
+					      <label>Duration:</label>
+					      <input type="text" placeholder="" v-model.lazy="duration">
 					    </div>
 					  </div>
 					  <div class="field">
 					    <label>Mission:</label>
-					    <textarea rows="2"></textarea>
+					    <textarea rows="2" v-model.lazy="mission"></textarea>
 					  </div>
 					  <div class="field">
 					    <label>Introduction:</label>
-					    <textarea></textarea>
+					    <textarea v-model.lazy="introduction"></textarea>
 					  </div>
 					</div>
 				</div>
@@ -122,7 +113,7 @@
 					  <div class="column">
 					    <div class="ui fluid card">
 					      <div class="image">
-					        <img src="/img/ex_handsome_boy.png">
+					        <img src="public/img/ex_handsome_boy.png">
 					      </div>
 					      <div class="content">
 					        <a class="header">Daniel Louise</a>
@@ -132,7 +123,7 @@
 					  <div class="column">
 					    <div class="ui fluid card">
 					      <div class="image">
-					        <img src="/img/ex_handsome_boy.png">
+					        <img src="public/img/ex_handsome_boy.png">
 					      </div>
 					      <div class="content">
 					        <a class="header">Helen Troy</a>
@@ -142,7 +133,7 @@
 					  <div class="column">
 					    <div class="ui fluid card">
 					      <div class="image">
-					        <img src="/img/ex_handsome_boy.png">
+					        <img src="public/img/ex_handsome_boy.png">
 					      </div>
 					      <div class="content">
 					        <a class="header">Elliot Fu</a>
@@ -157,11 +148,11 @@
 			</div>
 		</div>
 
-		<!-- advirtisement -->
+		<!-- advirtisement list -->
 		<div class="function_main" id="backend_ad_list" name="ad_list" style="display: none;">
 			<div class="function_header">
-				<h1>廣告列表</h1>
-				<i class="big plus icon"></i>
+				<h1>�V���б�</h1>
+				<i class="big plus icon" name="ad"></i>
 			</div>
 			<div class=function_content>
 				<table class="ui selectable celled table">
@@ -193,11 +184,11 @@
 			</div>
 		</div>
 
-		<!-- people -->
+		<!-- people list -->
 		<div class="function_main" id="backend_people_list" name="people_list" style="display:none;">
 			<div class="function_header">
-				<h1>人員列表</h1>
-				<i class="big plus icon"></i>
+				<h1>??T???</h1>
+				<i class="big plus icon" name="people"></i>
 			</div>
 			<div class=function_content>
 				<table class="ui selectable celled table">
@@ -226,31 +217,6 @@
 	</div>
 
 </body>
-
-<script type="text/javascript">
-	$('.item').on('click', function() {
-		var open_function = $(this).attr('name');
-		$('.function_main').hide();
-		$('.function_main[name=' + open_function + ']').show();
-		if( !$(this).hasClass('active')){
-			$('.item').removeClass('active');
-			$(this).addClass('active');
-		}
-	})
-
-	// tab change
-	$('.menu .item').tab();
-
-	$('.special.cards .image').dimmer({
-	  on: 'hover'
-	});
-</script>
-
-<script type="text/javascript">
-	new Vue({
-
-	});
-</script>
 
 <style type="text/css">
 	#main{
