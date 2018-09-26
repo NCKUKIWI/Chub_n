@@ -16,17 +16,17 @@
 		<div id="sidebar">
 			<div class="ui secondary vertical pointing menu">
 			  <a class="item active" name="project_list">
-			    ??????</a>
+			    專案管理</a>
 			  <a class="item" name="ad_list">
-			  	?V???</a>
+			  	廣告管理</a>
 			  <a class="item" name="people_list">
-			    ??T??</a>
+			    人員管理</a>
 			</div>
 		</div>
 		<!-- project list -->
 		<div class="function_main" id="backend_project_list" name="project_list" style="display:">
 			<div class="function_header">
-				<h1>?????��</h1>
+				<h1>專案列表</h1>
 				<i class="big plus icon" name="project" @click="add_project"></i>
 			</div>
 			<div class=function_content>
@@ -49,7 +49,7 @@
 		<!-- project -->
 		<div class="function_main" id="backend_project" name="project" style="display: none;">
 			<div class="function_header">
-				<h1>??????</h1>
+				<h1>專案內容</h1>
 				<button v-if='id == ""' class="ui button" style="margin-left: 50px;" @click="add_project">
 				  Create
 				</button>
@@ -151,7 +151,7 @@
 		<!-- advirtisement list -->
 		<div class="function_main" id="backend_ad_list" name="ad_list" style="display: none;">
 			<div class="function_header">
-				<h1>�V���б�</h1>
+				<h1>廣告列表</h1>
 				<i class="big plus icon" name="ad"></i>
 			</div>
 			<div class=function_content>
@@ -187,7 +187,7 @@
 		<!-- people list -->
 		<div class="function_main" id="backend_people_list" name="people_list" style="display:none;">
 			<div class="function_header">
-				<h1>??T???</h1>
+				<h1>人員列表</h1>
 				<i class="big plus icon" name="people"></i>
 			</div>
 			<div class=function_content>
