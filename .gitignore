@@ -4,4 +4,4 @@ config.*
 npm-debug.log
 *.log
 uploads
-db.json
+config/
