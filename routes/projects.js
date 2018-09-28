@@ -12,42 +12,38 @@ router.get('/all', function (req, res) {
 })
 
 router.get('/:id', function (req, res) {
-	var project_id = parseInt(req.params.id);
-	Project.findById(project_id).then(project => {
+	var id = parseInt(req.params.id);
+	Project.findById(id).then(project => {
 		res.send(project);
 	})
 })
 
 router.post('/update/:id', function (req, res) {
-	var project_id = parseInt(req.params.id);
+	var id = parseInt(req.params.id);
 	Project.update(req.body, {
 		where:{
-			id: project_id
+			id: id
 		}
 	}).then(function(){
 		res.send("更新成功");
 	})
 })
 
-router.get('/delete/:id', function (req, res) {
-	var project_id = parseInt(req.params.id);
+router.delete('/delete/:id', function (req, res) {
+	var id = parseInt(req.params.id);
 	Project.destroy({
 		where:{
-			id: project_id
+			id: id
 		}
 	}).then(function(){
 		res.send("刪除成功");
-	})
-	// Project.findById(project_id).then(item => {
-	// 	item.destroy();
-	// 	res.send("刪除成功");
-	// })
-})
+	});
+});
 
 router.post('/add', function (req, res) {
-	Project.create(req.body).then(function(new_project) {
-		res.send(new_project);
-	})
-})
+	Project.create(req.body).then(function(project) {
+		res.send(project);
+	});
+});
 
 module.exports = router;

@@ -1,0 +1,129 @@
+<div id="backend_project" style="width:100%;">
+    <!-- project list -->
+    <div class="function_main" v-show="show.list">
+        <div class="function_header">
+            <h1>專案列表</h1>
+            <i class="big plus icon" name="project" @click="showForm"></i>
+        </div>
+        <div class=function_content>
+            <table class="ui selectable celled table">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(project, index) in projects" @click="showProject(index)">
+                        <td>{{ project.name }}</td>
+                        <td>{{ project.duration }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- project -->
+    <div class="function_main" v-show="show.form">
+        <div class="function_header">
+            <h1>專案內容</h1>
+            <button v-if='project.id == ""' class="ui button" style="margin-left: 25px;" @click="createProject">
+                Create
+            </button>
+            <template v-else>
+                <button class="ui button" style="margin-left: 20px;" @click="updateProject(project.id)">
+                    Save
+                </button>
+                <button class="ui button" style="margin-left: 20px;" @click="deleteProject(project.id)">
+                    Delete
+                </button>
+            </template>
+            <button class="ui button" style="margin-left: 20px;" @click="showList">
+                Back
+            </button>
+        </div>
+        <div class=function_content>
+            <div class="ui top attached tabular menu">
+                <a class="item active" data-tab="Info">Info</a>
+                <a class="item" data-tab="Banner">Banner</a>
+                <a class="item" data-tab="Video">Video</a>
+                <a class="item" data-tab="Image">Image</a>
+                <!-- <a class="item active" data-tab="Gallery">Gallery</a> -->
+            </div>
+            <div class="ui bottom attached tab segment active" data-tab="Info">
+                <div class="ui form">
+                    <div class="inline fields">
+                    <div class="eight wide field">
+                        <label>Name:</label>
+                        <input type="text" placeholder="" v-model.lazy="project.name">
+                    </div>
+                    </div>
+                    <div class="inline fields">
+                    <div class="eight wide field">
+                        <label>Subtitle:</label>
+                        <input type="text" placeholder="" v-model.lazy="project.subtitle">
+                    </div>
+                    </div>
+                    <div class="inline fields">
+                    <div class="eight wide field">
+                        <label>Duration:</label>
+                        <input type="text" placeholder="" v-model.lazy="project.duration">
+                    </div>
+                    </div>
+                    <div class="field">
+                    <label>Mission:</label>
+                    <textarea rows="2" v-model.lazy="project.mission"></textarea>
+                    </div>
+                    <div class="field">
+                    <label>Introduction:</label>
+                    <textarea v-model.lazy="project.introduction"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="Banner">
+                crop function
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="Video">
+                <iframe width="420" height="315"
+                src="https://www.youtube.com/embed/1B9rLGfc9Vo">
+                </iframe>
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="Image">
+                <div class="ui three column grid">
+                    <div class="column">
+                    <div class="ui fluid card">
+                        <div class="image">
+                        <img src="public/img/ex_handsome_boy.png">
+                        </div>
+                        <div class="content">
+                        <a class="header">Daniel Louise</a>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="column">
+                    <div class="ui fluid card">
+                        <div class="image">
+                        <img src="public/img/ex_handsome_boy.png">
+                        </div>
+                        <div class="content">
+                        <a class="header">Helen Troy</a>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="column">
+                    <div class="ui fluid card">
+                        <div class="image">
+                        <img src="public/img/ex_handsome_boy.png">
+                        </div>
+                        <div class="content">
+                        <a class="header">Elliot Fu</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="Gallery">
+                test
+            </div>
+        </div>
+    </div>
+</div>

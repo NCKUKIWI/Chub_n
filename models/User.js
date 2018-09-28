@@ -1,7 +1,7 @@
 var db = require("./db");
 var Sequelize = require("sequelize");
 
-var usersSchema = {
+var userSchema = {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
