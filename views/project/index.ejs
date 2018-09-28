@@ -80,7 +80,14 @@
                 </div>
             </div>
             <div class="ui bottom attached tab segment" data-tab="Banner">
-                crop function
+                <form class="ui form" id="projectBannerForm">
+                    <div class="field">
+                        <label>Banner</label>
+                        <input type="file" name="banner" id="banner">
+                    </div>
+                </form>
+                <br>
+                <img width="100%" v-if="project.banner" v-bind:src="'/uploads/project/' + project.id + '/banner.png?' + new Date().getTime()">
             </div>
             <div class="ui bottom attached tab segment" data-tab="Video">
                 <div class="ui form">

@@ -556,3 +556,5 @@ a.list-group-item {
 a.list-group-item.active small {
     color:#fff;
 }
+
+#toast-container { z-index: 999999;}

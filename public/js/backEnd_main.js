@@ -4,7 +4,7 @@ $(function () {
         "positionClass": "toast-top-right",
         "showDuration": "0",
         "hideDuration": "1000",
-        "timeOut": "2000",
+        "timeOut": "5000",
         "extendedTimeOut": "1000"
     }
 
@@ -62,7 +62,7 @@ $(function () {
         created: function () {
             $.ajax({
                 type: "GET",
-                url: "/project/all",
+                url: "/projects",
                 success: function (projects) {
                     vue_project.projects = projects;
                 }
@@ -103,13 +103,38 @@ $(function () {
                     url: this.project.url
                 };
                 $.ajax({
-                    url: "/project/add",
+                    url: "/projects",
                     data: projectData,
                     method: "POST",
                     success: function (project) {
-                        toastr.success("新增成功");
-                        vue_project.projects.push(project);
-                        vue_project.showList();
+                        if($("#banner").val() != "") {
+                            var banner = $("#banner")[0].files[0];
+                            if(banner.type == "image/png" || banner.type == "image/jpeg"){
+                                var formData = new FormData($("#projectBannerForm")[0]);
+                                $.ajax({
+                                    url: "/projects/banner/" + project.id,
+                                    type: "POST",
+                                    data: formData,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function(response) {
+                                        if (response == "ok") {
+                                            $("#banner").val("");
+                                            toastr.success("新增成功");
+                                            project.banner = 1;
+                                            vue_project.projects.push(project);
+                                            vue_project.showList();
+                                        }
+                                    }
+                                });
+                            } else {
+                                toastr.error("請上傳jpg或png檔案");
+                            }
+                        } else {
+                            toastr.success("新增成功");
+                            vue_project.projects.push(project);
+                            vue_project.showList();
+                        }
                     }
                 })
             },
@@ -123,20 +148,46 @@ $(function () {
                     url: this.project.url
                 };
                 $.ajax({
-                    url: "/project/update/" + id,
+                    url: "/projects/update/" + id,
                     method: "POST",
                     data: updateProject,
                     success: function (msg) {
-                        toastr.success(msg);
-                        vue_project.projects[vue_project.index] = updateProject;
-                        vue_project.projects[vue_project.index].id = id;
-                        vue_project.showList();
+                        if($("#banner").val() != "") {
+                            var banner = $("#banner")[0].files[0];
+                            if(banner.type == "image/png" || banner.type == "image/jpeg"){
+                                var formData = new FormData($("#projectBannerForm")[0]);
+                                $.ajax({
+                                    url: "/projects/banner/" + id,
+                                    type: "POST",
+                                    data: formData,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function(response) {
+                                        if (response == "ok") {
+                                            $("#banner").val("");
+                                            toastr.success("更新成功");
+                                            updateProject.id = id
+                                            updateProject.banner = 1;
+                                            vue_project.projects[vue_project.index] = updateProject;
+                                            vue_project.showList();
+                                        }
+                                    }
+                                });
+                            } else {
+                                toastr.error("請上傳jpg或png檔案");
+                            }
+                        } else {
+                            toastr.success("更新成功");
+                            vue_project.projects[vue_project.index] = updateProject;
+                            vue_project.projects[vue_project.index].id = id;
+                            vue_project.showList();
+                        }
                     }
                 });
             },
             deleteProject: function (id) {
                 $.ajax({
-                    url: "/project/delete/" + id,
+                    url: "/projects/delete/" + id,
                     method: "DELETE",
                     success: function (msg) {
                         toastr.success(msg);

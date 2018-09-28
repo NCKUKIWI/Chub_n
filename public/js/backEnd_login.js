@@ -5,7 +5,7 @@ $(function() {
 		"positionClass": "toast-top-right",
 		"showDuration": "0",
 		"hideDuration": "1000",
-		"timeOut": "2000",
+		"timeOut": "5000",
 		"extendedTimeOut": "1000"
     }
 

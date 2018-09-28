@@ -26,6 +26,10 @@ var projectSchema = {
     url: {
         type: Sequelize.STRING
     },
+    banner: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+    },
     pic: {
         type: Sequelize.STRING
     }

@@ -30,6 +30,7 @@ app.use(session({
 
 //設定靜態資源
 app.use("/public", express.static("public"));
+app.use("/uploads", express.static("uploads"));
 app.use(logger('dev'));
 
 app.use(function (req, res, next) {
@@ -58,7 +59,7 @@ app.use(function (err, req, res, next) {
 
 app.use('/users', require('./routes/users'));
 app.use('/admin', require('./routes/admin'));
-app.use('/project', require('./routes/projects'));
+app.use('/projects', require('./routes/projects'));
 
 app.get('/', function (req, res) {
     res.render('landingPage', {
