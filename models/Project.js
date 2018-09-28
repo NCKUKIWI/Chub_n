@@ -1,7 +1,7 @@
 var db = require("./db");
 var Sequelize = require("sequelize");
 
-var projectSchema = {
+var projectsSchema = {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -33,7 +33,7 @@ var projectSchema = {
     }
 }
 
-var Project = db.define('project', projectSchema, {
+var Project = db.define('projects', projectSchema, {
     timestamps: false
 });
 
