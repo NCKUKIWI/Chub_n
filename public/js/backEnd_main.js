@@ -253,6 +253,7 @@ $(function () {
         on: 'hover'
     });
 
+    //上傳圖片功能
     function uploadImg(api, inputSelector, formSelector, cb) {
         var img = $(inputSelector)[0].files[0];
         if(img.type == "image/png" || img.type == "image/jpeg"){
