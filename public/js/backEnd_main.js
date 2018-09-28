@@ -108,28 +108,19 @@ $(function () {
                     method: "POST",
                     success: function (project) {
                         if($("#banner").val() != "") {
-                            var banner = $("#banner")[0].files[0];
-                            if(banner.type == "image/png" || banner.type == "image/jpeg"){
-                                var formData = new FormData($("#projectBannerForm")[0]);
-                                $.ajax({
-                                    url: "/projects/banner/" + project.id,
-                                    type: "POST",
-                                    data: formData,
-                                    contentType: false,
-                                    processData: false,
-                                    success: function(response) {
-                                        if (response == "ok") {
-                                            $("#banner").val("");
-                                            toastr.success("新增成功");
-                                            project.banner = 1;
-                                            vue_project.projects.push(project);
-                                            vue_project.showList();
-                                        }
+                            uploadImg(
+                                "/projects/banner/" + project.id,
+                                "#banner",
+                                "#projectBannerForm",
+                                function(response) {
+                                    if (response == "ok") {
+                                        $("#banner").val("");
+                                        toastr.success("新增成功");
+                                        project.banner = 1;
+                                        vue_project.projects.push(project);
+                                        vue_project.showList();
                                     }
-                                });
-                            } else {
-                                toastr.error("請上傳jpg或png檔案");
-                            }
+                            });
                         } else {
                             toastr.success("新增成功");
                             vue_project.projects.push(project);
@@ -153,29 +144,20 @@ $(function () {
                     data: updateProject,
                     success: function (msg) {
                         if($("#banner").val() != "") {
-                            var banner = $("#banner")[0].files[0];
-                            if(banner.type == "image/png" || banner.type == "image/jpeg"){
-                                var formData = new FormData($("#projectBannerForm")[0]);
-                                $.ajax({
-                                    url: "/projects/banner/" + id,
-                                    type: "POST",
-                                    data: formData,
-                                    contentType: false,
-                                    processData: false,
-                                    success: function(response) {
-                                        if (response == "ok") {
-                                            $("#banner").val("");
-                                            toastr.success("更新成功");
-                                            updateProject.id = id
-                                            updateProject.banner = 1;
-                                            vue_project.projects[vue_project.index] = updateProject;
-                                            vue_project.showList();
-                                        }
+                            uploadImg(
+                                "/projects/banner/" + id,
+                                "#banner",
+                                "#projectBannerForm",
+                                function(response) {
+                                    if (response == "ok") {
+                                        $("#banner").val("");
+                                        toastr.success("更新成功");
+                                        updateProject.id = id
+                                        updateProject.banner = 1;
+                                        vue_project.projects[vue_project.index] = updateProject;
+                                        vue_project.showList();
                                     }
-                                });
-                            } else {
-                                toastr.error("請上傳jpg或png檔案");
-                            }
+                            });
                         } else {
                             toastr.success("更新成功");
                             vue_project.projects[vue_project.index] = updateProject;
@@ -270,4 +252,23 @@ $(function () {
     $('.special.cards .image').dimmer({
         on: 'hover'
     });
+
+    function uploadImg(api, inputSelector, formSelector, cb) {
+        var img = $(inputSelector)[0].files[0];
+        if(img.type == "image/png" || img.type == "image/jpeg"){
+            var formData = new FormData($(formSelector)[0]);
+            $.ajax({
+                url: api,
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    cb(response);
+                }
+            });
+        } else {
+            toastr.error("請上傳jpg或png檔案");
+        }
+    }
 });
