@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "migrate": "node_modules/.bin/sequelize db:migrate --config config/db.json"
   },
   "dependencies": {
     "bcrypt": "^3.0.0",

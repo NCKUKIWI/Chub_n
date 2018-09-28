@@ -16,8 +16,6 @@ RUN npm rebuild bcrypt --build-from-source
 
 RUN npm install -g pm2
 
-RUN npm install -g sequelize-cli
-
 # Open 3000 Port
 EXPOSE 3000
 
