@@ -18,13 +18,13 @@ app.use(bodyParser.urlencoded({
 }));
 
 //設定 cookie 與 session 時間
-app.use(cookieParser("secretString"));
+app.use(cookieParser("chub"));
 app.use(session({
     cookie: {
         maxAge: 1000 * 60 * 60 * 6
     },
-    resave: false,
-    secret: "secret",
+    resave: true,
+    secret: "chub",
     saveUninitialized: true
 }));
 

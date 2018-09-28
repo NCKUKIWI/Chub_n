@@ -1,65 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>CHUB - Backstage</title>
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
-	<script src="/public/js/swiper.min.js"></script>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js'></script>
-	<script src="/public/js/backEnd_main.js"></script>
+    <meta charset="UTF-8">
+    <title>CHUB - Backstage</title>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+    <script src="/public/js/swiper.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js'></script>
+    <script src="/public/js/backEnd_main.js"></script>
 </head>
+
 <body>
-	<div id="main">
-		<div id="sidebar">
-			<div class="ui secondary vertical pointing menu">
-			  <a class="item active" name="project_list">
-			    專案管理</a>
-			  <a class="item" name="ad_list">
-			  	廣告管理</a>
-			  <a class="item" name="people_list">
-			    人員管理</a>
-			</div>
+    <div id="main">
+        <div id="sidebar">
+            <div class="ui secondary vertical pointing menu">
+                <a class="item" v-on:click.prevent="changeTab(1)" v-bind:class="{ 'active': tab == 1 }">
+                    專案管理
+                </a>
+                <a class="item" v-on:click.prevent="changeTab(2)" v-bind:class="{ 'active': tab == 2 }">
+                    廣告管理
+                </a>
+                <a class="item" v-on:click.prevent="changeTab(3)" v-bind:class="{ 'active': tab == 3 }">
+                    人員管理
+                </a>
+            </div>
         </div>
         <!-- 專案 -->
         <% include ../project/index %>
         <!-- 廣告 -->
-        <!-- <% include ../advertise/index %> -->
+        <% include ../advertise/index %>
         <!-- 人員 -->
-        <!-- <% include ../user/index %> -->
-	</div>
+        <% include ../user/index %>
+    </div>
 
 </body>
 
 <style type="text/css">
-	#main{
-		display: flex;
-		flex-direction: row;
-		height: 100%;
-	}
+    #main {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+    }
 
-	#sidebar{
-		background-color: grey;
-		padding-top: 3%;
-	}
+    #sidebar {
+        background-color: grey;
+        padding-top: 3%;
+    }
 
-	.function_main{
-		padding: 3%;
-		width: 100%;
-	}
+    .function_main {
+        padding: 3%;
+        width: 100%;
+    }
 
-	.function_header{
-		display: flex;
-	}
+    .function_header {
+        display: flex;
+    }
 
-	.function_header i{
-		margin-left: 10px;
-	}
+    .function_header i {
+        margin-left: 10px;
+    }
 </style>
 
 </html>
-
-
-
