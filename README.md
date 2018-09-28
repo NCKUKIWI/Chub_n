@@ -12,7 +12,9 @@ Mariadb 5.5
 
 2. 執行 `docker-compose up -d`
 
-3. 進入 container 執行 `sequelize db:migrate --config config/db.json`
+3. 進入 container 執行 `npm run migrate`
+
+4. 進入 container 執行 `npm run setup`
 
 ### 開發
 
@@ -20,7 +22,7 @@ Mariadb 5.5
 
 2. 修改 `config/db.json` 內 `development` 中的資料庫參數
 
-3. 執行 `node_modules/.bin/sequelize db:migrate --config config/db.json`
+3. 執行 `npm run migrate`
 
 4. 執行 `npm start`
 
@@ -30,7 +32,7 @@ Mariadb 5.5
 
 2. 修改新建立的 migration file，添加欄位
 
-3. 執行 `node_modules/.bin/sequelize db:migrate --config config/db.json`
+3. 執行 `npm run migrate`
 
 4. 在 `models` 資料夾建立相對應 model 檔案
 
