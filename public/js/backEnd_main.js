@@ -55,7 +55,8 @@ $(function () {
                 subtitle: "",
                 duration: "",
                 mission: "",
-                introduction: ""
+                introduction: "",
+                url: "",
             }
         },
         created: function () {
@@ -86,7 +87,8 @@ $(function () {
                     subtitle: "",
                     duration: "",
                     mission: "",
-                    introduction: ""
+                    introduction: "",
+                    url: ""
                 };
                 vue_project.show.form = false;
                 vue_project.show.list = true;
@@ -97,7 +99,8 @@ $(function () {
                     subtitle: this.project.subtitle,
                     duration: this.project.duration,
                     mission: this.project.duration,
-                    introduction: this.project.introduction
+                    introduction: this.project.introduction,
+                    url: this.project.url
                 };
                 $.ajax({
                     url: "/project/add",
@@ -116,7 +119,8 @@ $(function () {
                     subtitle: this.project.subtitle,
                     duration: this.project.duration,
                     mission: this.project.duration,
-                    introduction: this.project.introduction
+                    introduction: this.project.introduction,
+                    url: this.project.url
                 };
                 $.ajax({
                     url: "/project/update/" + id,
@@ -209,6 +213,8 @@ $(function () {
     });
 
     // semantic ui's function
+    $(".menu .item").tab();
+
     // - table style
     $('.special.cards .image').dimmer({
         on: 'hover'

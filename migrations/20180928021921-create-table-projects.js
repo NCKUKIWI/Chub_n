@@ -13,24 +13,22 @@ module.exports = {
                 unique: true
             },
             subtitle: {
-                type: Sequelize.STRING,
-                unique: true
+                type: Sequelize.STRING
             },
             duration: {
-                type: Sequelize.STRING,
-                unique: true
+                type: Sequelize.STRING
             },
             mission: {
-                type: Sequelize.STRING,
-                unique: true
+                type: Sequelize.STRING
             },
             introduction: {
                 type: Sequelize.STRING,
-                unique: true
             },
             url: {
                 type: Sequelize.STRING,
-                unique: true
+            },
+            pic: {
+                type: Sequelize.STRING
             }
         });
     },

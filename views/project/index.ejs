@@ -52,30 +52,30 @@
             <div class="ui bottom attached tab segment active" data-tab="Info">
                 <div class="ui form">
                     <div class="inline fields">
-                    <div class="eight wide field">
-                        <label>Name:</label>
-                        <input type="text" placeholder="" v-model.lazy="project.name">
-                    </div>
-                    </div>
-                    <div class="inline fields">
-                    <div class="eight wide field">
-                        <label>Subtitle:</label>
-                        <input type="text" placeholder="" v-model.lazy="project.subtitle">
-                    </div>
+                        <div class="eight wide field">
+                            <label>Name:</label>
+                            <input type="text" placeholder="" v-model.lazy="project.name">
+                        </div>
                     </div>
                     <div class="inline fields">
-                    <div class="eight wide field">
-                        <label>Duration:</label>
-                        <input type="text" placeholder="" v-model.lazy="project.duration">
+                        <div class="eight wide field">
+                            <label>Subtitle:</label>
+                            <input type="text" placeholder="" v-model.lazy="project.subtitle">
+                        </div>
                     </div>
+                    <div class="inline fields">
+                        <div class="eight wide field">
+                            <label>Duration:</label>
+                            <input type="text" placeholder="" v-model.lazy="project.duration">
+                        </div>
                     </div>
                     <div class="field">
-                    <label>Mission:</label>
-                    <textarea rows="2" v-model.lazy="project.mission"></textarea>
+                        <label>Mission:</label>
+                        <textarea rows="2" v-model.lazy="project.mission"></textarea>
                     </div>
                     <div class="field">
-                    <label>Introduction:</label>
-                    <textarea v-model.lazy="project.introduction"></textarea>
+                        <label>Introduction:</label>
+                        <textarea v-model.lazy="project.introduction"></textarea>
                     </div>
                 </div>
             </div>
@@ -83,41 +83,47 @@
                 crop function
             </div>
             <div class="ui bottom attached tab segment" data-tab="Video">
-                <iframe width="420" height="315"
-                src="https://www.youtube.com/embed/1B9rLGfc9Vo">
+                <div class="ui form">
+                    <div class="inline field">
+                        <label>Video url:</label>
+                        <input type="text" v-model.lazy="project.url">
+                    </div>
+                </div>
+                <br><br>
+                <iframe width="420" height="315" v-bind:src="project.url">
                 </iframe>
             </div>
             <div class="ui bottom attached tab segment" data-tab="Image">
                 <div class="ui three column grid">
                     <div class="column">
-                    <div class="ui fluid card">
-                        <div class="image">
-                        <img src="public/img/ex_handsome_boy.png">
+                        <div class="ui fluid card">
+                            <div class="image">
+                                <img src="public/img/ex_handsome_boy.png">
+                            </div>
+                            <div class="content">
+                                <a class="header">Daniel Louise</a>
+                            </div>
                         </div>
-                        <div class="content">
-                        <a class="header">Daniel Louise</a>
-                        </div>
-                    </div>
                     </div>
                     <div class="column">
-                    <div class="ui fluid card">
-                        <div class="image">
-                        <img src="public/img/ex_handsome_boy.png">
+                        <div class="ui fluid card">
+                            <div class="image">
+                                <img src="public/img/ex_handsome_boy.png">
+                            </div>
+                            <div class="content">
+                                <a class="header">Helen Troy</a>
+                            </div>
                         </div>
-                        <div class="content">
-                        <a class="header">Helen Troy</a>
-                        </div>
-                    </div>
                     </div>
                     <div class="column">
-                    <div class="ui fluid card">
-                        <div class="image">
-                        <img src="public/img/ex_handsome_boy.png">
+                        <div class="ui fluid card">
+                            <div class="image">
+                                <img src="public/img/ex_handsome_boy.png">
+                            </div>
+                            <div class="content">
+                                <a class="header">Elliot Fu</a>
+                            </div>
                         </div>
-                        <div class="content">
-                        <a class="header">Elliot Fu</a>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>
