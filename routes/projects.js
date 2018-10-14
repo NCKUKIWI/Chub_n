@@ -27,7 +27,6 @@ var bannerUpload = multer({
 
 router.get('/', function (req, res) {
     Project.findAll().then(projects => {
-        console.log(projects);
         res.send(projects);
     });
 });

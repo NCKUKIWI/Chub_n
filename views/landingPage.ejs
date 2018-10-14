@@ -7,68 +7,78 @@
 	<link rel="stylesheet" href="/public/css/reset.css">
 	<link rel="stylesheet" href="/public/css/style.css">
 	<link rel="stylesheet" href="/public/css/swiper.min.css">
+	<link rel="stylesheet" href="/public/css/photoswipe.css"> 
+	<link rel="stylesheet" href="/public/css/photoswipe-default-skin.css"> 
+	<link rel="stylesheet" href="/public/css/aos.css">
 </head>
 
 <body>
 
 	<!-- Icons -->
-	<div class="icon_menu clickable_opac"></div>
-	<div class="icon_logo clickable_opac"></div>
+	<div class="icon_menu clickable switch_menu"></div>
+	<div class="icon_logo clickable"></div>
 
 	<!-- Menu -->
 	<div class="menu">
 		<div class="menu_cont">
-			<div class="menu_cont_title clickable_color on">Home</div>
-			<div class="menu_cont_title clickable_color">What is C-Hub</div>
-			<div class="menu_cont_title clickable_color">Mission</div>
-			<div class="menu_cont_title clickable_color">Project</div>
-			<div class="menu_cont_title clickable_color">Space</div>
-			<div class="menu_cont_title clickable_color">C-Huber</div>
-			<div class="menu_cont_title clickable_color">Contact</div>
+			<div class="menu_cont_title clickable_color on" onclick="window.location.hash='home'; ">Home</div>
+			<div class="menu_cont_title clickable_color" onclick="window.location.hash='intro'; ">What is C-Hub</div>
+			<div class="menu_cont_title clickable_color" onclick="window.location.hash='mission'; ">Mission</div>
+			<div class="menu_cont_title clickable_color" onclick="window.location.hash='project'; ">Project</div>
+			<div class="menu_cont_title clickable_color" onclick="window.location.hash='space'; ">Space</div>
+			<div class="menu_cont_title clickable_color" onclick="window.location.hash='chuber'; ">C-Huber</div>
+			<div class="menu_cont_title clickable_color" onclick="window.location.hash='contact'; ">Contact</div>
 		</div>
 	</div>
 
-	<!-- Page1: Home -->
+	<!-- Scroll Elements -->
+	<img class="scroll_element items_1" src="/public/img/scroll_items_1.svg" data-enllax-ratio=".3" data-enllax-type="foreground">
+	<img class="scroll_element items_2" src="/public/img/scroll_items_2.svg" data-enllax-ratio=".3" data-enllax-type="foreground">
+	<img class="scroll_element items_3" src="/public/img/scroll_items_3.svg" data-enllax-ratio=".3" data-enllax-type="foreground">
+	<img class="scroll_element items_4" src="/public/img/scroll_items_4.svg" data-enllax-ratio=".3" data-enllax-type="foreground">
+
+
+	<!-- Page 1: Home -->
 	<div class="fullpage bg_orange" id="home">
 		<div class="fullpage_element line_1"></div>
-		<div class="fullpage_element items_1"></div>
-		<div class="logo_home"></div>
+		<div class="fullpage_element items_1 zooming"></div>
+		<div class="logo_home" data-aos="fade-in" data-aos-delay="250"></div>
 	</div>
 
-	<!-- Page2: Banner -->
+	<!-- Page 2: Banner -->
 	<div class="fullpage bg_grey" id="banner">	
 		<div class="fullpage_element line_2"></div>
 		<div class="banner_board">
-			<div class="banner_item banner_1 clickable_brns on">
+			<div class="banner_item banner_1 clickable on">
 				<picture>
-					<source srcset="img/ex_banner_m_1.png" media="(max-width: 1050px)">
-					<img class="banner_item_pic" src="img/ex_banner_1.png">
+					<source srcset="/public/img/ex_banner_m_1.png" media="(max-width: 1050px)">
+					<img class="banner_item_pic" src="/public/img/ex_banner_1.png">
 				</picture>
 				<div class="banner_item_text">
 					<p class="banner_item_text_title">MovISee</p>
-					<div class="line_section banner"></div>
+					<div class="line_section line_banner"></div>
 					<p class="banner_item_text_cont">C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.</p>		
 				</div>
 			</div>
-			<div class="banner_item banner_2 clickable_brns">
+			<div class="banner_item banner_2 clickable">
 				<picture>
-					<source srcset="img/ex_banner_m_2.png" media="(max-width: 1050px)">
-					<img class="banner_item_pic" src="img/ex_banner_2.png">
+					<source srcset="/public/img/ex_banner_m_2.png" media="(max-width: 1050px)">
+					<img class="banner_item_pic" src="/public/img/ex_banner_2.png">
 				</picture>
 				<div class="banner_item_text">
 					<p class="banner_item_text_title">MovISeee</p>
-					<div class="line_section banner"></div>
+					<div class="line_section line_banner"></div>
 					<p class="banner_item_text_cont">C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.</p>		
 				</div>
 			</div>
-			<div class="banner_item banner_3 clickable_brns">
+			<div class="banner_item banner_3 clickable">
 				<picture class="banner_item_pic">
-					<source srcset="img/ex_banner_m_3.png" media="(max-width: 1050px)">
-					<img class="banner_item_pic" src="img/ex_banner_3.png">
+					<source srcset="/public/img/ex_banner_m_3.png" media="(max-width: 1050px)">
+					<img class="banner_item_pic" src="/public/img/ex_banner_3.png">
 				</picture>
 				<div class="banner_item_text">
 					<p class="banner_item_text_title">MovISeeeeeeeeeeeee</p>
-					<div class="line_section banner"></div>
+					<div class="line_section line_banner"></div>
 					<p class="banner_item_text_cont">C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.</p>		
 				</div>
 			</div>
@@ -77,36 +87,49 @@
 			<div class="dots banner_1 on"></div>
 			<div class="dots banner_2"></div>	
 			<div class="dots banner_3"></div>	
-			<div class="icon_go_prev clickable_opac"></div>
-			<div class="icon_go_next clickable_opac"></div>
+			<div class="icon_go_prev clickable"></div>
+			<div class="icon_go_next clickable"></div>
 		</div>
 		<div class="icon_page_down"></div>
 	</div>
 
-	<!-- Page3: Intro -->
+	<!-- Page 3: Intro -->
 	<div id="intro">
 		<div class="page_brief">
-			<p class="page_brief_title">What is C-Hub?</p>
-			<div class="line_section block"></div>
-			<p class="page_brief_cont">2014 年初，成功大學規劃與設計學院，啟動為期三年的「無邊界校園計畫」，逐步打造出略具雛形的 C-Hub 成大創意基地，作為第一年的起頭。為進一步建立完整教育、育成與實踐流程，促成企業與校園雙邊滲透，找尋新創團隊實踐契機，透過第一年所舉辦展覽與論壇兩大活動，進行大學、產業、城市之對話與交流，俾能集思廣益，募集企業與城市夥伴打造未來設計、使用、需求共同交流的平台。</p>
+			<p class="page_brief_title" data-aos="fade-in">What is C-Hub?</p>
+			<div class="line_section line_block"></div>
+			<p class="page_brief_cont" data-aos="fade-in">
+			有沒有一種可能，是大學、產業、城市共同實踐教育理想？<br><br>
+ 			
+			2015年的春天，在國立成功大學規劃與設計學院，C-Hub成大創意基地展開了有別以往的校園創新計畫。透過師生共創，激盪出更多想像，並結合教學實作與產業能量，希望讓大學教育有些改變。<br><br>
+
+			C-Hub串聯起大學、產業與城市之間的美好關係，構築完整的教育、育成與實踐流程，讓企業與校園彼此交融滲透，挖掘出新創團隊的無窮潛力，以Design Empowered為信念，結合設計的創新能量與產業互助，齊同交織夢想，踏上共創之路。<br><br>
+
+			在C-Hub，我們試圖打破在制度上的行政藩籬，透過育成及資源媒合，提供給產業的不是人力而是「人才」──也許是跨域間游刃有餘的專業經理人、天馬行空卻心思細膩的設計師，或是擁有探險精神的創業家，各式各樣身分都將被實現。我們深信，「跨領域創新」不應只是口號，而是自在地實踐於生活裡。<br><br>
+
+			一起創造意料之外的故事吧！這裡是C-Hub，你、我與我們的C-Hub。</p>
 		</div>
-		<div class="intro_pic"></div>
+		<!-- <div class="intro_pic"></div> -->
 		<div class="intro_detail bg_dark_grey">
 			<div class="fullpage_element line_1 opac_3"></div>			
-			<p class="intro_detail_cont">
-				At the beginning of 2014, the College of Planning and Design at National Cheng Kung University initiated the “Borderless Campus Project”.
-				<br><br>
-				C-Hub was built and became the first year’s achievement of this project. This was managed through an excellent co-creation process between professors and students, blending the energy of research and development, as well as incubation in the campus. In the next phase, two major events will be held during the anniversary week of NCKU to further establish the process of education, incubation and practice. Through these events we aim to promote bilateral immersion between industry and the campus, to find opportunities for innovative teams to practice and showcase their skills. With the conversation and exchange of information between the university, industry and a city collective, wisdom can be drawn out and useful ideas can be established.	
+			<p class="intro_detail_cont" data-aos="fade-in">
+				Is it possible for educational goals to be achieved by cooperation between a university, industry and the city?<br><br>
+				In the spring of 2015, an innovative program began at NCKU, unlike anything seen before. Through a co-creation process between students and teachers, we were able to begin a wealth of inspirational new projects. By combining practical methods with the strength of Taiwanese industry, we were able to create something that hadn’t existed previously in our university.
+				We are continuing the process of combining the university with industry and the city. Our goal is to create a complete education and incubation process, and to allow the university and external enterprises to communicate with each other. Our aim is for all parties involved to gain maximum results from this cooperation. C-Hub works according to the concept of “Design Empowered”.<br><br>
+
+				In C-Hub, we try to break the barrier from the regular system. We no longer want to provide just human resources but talents. We can train a project manager with a varied skill set, a uniquely creative designer or an adventurous entrepreneur. These kinds of people, among many others, will be trained in C-Hub. We believe strongly that multidisciplinary talent is no longer a fantasy; it will be applied in real life.<br><br>
+
+				So let’s create some stories. This is C-Hub, you and me. This is our C-Hub.
 			</p>
 		</div>
 	</div>
 
-	<!-- Page4: Mission -->
+	<!-- Page 4: Mission -->
 	<div id="mission">
 		<div class="page_brief">
-			<p class="page_brief_title">Mission</p>
-			<div class="line_section block"></div>
-			<p class="page_brief_cont">
+			<p class="page_brief_title" data-aos="fade-in">Mission</p>
+			<div class="line_section line_block"></div>
+			<p class="page_brief_cont" data-aos="fade-in">
 				改變目前的教育環境，培養學生自主學習的精神。透過在C-Hub成大創意基交換點子與想法，進而實作、體驗C-Hub內的設計經典，以連結產業資源，進一步帶到城市中實踐。
 				<br><br>
 				C-Hub’s mission is to change the current education environment, and to cultivate a spirit of self-learning for our students. By exchanging ideas and thoughts in the creative factory, and thereby prototyping, students can develop their design skills in C-Hub, and connect these with resources from industry, before ultimately bringing them into practice in the city.
@@ -114,86 +137,88 @@
 		</div>
 		<div class="mission_detail">
 			<div class="fullpage_element line_3 opac_8"></div>
-			<div class="mission_item">
-				<div class="mission_item_icon think"></div>
-				<div class="mission_item_brief">
-					<p class="mission_item_brief_title">Thinking</p>
-					<p class="mission_item_brief_cont">激發創意與創新想法並互相交流</p>
-				</div>				
-				<div class="mission_item_detail">
-					<p class="mission_item_detail_cont">Communicate with creative ideas and inspired creation.</p>
+			<div class="mission_list" data-aos="fade-up" data-aos-duration="2000">
+				<div class="mission_item">
+					<div class="mission_item_icon think"></div>
+					<div class="mission_item_brief">
+						<p class="mission_item_brief_title">Thinking</p>
+						<p class="mission_item_brief_cont">激發創意與創新想法並互相交流</p>
+					</div>				
+					<div class="mission_item_detail">
+						<p class="mission_item_detail_cont">Communicate with creative ideas and inspired creation.</p>
+					</div>
 				</div>
-			</div>
-			<div class="mission_item">
-				<div class="mission_item_icon proto"></div>
-				<div class="mission_item_brief">
-					<p class="mission_item_brief_title">Prototyping</p>
-					<p class="mission_item_brief_cont">以設計原型進行創新想法的第一步實踐</p>
-				</div>				
-				<div class="mission_item_detail">
-					<p class="mission_item_detail_cont">Through the use of industrial equipment, create real products from a simple written concept, or a graphic design.</p>
+				<div class="mission_item">
+					<div class="mission_item_icon proto"></div>
+					<div class="mission_item_brief">
+						<p class="mission_item_brief_title">Prototyping</p>
+						<p class="mission_item_brief_cont">以設計原型進行創新想法的第一步實踐</p>
+					</div>				
+					<div class="mission_item_detail">
+						<p class="mission_item_detail_cont">Through the use of industrial equipment, create real products from a simple written concept, or a graphic design.</p>
+					</div>
 				</div>
-			</div>
-			<div class="mission_item">
-				<div class="mission_item_icon exper"></div>
-				<div class="mission_item_brief">
-					<p class="mission_item_brief_title">Experiencing</p>
-					<p class="mission_item_brief_cont">從設計想法到產品製造的多階段體驗</p>
-				</div>				
-				<div class="mission_item_detail">
-					<p class="mission_item_detail_cont">Carry out interactive experiencing in the co-creating space, and with assistance from software and hardware resources, establish a practical learning module.</p>
+				<div class="mission_item">
+					<div class="mission_item_icon exper"></div>
+					<div class="mission_item_brief">
+						<p class="mission_item_brief_title">Experiencing</p>
+						<p class="mission_item_brief_cont">從設計想法到產品製造的多階段體驗</p>
+					</div>				
+					<div class="mission_item_detail">
+						<p class="mission_item_detail_cont">Carry out interactive experiencing in the co-creating space, and with assistance from software and hardware resources, establish a practical learning module.</p>
+					</div>
 				</div>
-			</div>
-			<div class="mission_item">
-				<div class="mission_item_icon entre"></div>
-				<div class="mission_item_brief">
-					<p class="mission_item_brief_title">Entrepreneurship</p>
-					<p class="mission_item_brief_cont">連結相同理念的創業夥伴與提供育成資源</p>
-				</div>				
-				<div class="mission_item_detail">
-					<p class="mission_item_detail_cont">Based on the cultivating of a professional background on the campus, and through the assistance of cooperation partners, with the purpose of developing free enterprise , provide entrepreneurship talents with complete incubation resources.</p>
+				<div class="mission_item">
+					<div class="mission_item_icon entre"></div>
+					<div class="mission_item_brief">
+						<p class="mission_item_brief_title">Entrepreneurship</p>
+						<p class="mission_item_brief_cont">連結相同理念的創業夥伴與提供育成資源</p>
+					</div>				
+					<div class="mission_item_detail">
+						<p class="mission_item_detail_cont">Based on the cultivating of a professional background on the campus, and through the assistance of cooperation partners, with the purpose of developing free enterprise , provide entrepreneurship talents with complete incubation resources.</p>
+					</div>
 				</div>
-			</div>
-			<div class="mission_item">
-				<div class="mission_item_icon urban"></div>
-				<div class="mission_item_brief">
-					<p class="mission_item_brief_title">Urban Realization</p>
-					<p class="mission_item_brief_cont">串聯產業資源，並帶到城市中實踐</p>
-				</div>				
-				<div class="mission_item_detail">
-					<p class="mission_item_detail_cont">Connecting abundant resources from industry and human capital, and bringing them into the city.</p>
+				<div class="mission_item">
+					<div class="mission_item_icon urban"></div>
+					<div class="mission_item_brief">
+						<p class="mission_item_brief_title">Urban Realization</p>
+						<p class="mission_item_brief_cont">串聯產業資源，並帶到城市中實踐</p>
+					</div>				
+					<div class="mission_item_detail">
+						<p class="mission_item_detail_cont">Connecting abundant resources from industry and human capital, and bringing them into the city.</p>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- Page5: Project -->
+	<!-- Page 5: Project Preview -->
 	<div class="fullpage bg_dark_grey" id="project">	
 		<div class="project_title">
-			<p class="project_title_text">Project</p>
-			<div class="line_section title"></div>
+			<p class="project_title_text" data-aos="fade-in">Project</p>
+			<div class="line_section line_title"></div>
 		</div>
-		<div class="project_browser swiper-container">
+		<div class="project_browser swiper-container" data-aos="fade-up" data-aos-duration="1500">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
-					<div class="project_item">
-						<img class="project_item_pic" src="img/ex_project_1.png">
+					<div class="project_item open_project_main switch_to_item">
+						<img class="project_item_pic" src="/public/img/ex_project_1.png">
 						<p class="project_item_title">微課程：整體美學營造</p>
 						<p class="project_item_detail">客製你的專屬妝容與美感</p>
 						<p class="project_item_date">01.13－02.01 / 2017</p>
 					</div>
 				</div>
 				<div class="swiper-slide">
-					<div class="project_item">
-						<img class="project_item_pic" src="img/ex_project_2.png">
+					<div class="project_item open_project_main switch_to_item">
+						<img class="project_item_pic" src="/public/img/ex_project_2.png">
 						<p class="project_item_title">微課程：整體美學營造</p>
 						<p class="project_item_detail">客製你的專屬妝容與美感</p>
 						<p class="project_item_date">01.13－02.01 / 2017</p>
 					</div>
 				</div>
 				<div class="swiper-slide">
-					<div class="project_item">
-						<img class="project_item_pic" src="img/ex_project_3.png">
+					<div class="project_item open_project_main switch_to_item">
+						<img class="project_item_pic" src="/public/img/ex_project_3.png">
 						<p class="project_item_title">微課程：整體美學營造</p>
 						<p class="project_item_detail">客製你的專屬妝容與美感</p>
 						<p class="project_item_date">01.13－02.01 / 2017</p>
@@ -202,22 +227,22 @@
 			</div>
 			<div class="project_dots swiper-pagination"></div>
 		</div>
-		<div class="button style_1">View All</div>
+		<div class="button style_1 open_project_main">View All</div>
 	</div>
 
-	<!-- Page6: Space -->
+	<!-- Page 6: Space -->
 	<div class="fullpage bg_mid_grey" id="space">
 		<div class="fullpage_element space"></div>
 		<div class="space_intro">
 			<div class="space_intro_title">
-				<p class="space_intro_title_text">Floor Guide</p>
-				<div class="line_section space"></div>
+				<p class="space_intro_title_text" data-aos="fade-in">Floor Guide</p>
+				<div class="line_section line_space"></div>
 			</div>
 			<div class="space_intro_building"></div>
 		</div>
 		<div class="space_detail">
-			<div class="button style_2">> Booking<br>System</div>
-			<div class="space_detail_floors">
+			<div class="button style_2" data-aos="fade-in" data-aos-offset="500" onclick="location.href='space';"> Booking<br>System</div>
+			<div class="space_detail_floors" data-aos="fade-left">
 				<div class="floor_detail">
 					<div class="floor_detail_num">5F</div>
 					<div class="floor_detail_line"></div>
@@ -247,49 +272,49 @@
 		</div>
 	</div>
 
-	<!-- Page7: C-Huber -->
+	<!-- Page 7: C-Huber -->
 	<div class="fullpage bg_light" id="chuber">
 		<div class="page_brief chuber bg_orange">
 			<div class="fullpage_element items_2"></div>
-			<p class="page_brief_title chuber">C-Huber</p>
-			<div class="line_section chuber"></div>
+			<p class="page_brief_title chuber" data-aos="fade-in" data-aos-offset="200">We, working at C-Hub</p>
+			<div class="line_section line_chuber"></div>
 		</div>
-		<div class="chuber_browser swiper-container">
+		<div class="chuber_browser swiper-container" data-aos="fade-in">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
 					<div class="chuber_item">
-						<div class="chub_staff">
-							<img class="chub_staff_pic" src="img/ex_handsome_boy.png">
-							<p class="chub_staff_name">林耿弘</p>
-							<p class="chub_staff_job">魔法師</p>
+						<div class="chuber_staff">
+							<img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png">
+							<p class="chuber_staff_name">林耿弘</p>
+							<p class="chuber_staff_job">魔法師</p>
 						</div>
-						<div class="chub_staff"><img class="chub_staff_pic" src="img/ex_handsome_boy.png"><p class="chub_staff_name">林耿弘</p><p class="chub_staff_job">魔法師</p></div>
-						<div class="chub_staff"><img class="chub_staff_pic" src="img/ex_handsome_boy.png"><p class="chub_staff_name">林耿弘</p><p class="chub_staff_job">魔法師</p></div>
-						<div class="chub_staff"><img class="chub_staff_pic" src="img/ex_handsome_boy.png"><p class="chub_staff_name">林耿弘</p><p class="chub_staff_job">魔法師</p></div>
+						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
+						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
+						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
 					</div>
 				</div>
 				<div class="swiper-slide">
 					<div class="chuber_item">
-						<div class="chub_staff"><img class="chub_staff_pic" src="img/ex_handsome_boy.png"><p class="chub_staff_name">林耿弘</p><p class="chub_staff_job">魔法師</p></div>
-						<div class="chub_staff"><img class="chub_staff_pic" src="img/ex_handsome_boy.png"><p class="chub_staff_name">林耿弘</p><p class="chub_staff_job">魔法師</p></div>
-						<div class="chub_staff"><img class="chub_staff_pic" src="img/ex_handsome_boy.png"><p class="chub_staff_name">林耿弘</p><p class="chub_staff_job">魔法師</p></div>
-						<div class="chub_staff"><img class="chub_staff_pic" src="img/ex_handsome_boy.png"><p class="chub_staff_name">林耿弘</p><p class="chub_staff_job">魔法師</p></div>	
+						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
+						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
+						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
+						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>	
 					</div>
 				</div>
 				<div class="swiper-slide">
 					<div class="chuber_item">
-						<div class="chub_staff"><img class="chub_staff_pic" src="img/ex_handsome_boy.png"><p class="chub_staff_name">林耿弘</p><p class="chub_staff_job">魔法師</p></div>
-						<div class="chub_staff"><img class="chub_staff_pic" src="img/ex_handsome_boy.png"><p class="chub_staff_name">林耿弘</p><p class="chub_staff_job">魔法師</p></div>
-						<div class="chub_staff"><img class="chub_staff_pic" src="img/ex_handsome_boy.png"><p class="chub_staff_name">林耿弘</p><p class="chub_staff_job">魔法師</p></div>
-						<div class="chub_staff"><img class="chub_staff_pic" src="img/ex_handsome_boy.png"><p class="chub_staff_name">林耿弘</p><p class="chub_staff_job">魔法師</p></div>	
+						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
+						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
+						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
+						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>	
 					</div>
 				</div>
 				<div class="swiper-slide">
 					<div class="chuber_item">
-						<div class="chub_staff"><img class="chub_staff_pic" src="img/ex_handsome_boy.png"><p class="chub_staff_name">林耿弘</p><p class="chub_staff_job">魔法師</p></div>
-						<div class="chub_staff"><img class="chub_staff_pic" src="img/ex_handsome_boy.png"><p class="chub_staff_name">林耿弘</p><p class="chub_staff_job">魔法師</p></div>
-						<div class="chub_staff"><img class="chub_staff_pic" src="img/ex_handsome_boy.png"><p class="chub_staff_name">林耿弘</p><p class="chub_staff_job">魔法師</p></div>
-						<div class="chub_staff"><img class="chub_staff_pic" src="img/ex_handsome_boy.png"><p class="chub_staff_name">林耿弘</p><p class="chub_staff_job">魔法師</p></div>	
+						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
+						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
+						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
+						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>	
 					</div>
 				</div>
 			</div>
@@ -297,17 +322,17 @@
 		</div>
 	</div>
 
-	<!-- Page8: Contact -->
+	<!-- Page 8: Contact -->
 	<div class="fullpage bg_orange" id="contact">
 		<div class="fullpage_element items_3"></div>
 		<div class="contact_title">
-			<p class="contact_title_text">Contact</p>
-			<div class="line_section contact"></div>
+			<p class="contact_title_text" data-aos="fade-in">Contact</p>
+			<div class="line_section line_contact"></div>
 		</div>
 		<div class="contact_cont">
 			<div class="contact_text">
-				<p class="contact_text_title">How to collaborate with C-Hub</p>
-				<p class="contact_text_detail">
+				<p class="contact_text_title" data-aos="fade-in" data-aos-offset="250" data-aos-duration="1500">How to collaborate with C-Hub</p>
+				<p class="contact_text_detail" data-aos="fade-in" data-aos-offset="250" data-aos-duration="1500">
 					若您認同我們的理念，我們誠摯地歡迎您，藉由實際的行動支持來參與 C-Hub 的教育創新，讓 C-Hub 成為社會創新計畫的實現基地，並促使我們讓大學教育更加多元及美好。
 					<br><br>
 					C-Hub was founded through the cooperation of several entrepreneurs, professors, students, politicians, and wider society. We genuinely invite you and other entrepreneurs to invest more resources, to maintain our current growth and keep improving our organization.
@@ -320,30 +345,216 @@
 		</div>
 	</div>
 
-	<!-- Page: Footer -->
+	<!-- Page 9: Footer -->
 	<div class="footer bg_dark_grey" id="footer">
 		<div class="footer_logo"></div>
 		<div class="footer_cont">
 			<div class="footer_info">
 				<div class="footer_info_icon addr"></div>
-				<p class="footer_info_detail">
+				<!-- <p class="footer_info_detail">
 					台南市東區大學路1號<span class="text_orange"> / </span><span class="text_small">
 					國立成功大學光復校區 小東路與前鋒路交叉口</span>
+				</p> -->
+				<p class="footer_info_detail">
+					No.1, University Rd., East Dist., Tainan City 701, Taiwan (R.O.C)
 				</p>
 			</div>
 			<div class="footer_info">
 				<div class="footer_info_icon tele"></div>
-				<p class="footer_info_detail">
+				<!-- <p class="footer_info_detail">
 					06-2757575<span class="text_orange"> ext 50239 / </span>
 					06-2360426<span class="text_orange"> / </span>
 					06-2004230
+				</p> -->
+				<p class="footer_info_detail">
+					T：＋886-6-2757575 ext. 50239, +886-6-2360426, +886-6-2004230
 				</p>
 			</div>
 			<div class="footer_info">
 				<div class="footer_info_icon mail"></div>
 				<p class="footer_info_detail">
-					chub.ncku@gmail.com
+					chub.ncku2015@gmail.com
 				</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Page 10: Project Full -->
+	<div class="project_main on" id="project_main">
+		<div class="project_main_title bg_orange tiny">
+			<p class="project_main_title_text">Project</p>
+			<div class="line_section line_project_main"></div>
+		</div>
+		<div class="project_main_area">
+			<!-- Page 10-1: Project List -->
+			<div class="project_main_cont project_list_full now">
+				<div class="icon_logo clickable close_project_main"></div>
+				<div class="project_item_in_list switch_to_item">
+					<img class="project_item_in_list_pic" src="/public/img/ex_project_1.png">
+					<p class="project_item_in_list_title">微課程：整體美學營造</p>
+					<div class="line_section line_project_item_in_list"></div>
+					<p class="project_item_in_list_detail">客製你的專屬妝容與美感</p>
+					<p class="project_item_in_list_date">01.13－02.01 / 2017</p>
+				</div>
+				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_2.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
+				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_3.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
+				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_1.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
+				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_2.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
+				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_3.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
+				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_1.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
+				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_2.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
+				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_3.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
+				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_1.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
+				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_2.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
+				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_3.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
+				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_1.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
+				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_2.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
+				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_3.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
+			</div>
+			<!-- Page 10-2: Project Item -->
+			<div class="project_main_cont project_item_full">
+				<div class="icon_logo back clickable switch_to_list"></div>
+				<img class="project_item_full_pic" src="/public/img/ex_project_full.png">
+				<div class="project_item_full_brief">
+					<p class="project_item_full_brief_title">E-ink Research</p>
+					<p class="project_item_full_brief_cont">
+						從數位內容到智慧內容，<br>
+						娛樂無所不在數位內容為將內容加以數位化，<br>
+						2017科技產業關鍵趨勢
+					</p>
+					<div class="line_section line_project_item_full"></div>
+				</div>
+				<div class="project_item_full_cont_text">
+					<div class="project_item_full_cont_text_item">
+						<p class="project_item_full_cont_text_item_title">Duration</p>
+						<p class="project_item_full_cont_text_item_detail">DD / MM / YEAR — DD / MM / YEAR</p>
+					</div>
+					<div class="project_item_full_cont_text_item">
+						<p class="project_item_full_cont_text_item_title">Introduction</p>
+						<p class="project_item_full_cont_text_item_detail">
+							這個案子在 2015 年由成大建築系薛丞倫與柳川肯兩位助理教授帶領團隊與元太科技合作開始，主要成員有楊翰霖、顏嘉慶等助理，以及之後加入的電機系李嘉猷老師與其研究室的幾位研究生等人，共同研究與開發電子紙在建築設計與產業應用的可能。
+							<br><br>
+							過程中 Research by Design、以及 Design by Research 交互模式進行，成為此案關鍵的幾個階段：以設計來探索各種應用的空間情境、發掘材料特性在防護、模矩、控制、施工的相容性等等限制與挑戰；再有明確的研究及測試原型的方向，跨域整合科技、技術等非建築系內的資源，並且製作原型 prototyping 及展示的真實裝置來展現、測試、並且不斷反饋到更進一步的研究與設計。
+						</p>
+					</div>
+					<div class="project_item_full_cont_text_item">
+						<p class="project_item_full_cont_text_item_title">Mission</p>
+						<p class="project_item_full_cont_text_item_detail">
+							現階段成果有兩個方向：一個是探索電子紙多種新的特性，研究控制、資訊呈現的界面，讓電子紙得以成為設計媒材或建材，來配合建築師、設計師、藝術家等進行創作。 另一個方向是與電機系合作，建築系透過 C-Hub 作為跨領域整合角色，探索磁耦感應線圈結合電子紙磁磚，讓電子紙得以走出科技廠房，與建築產業無縫接軌，並帶來革命性的建築材料變革。 
+							<br><br>
+							如同在紙上的建築圖面，與建造完成的建築物之間的關係，虛擬與真實兩者的聯結與斷裂是建築教育裡最重要的一個課題；團隊的角色，真實面對一直以來校內學術與校外實務互相拉扯的關係與挑戰，更不再侷限以建築物的設計，而是以跨領域知識的整合、創新的組織架構、以及介入社會、社交等形式來思考當代的世界，期望作出貢獻。
+						</p>
+					</div>
+				</div>
+				<div class="project_item_full_cont_media">
+					<div class="project_item_full_cont_media_video">
+						<p class="project_item_full_cont_media_item_title">Video</p>
+						<div class="project_item_full_cont_media_video_cont">
+							<iframe src="https://www.youtube.com/embed/BeI6an1Fy6E?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+						</div>
+					</div>
+					<div class="project_item_full_cont_media_gallery">
+						<p class="project_item_full_cont_media_item_title">Gallery</p>
+						<div class="project_item_full_cont_media_gallery_cont my-gallery">
+							<figure>
+								<a href="/public/img/ex_gallery_1.png" itemprop="contentUrl" data-size="1001x668">
+									<img src="/public/img/ex_gallery_t_1.png" itemprop="thumbnail">
+								</a>
+							</figure>
+							<figure>
+								<a href="/public/img/ex_gallery_2.png" itemprop="contentUrl" data-size="1001x751">
+									<img src="/public/img/ex_gallery_t_2.png" itemprop="thumbnail">
+								</a>
+							</figure>
+							<figure>
+								<a href="/public/img/ex_gallery_3.png" itemprop="contentUrl" data-size="1001x668">
+									<img src="/public/img/ex_gallery_t_3.png" itemprop="thumbnail">
+								</a>
+							</figure>
+							<figure>
+								<a href="/public/img/ex_gallery_4.png" itemprop="contentUrl" data-size="1001x666">
+									<img src="/public/img/ex_gallery_t_4.png" itemprop="thumbnail">
+								</a>
+							</figure>
+							<figure><a href="/public/img/ex_gallery_1.png" itemprop="contentUrl" data-size="1001x668"><img src="/public/img/ex_gallery_t_1.png" itemprop="thumbnail"></a></figure>
+							<figure><a href="/public/img/ex_gallery_2.png" itemprop="contentUrl" data-size="1001x751"><img src="/public/img/ex_gallery_t_2.png" itemprop="thumbnail"></a></figure>
+							<figure><a href="/public/img/ex_gallery_3.png" itemprop="contentUrl" data-size="1001x668"><img src="/public/img/ex_gallery_t_3.png" itemprop="thumbnail"></a></figure>
+							<figure><a href="/public/img/ex_gallery_4.png" itemprop="contentUrl" data-size="1001x666"><img src="/public/img/ex_gallery_t_4.png" itemprop="thumbnail"></a></figure>
+							<figure><a href="/public/img/ex_gallery_1.png" itemprop="contentUrl" data-size="1001x668"><img src="/public/img/ex_gallery_t_1.png" itemprop="thumbnail"></a></figure>
+							<figure><a href="/public/img/ex_gallery_2.png" itemprop="contentUrl" data-size="1001x751"><img src="/public/img/ex_gallery_t_2.png" itemprop="thumbnail"></a></figure>
+							<figure><a href="/public/img/ex_gallery_3.png" itemprop="contentUrl" data-size="1001x668"><img src="/public/img/ex_gallery_t_3.png" itemprop="thumbnail"></a></figure>
+							<figure><a href="/public/img/ex_gallery_4.png" itemprop="contentUrl" data-size="1001x666"><img src="/public/img/ex_gallery_t_4.png" itemprop="thumbnail"></a></figure>
+							<figure><a href="/public/img/ex_gallery_4.png" itemprop="contentUrl" data-size="1001x666"><img src="/public/img/ex_gallery_t_4.png" itemprop="thumbnail"></a></figure>
+						</div>
+					</div>
+					<a class="project_item_full_cont_media_facebook clickable"></a>
+				</div>
+			</div>
+			<div class="footer bg_dark_grey">
+				<div class="footer_logo"></div>
+				<div class="footer_cont">
+					<div class="footer_info">
+						<div class="footer_info_icon addr"></div>
+						<p class="footer_info_detail">
+							台南市東區大學路1號<span class="text_orange"> / </span><span class="text_small">
+							國立成功大學光復校區 小東路與前鋒路交叉口</span>
+						</p>
+					</div>
+					<div class="footer_info">
+						<div class="footer_info_icon tele"></div>
+						<p class="footer_info_detail">
+							06-2757575<span class="text_orange"> ext 50239 / </span>
+							06-2360426<span class="text_orange"> / </span>
+							06-2004230
+						</p>
+					</div>
+					<div class="footer_info">
+						<div class="footer_info_icon mail"></div>
+						<p class="footer_info_detail">
+							chub.ncku@gmail.com
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- PhotoSwipe -->
+	<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="pswp__bg"></div>
+		<div class="pswp__scroll-wrap">
+			<div class="pswp__container">
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+			</div>
+			<div class="pswp__ui pswp__ui--hidden">
+				<div class="pswp__top-bar">
+					<div class="pswp__counter"></div>
+					<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+					<button class="pswp__button pswp__button--share" title="Share"></button>
+					<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+					<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+					<div class="pswp__preloader">
+						<div class="pswp__preloader__icn">
+							<div class="pswp__preloader__cut">
+								<div class="pswp__preloader__donut"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+					<div class="pswp__share-tooltip"></div>
+				</div>
+				<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+				</button>
+				<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+				</button>
+				<div class="pswp__caption">
+					<div class="pswp__caption__center"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -355,8 +566,14 @@
 	<script src="/public/js/jquery-scrollto.js"></script>
 	<script src="/public/js/picturefill.min.js"></script>
 	<script src="/public/js/swiper.min.js"></script>
+	<script src="/public/js/swiper_control.js"></script>
+	<script src="/public/js/photoswipe.min.js"></script>
+	<script src="/public/js/photoswipe-ui-default.min.js"></script> 
+	<script src="/public/js/photoswipe_control.js"></script>
+	<script src="/public/js/jquery.waypoints.min.js"></script>
+	<script src="/public/js/jquery.enllax.min.js"></script>	
+	<script src="/public/js/aos.js"></script>
 	<script src="/public/js/main.js"></script>
-
 </body>
 </html>
 

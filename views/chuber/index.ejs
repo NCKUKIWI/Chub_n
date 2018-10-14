@@ -1,0 +1,85 @@
+<div id="backend_chuber" style="width:100%;" v-show="show.total">
+    <!-- chuber list -->
+    <div class="function_main" v-show="show.list">
+        <div class="function_header">
+            <h1>人員列表</h1>
+            <i class="big plus icon" @click="showForm"></i>
+        </div>
+        <div class="function_content">
+            <table class="ui selectable celled table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>E-mail</th>
+                </tr>
+                </thead>
+                <tbody>
+	                <tr v-for="(chuber, index) in chuberList" @click="showItem(index)">
+	                    <td>{{chuber.name}}</td>
+	                    <td>{{chuber.position}}</td>
+	                    <td>{{chuber.email}}</td>
+	                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- chuber -->
+    <div class="function_main" v-show="show.form">
+        <div class="function_header">
+            <h1>人員內容</h1>
+            <button v-if='chuber.id == ""' class="ui button" style="margin-left: 25px;" @click="createItem">
+                Create
+            </button>
+            <template v-else>
+                <button class="ui button" style="margin-left: 20px;" @click="updateItem(chuber.id)">
+                    Save
+                </button>
+                <button class="ui button" style="margin-left: 20px;" @click="deleteItem(chuber.id)">
+                    Delete
+                </button>
+            </template>
+            <button class="ui button" style="margin-left: 20px;" @click="showList">
+                Back
+            </button>
+        </div>
+        <div class=function_content>
+            <div class="ui top attached tabular menu">
+                <a class="item active" data-tab="chuber_Info">Info</a>
+                <a class="item" data-tab="chuber_Image">photo</a>
+            </div>
+            <div class="ui bottom attached tab segment active" data-tab="chuber_Info">
+                <div class="ui form">
+                    <div class="inline fields">
+                        <div class="eight wide field">
+                            <label>Name:</label>
+                            <input type="text" placeholder="" v-model.lazy="chuber.name">
+                        </div>
+                    </div>
+										<div class="inline fields">
+                        <div class="eight wide field">
+                            <label>Position:</label>
+                            <input type="text" placeholder="" v-model.lazy="chuber.position">
+                        </div>
+                    </div>
+                    <div class="inline fields">
+                        <div class="eight wide field">
+                            <label>Email:</label>
+                            <input type="text" placeholder="" v-model.lazy="chuber.email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="chuber_Image">
+                <form class="ui form" id="chuberImageForm">
+                    <div class="field">
+                        <label>image</label>
+                        <input type="file" name="image" id="chuber_image">
+                    </div>
+                </form>
+                <br>
+                <img width="100%" v-if="chuber.image" v-bind:src="'/uploads/chuber/' + chuber.id + '/image.png?' + new Date().getTime()">
+            </div>
+        </div>
+    </div>
+</div>
