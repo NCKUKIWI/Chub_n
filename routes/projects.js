@@ -5,6 +5,7 @@ var multer = require('multer');
 var rimraf = require('rimraf');
 var bcrypt = require('bcrypt');
 var Project = require("../models/Project");
+var Image = require("../models/Image");
 
 var bannerStorage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -24,6 +25,23 @@ var bannerStorage = multer.diskStorage({
 var bannerUpload = multer({
     storage: bannerStorage
 }).single("banner");
+
+var imageStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        if (!fs.existsSync(`${__dirname}/../uploads/project/${req.params.id}`)) {
+            fs.mkdirSync(`${__dirname}/../uploads/project/${req.params.id}`);
+        }
+        cb(null, `${__dirname}/../uploads/project/${req.params.id}`);
+    },
+    filename: function (req, file, cb) {
+        var timestamp = new Date().getTime();
+        cb(null, timestamp + ".jpg");
+    }
+});
+
+var imageUpload = multer({
+    storage: imageStorage
+}).single("image");
 
 router.get('/', function (req, res) {
     Project.findAll().then(projects => {
@@ -70,10 +88,11 @@ router.delete('/delete/:id', function (req, res) {
 
 router.post('/banner/:id', function (req, res) {
     var id = parseInt(req.params.id);
-    bannerUpload(req, res, function(err){
+    bannerUpload(req, res, function (err) {
         if (err) {
-            console.log(err);
-            res.send({error:err})
+            res.send({
+                error: err
+            });
         } else {
             Project.update({
                 banner: 1
@@ -83,6 +102,24 @@ router.post('/banner/:id', function (req, res) {
                 }
             }).then(function () {
                 res.send("ok");
+            });
+        }
+    });
+});
+
+router.post('/image/:id', function (req, res) {
+    var id = parseInt(req.params.id);
+    imageUpload(req, res, function (err) {
+        if (err) {
+            res.send({
+                error: err
+            });
+        } else {
+            Image.create({
+                "project_id": id,
+                "name": req.file.filename
+            }).then(function (image) {
+                res.send(image);
             });
         }
     });
