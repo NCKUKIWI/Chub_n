@@ -43,13 +43,13 @@
         </div>
         <div class=function_content>
             <div class="ui top attached tabular menu">
-                <a class="item active" data-tab="Info">Info</a>
-                <a class="item" data-tab="Banner">Banner</a>
-                <a class="item" data-tab="Video">Video</a>
-                <a class="item" data-tab="Image">Image</a>
-                <!-- <a class="item active" data-tab="Gallery">Gallery</a> -->
+                <a class="item active" data-tab="project_Info">Info</a>
+                <a class="item" data-tab="project_Banner">Banner</a>
+                <a class="item" data-tab="project_Video">Video</a>
+                <a class="item" data-tab="project_Image">Image</a>
+                <!-- <a class="item active" data-tab="project_Gallery">Gallery</a> -->
             </div>
-            <div class="ui bottom attached tab segment active" data-tab="Info">
+            <div class="ui bottom attached tab segment active" data-tab="project_Info">
                 <div class="ui form">
                     <div class="inline fields">
                         <div class="eight wide field">
@@ -79,7 +79,7 @@
                     </div>
                 </div>
             </div>
-            <div class="ui bottom attached tab segment" data-tab="Banner">
+            <div class="ui bottom attached tab segment" data-tab="project_Banner">
                 <form class="ui form" id="projectBannerForm">
                     <div class="field">
                         <label>Banner</label>
@@ -89,18 +89,19 @@
                 <br>
                 <img width="100%" v-if="project.banner" v-bind:src="'/uploads/project/' + project.id + '/banner.png?' + new Date().getTime()">
             </div>
-            <div class="ui bottom attached tab segment" data-tab="Video">
+            <div class="ui bottom attached tab segment" data-tab="project_Video" style="height: 100vh">
                 <div class="ui form">
                     <div class="inline field">
                         <label>Video url:</label>
                         <input type="text" v-model.lazy="project.url">
+                        <button class="ui button" style="margin-left: 10px" @click="parseURL"> 解析 </button>
                     </div>
                 </div>
                 <br><br>
-                <iframe width="420" height="315" v-bind:src="project.url">
+                <iframe style="position:absolute;top:0;left:0;width:80%;height:80%; margin: 10%" v-bind:src="project.url">
                 </iframe>
             </div>
-            <div class="ui bottom attached tab segment" data-tab="Image">
+            <div class="ui bottom attached tab segment" data-tab="project_Image">
                 <div class="ui three column grid">
                     <div class="column">
                         <form class="ui form" id="projectImageForm">
@@ -122,7 +123,7 @@
                     </div>
                 </div>
             </div>
-            <div class="ui bottom attached tab segment" data-tab="Gallery">
+            <div class="ui bottom attached tab segment" data-tab="project_Gallery">
                 test
             </div>
         </div>

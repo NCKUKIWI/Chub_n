@@ -21,17 +21,17 @@ $(function () {
                     case 1:
                         vue_project.show.total = true;
                         vue_ad.show.total = false;
-                        vue_user.show.total = false;
+                        vue_chuber.show.total = false;
                         break;
                     case 2:
                         vue_project.show.total = false;
                         vue_ad.show.total = true;
-                        vue_user.show.total = false;
+                        vue_chuber.show.total = false;
                         break;
                     case 3:
                         vue_project.show.total = false;
                         vue_ad.show.total = false;
-                        vue_user.show.total = true;
+                        vue_chuber.show.total = true;
                         break;
                 }
             }
@@ -177,6 +177,10 @@ $(function () {
                         vue_project.showList();
                     }
                 })
+            },
+            parseURL: function(){
+            	console.log(this.project.url);
+            	this.project.url = this.project.url.replace('watch?v=', '/embed/');
             }
         }
     });
@@ -185,63 +189,272 @@ $(function () {
     var vue_ad = new Vue({
         el: "#backend_ad",
         data: {
+        		index: -1,
             show: {
-                total: false
+                total: false,
+                form: false,
+                list: true
             },
-            ad: [],
+            adList: [],
+            ad: {
+                id: "",
+                name: "",
+                image: "",
+            }
         },
         created: function () {
-            // $.ajax({
-            // 	type: "GET",
-            // 	url:"/ad/all",
-            // 	success: function(projects){
-            // 		vue_project_list.projects = projects;
-            // 	}
-            // })
+            $.ajax({
+            		type: "GET",
+            		url:"/advertisements/",
+            		success: function(ads){
+            				vue_ad.adList = ads;
+            		}
+            })
         },
         methods: {
-            add_ad: function () {
-                $('.function_main').hide();
-                $('#ad_project').show();
-                vue_project.clean_data();
-            },
-            show_ad: function (id) {
-                $.ajax({
-                    type: "GET",
-                    url: "/project/" + id,
-                    success: function (project) {
-                        vue_project.id = project.id;
-                        vue_project.name = project.name;
-                        vue_project.subtitle = project.subtitle;
-                        vue_project.duration = project.duration;
-                        vue_project.mission = project.mission;
-                        vue_project.introduction = project.introduction;
-                    }
-                })
-                $('.function_main').hide();
-                $('#backend_project').show();
-            },
-            refresh_ad: function () {
-                this.projects = [];
-                $.ajax({
-                    type: "GET",
-                    url: "/ad/all",
-                    success: function (projects) {
-                        vue_project_list.projects = projects;
-                    }
-                })
-            }
+    		showForm: function(){
+    			vue_ad.ad = {
+        				id: "",
+        				name: ""
+        		};
+            	vue_ad.show.list = false;
+            	vue_ad.show.form = true;
+    		},
+    		showList: function(){
+            	vue_ad.show.list = true;
+            	vue_ad.show.form = false;
+    		},
+    		changeStatus: function(ad_id){
+				var now_ad = this.adList.find(ad => {
+				  	return ad.id == ad_id;
+				})
+				var status = 1;
+				if(now_ad.show == 1){
+						now_ad.show = 0;
+						status = 0;
+				}
+				now_ad.show = status;
+	            // $.ajax({
+	            // 		type: "POST",
+	            // 		url:"/advertisements/",
+	            // 		data: {'stauts': status},
+	            // 		success: function(msg){
+	            // 				if(status) toastr.success(now_ad.name + "已上架");
+	            // 				else toastr.success(now_ad.name + "已下架");
+	            // 		}
+	            // })
+    		},
+    		showItem:function(index) {
+				vue_ad.index = index;
+            	vue_ad.ad = vue_ad.adList[index];
+            	vue_ad.show.list = false;
+            	vue_ad.show.form = true;
+    		},
+    		createItem: function(){
+	            var itemData = {
+	                name: vue_ad.ad.name
+	            };
+	            $.ajax({
+	            	type:"POST",
+	            	url:"/advertisements",
+	            	data: itemData,
+	            	success: function(ad){
+	                    if($("#ad_image").val() != "") {
+	                        uploadImg(
+	                            "/advertisements/image/" + ad.id,
+	                            "#ad_image",
+	                            "#adImageForm",
+	                            function(response) {
+	                                if (response == "ok") {
+	                                    $("#ad_image").val("");
+	                                    toastr.success("新增成功");
+	                                    ad.image = 1;
+	                                    vue_ad.adList.push(ad);
+	                                    vue_ad.showList();
+	                                }
+	                        });
+	                    } else {
+	                        toastr.success("新增成功");
+	                        vue_ad.adList.push(ad);
+	                        vue_ad.showList();
+	                    }
+	            	}
+	            })
+    		},
+    		updateItem: function(id){
+	            var itemData = {
+	                name: this.ad.name
+	            };
+	            $.ajax({
+	            	type:"POST",
+	            	url:"/advertisements/update/" + id,
+	            	data: itemData,
+	            	success: function(msg){
+                        if($("#ad_image").val() != "") {
+                            uploadImg(
+                                "/advertisements/image/" + id,
+                                "#ad_image",
+                                "#adImageForm",
+                                function(response) {
+                                    if (response == "ok") {
+                                        $("#ad_image").val("");
+                                        toastr.success("更新成功");
+                                        itemData.id = id
+                                        itemData.image = 1;
+                                        vue_ad.adList[vue_ad.index] = itemData;
+                                        vue_ad.showList();
+                                    }
+                            });
+                        } else {
+                            toastr.success("更新成功");
+                            vue_ad.adList[vue_ad.index] = itemData;
+                            vue_ad.adList[vue_ad.index].id = id;
+                            vue_ad.adList.showList();
+                        }
+	            	}
+	            })
+	    	},
+	    	deleteItem: function(id){
+	            $.ajax({
+	            	type:"DELETE",
+	            	url:"/advertisements/delete/" + id,
+	            	success: function(msg){
+	            			toastr.success(msg);
+	            			vue_ad.adList.splice(vue_ad.index, 1);
+	            			vue_ad.showList();
+	            	}
+	            })
+    		}
         }
     });
 
-    var vue_user = new Vue({
-        el: "#backend_user",
+    var vue_chuber = new Vue({
+        el: "#backend_chuber",
         data: {
+    		index: -1,
             show: {
-                "total": false
+                total: false,
+                form: false,
+                list: true
+            },
+            chuberList:[],
+            chuber:{
+        		id: "",
+        		name: "",
+        		position: "",
+        		email: "",
+        		image: ""
             }
         },
+        created: function () {
+            $.ajax({
+            		type: "GET",
+            		url:"/chubers/",
+            		success: function(chubers){
+            			vue_chuber.chuberList = chubers;
+            		}
+            })
+        },
         methods: {
+    		showForm: function(){
+    			vue_chuber.chuber = {
+        			id: "",
+        			name: "",
+       				position: "",
+       				email: ""
+        		};
+            	vue_chuber.show.list = false;
+            	vue_chuber.show.form = true;
+    		},
+    		showList: function(){
+            	vue_chuber.show.list = true;
+            	vue_chuber.show.form = false;
+    		},
+    		showItem:function(index) {
+				vue_chuber.index = index;
+    	        vue_chuber.chuber = vue_chuber.chuberList[index];
+        	    vue_chuber.show.list = false;
+            	vue_chuber.show.form = true;
+    		},
+    		createItem: function(){
+	            var itemData = {
+	                name: vue_chuber.chuber.name,
+	                position: vue_chuber.chuber.position,
+	                email: vue_chuber.chuber.email
+	            };
+	            $.ajax({
+	            	type:"POST",
+	            	url:"/chubers",
+	            	data: itemData,
+	            	success: function(chuber){
+                        if($("#chuber_image").val() != "") {
+                            uploadImg(
+                                "/chubers/image/" + chuber.id,
+                                "#chuber_image",
+                                "#chuberImageForm",
+                                function(response) {
+                                    if (response == "ok") {
+                                        $("#chuber_image").val("");
+                                        toastr.success("新增成功");
+                                        chuber.image = 1;
+                                        vue_chuber.chuberList.push(chuber);
+                                        vue_chuber.showList();
+                                    }
+                            });
+                        } else {
+                            toastr.success("新增成功");
+                            vue_chuber.chuberList.push(chuber);
+                            vue_chuber.showList();
+                        }
+	            	}
+	            })
+    		},
+    		updateItem: function(id){
+	            var itemData = {
+	                name: this.chuber.name,
+	                position: this.chuber.position,
+	                email: this.chuber.email
+	            };
+	            $.ajax({
+	            	type:"POST",
+	            	url:"/chubers/update/" + id,
+	            	data: itemData,
+	            	success: function(msg){
+                        if($("#chuber_image").val() != "") {
+                            uploadImg(
+                                "/chubers/image/" + id,
+                                "#chuber_image",
+                                "#chuberImageForm",
+                                function(response) {
+                                    if (response == "ok") {
+                                        $("#chuber_image").val("");
+                                        toastr.success("更新成功");
+                                        itemData.id = id
+                                        itemData.image = 1;
+                                        vue_chuber.chuberList[vue_chuber.index] = itemData;
+                                        vue_chuber.showList();
+                                    }
+                            });
+                        } else {
+                            toastr.success("更新成功");
+                            vue_chuber.chuberList[vue_chuber.index] = itemData;
+                            vue_chuber.chuberList[vue_chuber.index].id = id;
+                            vue_chuber.chuberList.showList();
+                        }
+	            	}
+	            })
+    		},
+    		deleteItem: function(id){
+	            $.ajax({
+	            	type:"DELETE",
+	            	url:"/chubers/delete/" + id,
+	            	success: function(msg){
+	        			toastr.success(msg);
+	        			vue_chuber.chuberList.splice(vue_chuber.index, 1);
+	        			vue_chuber.showList();
+	            	}
+	            })
+    		}
         }
     });
 

@@ -1,36 +1,72 @@
 <div id="backend_ad" style="width:100%;" v-show="show.total">
-    <div class="function_main">
+		<!-- advertisement list -->
+    <div class="function_main" v-show="show.list">
         <div class="function_header">
             <h1>廣告列表</h1>
-            <i class="big plus icon"></i>
+            <i class="big plus icon" @click="showForm"></i>
         </div>
         <div class=function_content>
             <table class="ui selectable celled table">
                 <thead>
                 <tr>
-                    <th>Order</th>
                     <th>Name</th>
-                    <th>show</th>
+                    <!-- <th>Status</th> -->
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>picture_1</td>
-                    <td><i class="large green checkmark icon"></i></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>picture_2</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>picture_3</td>
-                    <td><i class="large green checkmark icon"></i></td>
-                </tr>
+                  <tr v-for="(ad, index) in adList" @click="showItem(index)">
+                      <td>{{ ad.name }}</td>
+                      <!-- <td v-if="ad.show == 1"><button class="positive ui button" @click="changeStatus(ad.id)">已上架</button></td>
+                      <td v-else><button class="negative ui button" @click="changeStatus(ad.id)">已下架</button></td> -->
+                  </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+    <!-- advertisement -->
+    <div class="function_main" v-show="show.form">
+        <div class="function_header">
+            <h1>廣告內容</h1>
+            <button v-if='ad.id == ""' class="ui button" style="margin-left: 25px;" @click="createItem">
+                Create
+            </button>
+            <template v-else>
+                <button class="ui button" style="margin-left: 20px;" @click="updateItem(ad.id)">
+                    Save
+                </button>
+                <button class="ui button" style="margin-left: 20px;" @click="deleteItem(ad.id)">
+                    Delete
+                </button>
+            </template>
+            <button class="ui button" style="margin-left: 20px;" @click="showList">
+                Back
+            </button>
+        </div>
+        <div class=function_content>
+            <div class="ui top attached tabular menu">
+                <a class="item active" data-tab="ad_Info">Info</a>
+                <a class="item" data-tab="ad_Image">Image</a>
+            </div>
+            <div class="ui bottom attached tab segment active" data-tab="ad_Info">
+                <div class="ui form">
+                    <div class="inline fields">
+                        <div class="eight wide field">
+                            <label>Name:</label>
+                            <input type="text" placeholder="" v-model.lazy="ad.name">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="ad_Image">
+                <form class="ui form" id="adImageForm">
+                    <div class="field">
+                        <label>image</label>
+                        <input type="file" name="image" id="ad_image">
+                    </div>
+                </form>
+                <br>
+                <img width="100%" v-if="ad.image" v-bind:src="'/uploads/advertisement/' + ad.id + '/image.png?' + new Date().getTime()">
+            </div>
         </div>
     </div>
 </div>
