@@ -87,8 +87,14 @@ router.delete('/delete/:id', function (req, res) {
             id: id
         }
     }).then(function () {
-        rimraf.sync(`${__dirname}/../uploads/project/${req.params.id}`);
-        res.send("刪除成功");
+        Image.destroy({
+            where: {
+                project_id: id
+            }
+        }).then(function () {
+            rimraf.sync(`${__dirname}/../uploads/project/${id}`);
+            res.send("刪除成功");
+        });
     });
 });
 
