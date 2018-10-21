@@ -111,13 +111,15 @@
                             </div>
                         </form>
                     </div>
-                    <div class="column">
-                        <div class="ui fluid card">
-                            <div class="image">
-                                <img src="public/img/ex_handsome_boy.png">
+                    <template v-if="project.images && project.images.length > 0">
+                        <div class="column" v-for="image in project.images">
+                            <div class="ui fluid card">
+                                <div class="image">
+                                    <img v-bind:src="'/uploads/project/' + project.id + '/' + image.name + '?' + new Date().getTime()">
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </template>
                 </div>
             </div>
         </div>

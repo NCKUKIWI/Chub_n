@@ -70,10 +70,16 @@ $(function () {
         },
         methods: {
             showProject: function (index) {
-                vue_project.index = index;
-                vue_project.project = vue_project.projects[index];
-                vue_project.show.list = false;
-                vue_project.show.form = true;
+                $.ajax({
+                    type: "GET",
+                    url: "/projects/1",
+                    success: function (project) {
+                        vue_project.index = index;
+                        vue_project.project = project;
+                        vue_project.show.list = false;
+                        vue_project.show.form = true;
+                    }
+                });
             },
             showForm: function () {
                 vue_project.show.list = false;
@@ -109,7 +115,7 @@ $(function () {
                     success: function (project) {
                         if ($("#image").val() != "") {
                             uploadImg(
-                                "/projects/image/" + id,
+                                "/projects/image/" + project.id,
                                 "#image",
                                 "#projectImageForm",
                                 function(response) {

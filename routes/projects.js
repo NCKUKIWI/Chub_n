@@ -58,7 +58,14 @@ router.post('/', function (req, res) {
 router.get('/:id', function (req, res) {
     var id = parseInt(req.params.id);
     Project.findById(id).then(project => {
-        res.send(project);
+        Image.findAll({
+            where: {
+                project_id: id
+            }
+        }).then(images => {
+            project["images"] = images;
+            res.send(project);
+        });
     })
 })
 
@@ -117,8 +124,8 @@ router.post('/image/:id', function (req, res) {
             Image.create({
                 "project_id": id,
                 "name": req.file.filename
-            }).then(function (image) {
-                res.send(image);
+            }).then(function () {
+                res.send("ok");
             });
         }
     });
