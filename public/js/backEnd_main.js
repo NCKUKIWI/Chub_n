@@ -107,6 +107,17 @@ $(function () {
                     data: projectData,
                     method: "POST",
                     success: function (project) {
+                        if ($("#image").val() != "") {
+                            uploadImg(
+                                "/projects/image/" + id,
+                                "#image",
+                                "#projectImageForm",
+                                function(response) {
+                                    if (response == "ok") {
+                                        $("#image").val("");
+                                    }
+                            });
+                        }
                         if($("#banner").val() != "") {
                             uploadImg(
                                 "/projects/banner/" + project.id,
@@ -142,7 +153,18 @@ $(function () {
                     url: "/projects/update/" + id,
                     method: "POST",
                     data: updateProject,
-                    success: function (msg) {
+                    success: function () {
+                        if ($("#image").val() != "") {
+                            uploadImg(
+                                "/projects/image/" + id,
+                                "#image",
+                                "#projectImageForm",
+                                function(response) {
+                                    if (response == "ok") {
+                                        $("#image").val("");
+                                    }
+                            });
+                        }
                         if($("#banner").val() != "") {
                             uploadImg(
                                 "/projects/banner/" + id,
