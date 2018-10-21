@@ -70,10 +70,16 @@ $(function () {
         },
         methods: {
             showProject: function (index) {
-                vue_project.index = index;
-                vue_project.project = vue_project.projects[index];
-                vue_project.show.list = false;
-                vue_project.show.form = true;
+                $.ajax({
+                    type: "GET",
+                    url: "/projects/1",
+                    success: function (project) {
+                        vue_project.index = index;
+                        vue_project.project = project;
+                        vue_project.show.list = false;
+                        vue_project.show.form = true;
+                    }
+                });
             },
             showForm: function () {
                 vue_project.show.list = false;
@@ -107,6 +113,17 @@ $(function () {
                     data: projectData,
                     method: "POST",
                     success: function (project) {
+                        if ($("#image").val() != "") {
+                            uploadImg(
+                                "/projects/image/" + project.id,
+                                "#image",
+                                "#projectImageForm",
+                                function(response) {
+                                    if (response == "ok") {
+                                        $("#image").val("");
+                                    }
+                            });
+                        }
                         if($("#banner").val() != "") {
                             uploadImg(
                                 "/projects/banner/" + project.id,
@@ -142,7 +159,18 @@ $(function () {
                     url: "/projects/update/" + id,
                     method: "POST",
                     data: updateProject,
-                    success: function (msg) {
+                    success: function () {
+                        if ($("#image").val() != "") {
+                            uploadImg(
+                                "/projects/image/" + id,
+                                "#image",
+                                "#projectImageForm",
+                                function(response) {
+                                    if (response == "ok") {
+                                        $("#image").val("");
+                                    }
+                            });
+                        }
                         if($("#banner").val() != "") {
                             uploadImg(
                                 "/projects/banner/" + id,

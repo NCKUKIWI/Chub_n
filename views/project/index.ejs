@@ -104,39 +104,23 @@
             <div class="ui bottom attached tab segment" data-tab="project_Image">
                 <div class="ui three column grid">
                     <div class="column">
-                        <div class="ui fluid card">
-                            <div class="image">
-                                <img src="public/img/ex_handsome_boy.png">
+                        <form class="ui form" id="projectImageForm">
+                            <div class="field">
+                                <label>Image</label>
+                                <input type="file" name="image" id="image">
                             </div>
-                            <div class="content">
-                                <a class="header">Daniel Louise</a>
+                        </form>
+                    </div>
+                    <template v-if="project.images && project.images.length > 0">
+                        <div class="column" v-for="image in project.images">
+                            <div class="ui fluid card">
+                                <div class="image">
+                                    <img v-bind:src="'/uploads/project/' + project.id + '/' + image.name + '?' + new Date().getTime()">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="column">
-                        <div class="ui fluid card">
-                            <div class="image">
-                                <img src="public/img/ex_handsome_boy.png">
-                            </div>
-                            <div class="content">
-                                <a class="header">Helen Troy</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="ui fluid card">
-                            <div class="image">
-                                <img src="public/img/ex_handsome_boy.png">
-                            </div>
-                            <div class="content">
-                                <a class="header">Elliot Fu</a>
-                            </div>
-                        </div>
-                    </div>
+                    </template>
                 </div>
-            </div>
-            <div class="ui bottom attached tab segment" data-tab="project_Gallery">
-                test
             </div>
         </div>
     </div>
