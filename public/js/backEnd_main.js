@@ -309,7 +309,7 @@ $(function () {
                             toastr.success("更新成功");
                             vue_ad.adList[vue_ad.index] = itemData;
                             vue_ad.adList[vue_ad.index].id = id;
-                            vue_ad.adList.showList();
+                            vue_ad.showList();
                         }
 	            	}
 	            })

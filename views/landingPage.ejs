@@ -49,18 +49,18 @@
 	<div class="fullpage bg_grey" id="banner">	
 		<div class="fullpage_element line_2"></div>
 		<div class="banner_board">
-			<div class="banner_item banner_1 clickable on">
+			<div v-for="(banner, index) in bannerList" class="banner_item clickable" v-bind:class="{'on': index == nowShow}">
 				<picture>
 					<source srcset="/public/img/ex_banner_m_1.png" media="(max-width: 1050px)">
-					<img class="banner_item_pic" src="/public/img/ex_banner_1.png">
+					<img class="banner_item_pic" v-bind:src="'/uploads/advertisement/' + banner.id + '/image.png'">
 				</picture>
 				<div class="banner_item_text">
-					<p class="banner_item_text_title">MovISee</p>
+					<p class="banner_item_text_title">{{index}}</p>
 					<div class="line_section line_banner"></div>
-					<p class="banner_item_text_cont">C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.</p>		
+					<p class="banner_item_text_cont"></p>		
 				</div>
 			</div>
-			<div class="banner_item banner_2 clickable">
+			<!-- <div class="banner_item banner_2 clickable">
 				<picture>
 					<source srcset="/public/img/ex_banner_m_2.png" media="(max-width: 1050px)">
 					<img class="banner_item_pic" src="/public/img/ex_banner_2.png">
@@ -70,25 +70,12 @@
 					<div class="line_section line_banner"></div>
 					<p class="banner_item_text_cont">C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.</p>		
 				</div>
-			</div>
-			<div class="banner_item banner_3 clickable">
-				<picture class="banner_item_pic">
-					<source srcset="/public/img/ex_banner_m_3.png" media="(max-width: 1050px)">
-					<img class="banner_item_pic" src="/public/img/ex_banner_3.png">
-				</picture>
-				<div class="banner_item_text">
-					<p class="banner_item_text_title">MovISeeeeeeeeeeeee</p>
-					<div class="line_section line_banner"></div>
-					<p class="banner_item_text_cont">C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.</p>		
-				</div>
-			</div>
+			</div> -->
 		</div>
 		<div class="banner_control">
-			<div class="dots banner_1 on"></div>
-			<div class="dots banner_2"></div>	
-			<div class="dots banner_3"></div>	
-			<div class="icon_go_prev clickable"></div>
-			<div class="icon_go_next clickable"></div>
+			<div v-for="(banner, index) in bannerList" class="dots clickable" @click="bannerSwitch(index)"></div>	
+			<div class="icon_go_prev clickable"  @click="bannerSwitch(nowShow - 1)"></div>
+			<div class="icon_go_next clickable"  @click="bannerSwitch(nowShow + 1)"></div>
 		</div>
 		<div class="icon_page_down"></div>
 	</div>
@@ -200,15 +187,15 @@
 		</div>
 		<div class="project_browser swiper-container" data-aos="fade-up" data-aos-duration="1500">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide">
+				<div class="swiper-slide" v-for="(project, index) in previewList">
 					<div class="project_item open_project_main switch_to_item">
 						<img class="project_item_pic" src="/public/img/ex_project_1.png">
-						<p class="project_item_title">微課程：整體美學營造</p>
-						<p class="project_item_detail">客製你的專屬妝容與美感</p>
-						<p class="project_item_date">01.13－02.01 / 2017</p>
+						<p class="project_item_title">{{project.name}}</p>
+						<p class="project_item_detail">{{project.subtitle}}</p>
+						<p class="project_item_date">{{project.duration}}</p>
 					</div>
 				</div>
-				<div class="swiper-slide">
+				<!-- <div class="swiper-slide">
 					<div class="project_item open_project_main switch_to_item">
 						<img class="project_item_pic" src="/public/img/ex_project_2.png">
 						<p class="project_item_title">微課程：整體美學營造</p>
@@ -223,11 +210,11 @@
 						<p class="project_item_detail">客製你的專屬妝容與美感</p>
 						<p class="project_item_date">01.13－02.01 / 2017</p>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="project_dots swiper-pagination"></div>
 		</div>
-		<div class="button style_1 open_project_main">View All</div>
+		<div class="button style_1" @click="showAllProject()">View All</div>
 	</div>
 
 	<!-- Page 6: Space -->
@@ -281,40 +268,13 @@
 		</div>
 		<div class="chuber_browser swiper-container" data-aos="fade-in">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide">
+				<div class="swiper-slide" v-for="group in chuberList">
 					<div class="chuber_item">
-						<div class="chuber_staff">
-							<img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png">
-							<p class="chuber_staff_name">林耿弘</p>
-							<p class="chuber_staff_job">魔法師</p>
+						<div class="chuber_staff" v-for="chuber in group">
+							<img class="chuber_staff_pic" v-bind:src="'/uploads/chuber/' + chuber.id + '/image.png'">
+							<p class="chuber_staff_name">{{chuber.name}}</p>
+							<p class="chuber_staff_job">{{chuber.position}}</p>
 						</div>
-						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
-						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
-						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="chuber_item">
-						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
-						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
-						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
-						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>	
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="chuber_item">
-						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
-						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
-						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
-						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>	
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="chuber_item">
-						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
-						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
-						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>
-						<div class="chuber_staff"><img class="chuber_staff_pic" src="/public/img/ex_handsome_boy.png"><p class="chuber_staff_name">林耿弘</p><p class="chuber_staff_job">魔法師</p></div>	
 					</div>
 				</div>
 			</div>
@@ -380,7 +340,7 @@
 	</div>
 
 	<!-- Page 10: Project Full -->
-	<div class="project_main on" id="project_main">
+	<div class="project_main" id="project_main">
 		<div class="project_main_title bg_orange tiny">
 			<p class="project_main_title_text">Project</p>
 			<div class="line_section line_project_main"></div>
@@ -574,6 +534,8 @@
 	<script src="/public/js/jquery.enllax.min.js"></script>	
 	<script src="/public/js/aos.js"></script>
 	<script src="/public/js/main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+	<script src="/public/js/landingPage.js"></script>
 </body>
 </html>
 

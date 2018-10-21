@@ -24,6 +24,8 @@ $(document).ready(function(){
     $ ( ".menu_cont_title" ).click( function(){
         $( this ).addClass( "on" );
         $( this ).siblings().removeClass( "on" );
+        $ ( ".switch_to_list" ).click();
+        $ ( ".close_project_main" ).click();
         menu( "close" );
         // 未完成！ 
     })
@@ -98,24 +100,24 @@ function project_main_cont ( command ) {
 
 
 // Banner 操作
-function banner ( command ) {
-    var banner_now = $( ".dots.on" ).attr( "class" ).replace( "dots banner_", "" ).replace( " on", "" );
-    $( ".dots.on" ).removeClass( "on" );
-    $( ".banner_item.on" ).removeClass( "on" );
-    if ( command == "next" ) {
-        if ( banner_now < $('.banner_item').length ) {
-            $( ".banner_" + ++banner_now ).addClass( "on" );
-        }
-        else {
-            $( ".banner_1" ).addClass( "on" );
-        }
-    }
-    else if ( command == "prev" ) {
-        if ( banner_now > 1 ) {
-            $( ".banner_" + --banner_now ).addClass( "on" );
-        }
-        else {
-            $( ".banner_3" ).addClass( "on" );
-        }
-    }
-}
+// function banner ( command ) {
+//     var banner_now = $( ".dots.on" ).attr( "class" ).replace( "dots banner_", "" ).replace( " on", "" );
+//     $( ".dots.on" ).removeClass( "on" );
+//     $( ".banner_item.on" ).removeClass( "on" );
+//     if ( command == "next" ) {
+//         if ( banner_now < $('.banner_item').length ) {
+//             $( ".banner_" + ++banner_now ).addClass( "on" );
+//         }
+//         else {
+//             $( ".banner_1" ).addClass( "on" );
+//         }
+//     }
+//     else if ( command == "prev" ) {
+//         if ( banner_now > 1 ) {
+//             $( ".banner_" + --banner_now ).addClass( "on" );
+//         }
+//         else {
+//             $( ".banner_3" ).addClass( "on" );
+//         }
+//     }
+// }
