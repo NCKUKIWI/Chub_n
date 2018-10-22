@@ -69,10 +69,10 @@ $(function () {
             });
         },
         methods: {
-            showProject: function (index) {
+            showProject: function (id, index) {
                 $.ajax({
                     type: "GET",
-                    url: "/projects/1",
+                    url: "/projects/" + id,
                     success: function (project) {
                         vue_project.index = index;
                         vue_project.project = project;

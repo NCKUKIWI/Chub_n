@@ -14,7 +14,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(project, index) in projects" @click="showProject(index)">
+                    <tr v-for="(project, index) in projects" @click="showProject(project.id, index)">
                         <td>{{ project.name }}</td>
                         <td>{{ project.duration }}</td>
                     </tr>

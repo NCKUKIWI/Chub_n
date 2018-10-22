@@ -63,7 +63,7 @@ router.get('/:id', function (req, res) {
                 project_id: id
             }
         }).then(images => {
-            project["images"] = images;
+    		project["images"] = images;
             res.send(project);
         });
     })
