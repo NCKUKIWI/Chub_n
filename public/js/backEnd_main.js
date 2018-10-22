@@ -116,19 +116,44 @@ $(function () {
                 	toastr.error("請上傳coverPreview照片");
                 	return;
                 }
-
+                if ($("#gallery").val() != "" || $("#galleryPreview").val() != "") {
+                    if ($("#gallery").val() == "" || $("#galleryPreview").val() == "") {
+                        toastr.error("上傳 Gallery 時請上傳相對應的 Gallery Preview");
+                        return;
+                    }
+                }
                 $.ajax({
                     url: "/projects",
                     data: projectData,
                     method: "POST",
                     success: function (project) {
+                        if ($("#gallery").val() != "" || $("#galleryPreview").val() != "") {
+                            uploadImg(
+                                "/projects/image/gallery/" + project.id,
+                                "#gallery",
+                                "#projectGalleryForm",
+                                function(response) {
+                                    if (response.result == "ok") {
+                                        $("#gallery").val("");
+                                    }
+                                });
+                            uploadImg(
+                                "/projects/image/gallerypreview/" + project.id,
+                                "#galleryPreview",
+                                "#projectGalleryPreviewForm",
+                                function(response) {
+                                    if (response.result == "ok") {
+                                        $("#galleryPreview").val("");
+                                    }
+                                });
+                        }
                         if ($("#cover").val() != "") {
                             uploadImg(
                                 "/projects/image/cover/" + project.id,
                                 "#cover",
                                 "#projectCoverForm",
                                 function(response) {
-                                    if (response == "ok") {
+                                    if (response.result == "ok") {
                                         $("#cover").val("");
                                     }
                             });
@@ -139,30 +164,8 @@ $(function () {
                                 "#coverPreview",
                                 "#projectCoverPreviewForm",
                                 function(response) {
-                                    if (response == "ok") {
+                                    if (response.result == "ok") {
                                         $("#coverPreview").val("");
-                                    }
-                            });
-                        }
-                        if ($("#gallery").val() != "") {
-                            uploadImg(
-                                "/projects/image/gallery/" + project.id,
-                                "#gallery",
-                                "#projectGalleryForm",
-                                function(response) {
-                                    if (response == "ok") {
-                                        $("#gallery").val("");
-                                    }
-                            });
-                        }
-                        if ($("#galleryPreview").val() != "") {
-                            uploadImg(
-                                "/projects/image/gallerypreview/" + project.id,
-                                "#galleryPreview",
-                                "#projectGalleryPreviewForm",
-                                function(response) {
-                                    if (response == "ok") {
-                                        $("#galleryPreview").val("");
                                     }
                             });
                         }
@@ -172,7 +175,7 @@ $(function () {
                                 "#banner",
                                 "#projectBannerForm",
                                 function(response) {
-                                    if (response == "ok") {
+                                    if (response.result == "ok") {
                                         $("#banner").val("");
                                         toastr.success("新增成功");
                                         project.banner = 1;
@@ -197,18 +200,44 @@ $(function () {
                     introduction: this.project.introduction,
                     url: this.project.url
                 };
+                if ($("#gallery").val() != "" || $("#galleryPreview").val() != "") {
+                    if ($("#gallery").val() == "" || $("#galleryPreview").val() == "") {
+                        toastr.error("上傳 Gallery 時請上傳相對應的 Gallery Preview");
+                        return;
+                    }
+                }
                 $.ajax({
                     url: "/projects/update/" + id,
                     method: "POST",
                     data: updateProject,
                     success: function () {
+                        if ($("#gallery").val() != "" && $("#galleryPreview").val() != "") {
+                            uploadImg(
+                                "/projects/image/gallery/" + id,
+                                "#gallery",
+                                "#projectGalleryForm",
+                                function(response) {
+                                    if (response.result == "ok") {
+                                        $("#gallery").val("");
+                                    }
+                                });
+                            uploadImg(
+                                "/projects/image/gallerypreview/" + id,
+                                "#galleryPreview",
+                                "#projectGalleryPreviewForm",
+                                function(response) {
+                                    if (response.result == "ok") {
+                                        $("#galleryPreview").val("");
+                                    }
+                                });
+                        }
                         if ($("#cover").val() != "") {
                             uploadImg(
                                 "/projects/image/cover/" + id,
                                 "#cover",
                                 "#projectCoverForm",
                                 function(response) {
-                                    if (response == "ok") {
+                                    if (response.result == "ok") {
                                         $("#cover").val("");
                                         vue_project.refreshProject(id);
                                     }
@@ -220,32 +249,8 @@ $(function () {
                                 "#coverPreview",
                                 "#projectCoverPreviewForm",
                                 function(response) {
-                                    if (response == "ok") {
+                                    if (response.result == "ok") {
                                         $("#coverPreview").val("");
-                                        vue_project.refreshProject(id);
-                                    }
-                            });
-                        }
-                        if ($("#gallery").val() != "") {
-                            uploadImg(
-                                "/projects/image/gallery/" + id,
-                                "#gallery",
-                                "#projectGalleryForm",
-                                function(response) {
-                                    if (response == "ok") {
-                                        $("#gallery").val("");
-                                        vue_project.refreshProject(id);
-                                    }
-                            });
-                        }
-                        if ($("#galleryPreview").val() != "") {
-                            uploadImg(
-                                "/projects/image/gallerypreview/" + id,
-                                "#galleryPreview",
-                                "#projectGalleryPreviewForm",
-                                function(response) {
-                                    if (response == "ok") {
-                                        $("#galleryPreview").val("");
                                         vue_project.refreshProject(id);
                                     }
                             });
@@ -256,7 +261,7 @@ $(function () {
                                 "#banner",
                                 "#projectBannerForm",
                                 function(response) {
-                                    if (response == "ok") {
+                                    if (response.result == "ok") {
                                         $("#banner").val("");
                                         toastr.success("更新成功");
                                         vue_project.refreshProject(id);
@@ -280,20 +285,14 @@ $(function () {
                     }
                 });
             },
-            deleteImage: function (id) {
+            deleteImage: function (imageId) {
                 if (confirm("確定要刪除這張圖片嗎?")) {
                     $.ajax({
-                        url: "/projects/image/" + id,
+                        url: "/projects/image/" + imageId,
                         method: "DELETE",
                         success: function (msg) {
                             toastr.success(msg);
-                            $.ajax({
-                                type: "GET",
-                                url: "/projects/" + vue_project.project.id,
-                                success: function (project) {
-                                    vue_project.project = project;
-                                }
-                            });
+                            vue_project.refreshProject(vue_project.project.id);
                         }
                     });
                 }
@@ -305,13 +304,7 @@ $(function () {
                         method: "DELETE",
                         success: function (msg) {
                             toastr.success(msg);
-                            $.ajax({
-                                type: "GET",
-                                url: "/projects/" + id,
-                                success: function (project) {
-                                    vue_project.project = project;
-                                }
-                            });
+                            vue_project.refreshProject(id);
                         }
                     });
                 }
@@ -412,7 +405,7 @@ $(function () {
 	                            "#ad_image",
 	                            "#adImageForm",
 	                            function(response) {
-	                                if (response == "ok") {
+	                                if (response.result == "ok") {
 	                                    $("#ad_image").val("");
 	                                    toastr.success("新增成功");
 	                                    ad.image = 1;
@@ -443,7 +436,7 @@ $(function () {
                                 "#ad_image",
                                 "#adImageForm",
                                 function(response) {
-                                    if (response == "ok") {
+                                    if (response.result == "ok") {
                                         $("#ad_image").val("");
                                         toastr.success("更新成功");
                                         itemData.id = id
@@ -540,7 +533,7 @@ $(function () {
                                 "#chuber_image",
                                 "#chuberImageForm",
                                 function(response) {
-                                    if (response == "ok") {
+                                    if (response.result == "ok") {
                                         $("#chuber_image").val("");
                                         toastr.success("新增成功");
                                         chuber.image = 1;
@@ -573,7 +566,7 @@ $(function () {
                                 "#chuber_image",
                                 "#chuberImageForm",
                                 function(response) {
-                                    if (response == "ok") {
+                                    if (response.result == "ok") {
                                         $("#chuber_image").val("");
                                         toastr.success("更新成功");
                                         itemData.id = id
