@@ -44,7 +44,7 @@
         <div class=function_content>
             <div class="ui top attached tabular menu">
                 <a class="item active" data-tab="project_Info">Info</a>
-                <a class="item" data-tab="project_Banner">Banner</a>
+                <!-- <a class="item" data-tab="project_Banner">Banner</a> -->
                 <a class="item" data-tab="project_Video">Video</a>
                 <a class="item" data-tab="project_Cover">Cover</a>
                 <a class="item" data-tab="project_Cover_Preview">Cover Preview</a>
@@ -72,10 +72,6 @@
                         </div>
                     </div>
                     <div class="field">
-                        <label>Mission:</label>
-                        <textarea rows="2" v-model.lazy="project.mission"></textarea>
-                    </div>
-                    <div class="field">
                         <label>Introduction:</label>
                         <textarea v-model.lazy="project.introduction"></textarea>
                     </div>
@@ -96,7 +92,7 @@
                     <div class="inline field">
                         <label>Video url:</label>
                         <input type="text" v-model.lazy="project.url">
-                        <button class="ui button" style="margin-left: 10px" @click="parseURL"> 解析 </button>
+                        <button class="ui button" style="margin-left: 10px" @click="parseURL"> 上傳 </button>
                     </div>
                 </div>
                 <br><br>

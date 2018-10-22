@@ -37,8 +37,12 @@ var imageStorage = multer.diskStorage({
         cb(null, `${__dirname}/../uploads/project/${req.params.id}/${req.params.type}`);
     },
     filename: function (req, file, cb) {
-        var timestamp = new Date().getTime();
-        cb(null, timestamp + ".jpg");
+    	var filename = req.params.type;
+    	if (req.params.type == "gallery" || req.params.type == 'gallerypreview'){
+        	filename = new Date().getTime();
+    	}
+
+        cb(null, filename + ".jpg");
     }
 });
 
@@ -113,6 +117,9 @@ router.post('/image/:type/:id', function (req, res) {
                 error: err
             });
         } else {
+        	if (type != 'gallerypreview' || type != 'gallery'){
+        		res.send('ok');
+        	}
             Image.create({
                 "project_id": id,
                 "name": req.file.filename,

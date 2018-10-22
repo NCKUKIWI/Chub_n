@@ -108,6 +108,15 @@ $(function () {
                     introduction: this.project.introduction,
                     url: this.project.url
                 };
+                if ($("#cover").val() == ""){
+                	toastr.error("請上傳cover照片");
+                	return;
+                }
+                else if ($("#coverPreview").val() == ""){
+                	toastr.error("請上傳coverPreview照片");
+                	return;
+                }
+
                 $.ajax({
                     url: "/projects",
                     data: projectData,
@@ -317,8 +326,8 @@ $(function () {
                 });
             },
             parseURL: function(){
-            	console.log(this.project.url);
-            	this.project.url = this.project.url.replace('watch?v=', '/embed/');
+            	var youtube_id = this.project.url.split(/\?v=|\&/g)[1];
+            	this.project.url = 'https://www.youtube.com//embed/' + youtube_id;
             }
         }
     });
