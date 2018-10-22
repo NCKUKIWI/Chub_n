@@ -918,7 +918,7 @@ html, body {
   .project_item_full_brief {
     display: block;
     width: 30vw;
-    margin: 20vh 0; }
+    margin: 20vh 0 6vh; }
     .project_item_full_brief_title {
       width: 22vw;
       font-size: 2rem;

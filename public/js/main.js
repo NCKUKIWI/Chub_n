@@ -24,38 +24,38 @@ $(document).ready(function(){
     $ ( ".menu_cont_title" ).click( function(){
         $( this ).addClass( "on" );
         $( this ).siblings().removeClass( "on" );
-        $ ( ".switch_to_list" ).click();
-        $ ( ".close_project_main" ).click();
+        // $ ( ".switch_to_list" ).click();
+        // $ ( ".close_project_main" ).click();
         menu( "close" );
         // 未完成！ 
     })
 
     
     // Project Page 開關
-    $ ( ".switch_project_main" ).click( function(){
-        if ( $( ".project_main" ).hasClass( "on" ))          { project_main( "close" ); }
-        else                                                 { project_main( "open" );  }
-    })
-    $ ( ".open_project_main" ).click( function()             { project_main( "open" );  })
-    $ ( ".close_project_main" ).click( function()            { project_main( "close" ); })
+    // $ ( ".switch_project_main" ).click( function(){
+    //     if ( $( ".project_main" ).hasClass( "on" ))          { project_main( "close" ); }
+    //     else                                                 { project_main( "open" );  }
+    // })
+    // $ ( ".open_project_main" ).click( function()             { project_main( "open" );  })
+    // $ ( ".close_project_main" ).click( function()            { project_main( "close" ); })
 
     // Project Page 內容切換
-    $ ( ".switch_to_list" ).click( function() {
-        if ( ! $( ".project_list_full" ).hasClass( "now" ))  { project_main_cont( "list" ); }
-    })
-    $ ( ".switch_to_item" ).click( function() {
-        if ( ! $( ".project_item_full" ).hasClass( "now" ))  { project_main_cont( "item" ); }
-    })
+    // $ ( ".switch_to_list" ).click( function() {
+    //     if ( ! $( ".project_list_full" ).hasClass( "now" ))  { project_main_cont( "list" ); }
+    // })
+    // $ ( ".switch_to_item" ).click( function() {
+    //     if ( ! $( ".project_item_full" ).hasClass( "now" ))  { project_main_cont( "item" ); }
+    // })
     
     // Project Page 滾動
-    $ ( ".project_main_area" ).scroll( function() {
-        $( ".project_main" ).addClass( "tiny_nav" );
-    })
+    // $ ( ".project_main_area" ).scroll( function() {
+    //     $( ".project_main" ).addClass( "tiny_nav" );
+    // })
 
     
     // Banner 操作
-    $ ( ".icon_go_next" ).click( function()          { banner( "next" ); })
-    $ ( ".icon_go_prev" ).click( function()          { banner( "prev" ); })
+    // $ ( ".icon_go_next" ).click( function()          { banner( "next" ); })
+    // $ ( ".icon_go_prev" ).click( function()          { banner( "prev" ); })
 
     
     

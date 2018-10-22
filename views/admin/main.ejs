@@ -22,7 +22,7 @@
                     專案管理
                 </a>
                 <a class="item" v-on:click.prevent="changeTab(2)" v-bind:class="{ 'active': tab == 2 }">
-                    廣告管理
+                    新聞管理
                 </a>
                 <a class="item" v-on:click.prevent="changeTab(3)" v-bind:class="{ 'active': tab == 3 }">
                     人員管理
@@ -31,7 +31,7 @@
         </div>
         <!-- 專案 -->
         <% include ../project/index %>
-        <!-- 廣告 -->
+		<!-- 新聞 -->
         <% include ../advertise/index %>
         <!-- 人員 -->
         <% include ../chuber/index %>

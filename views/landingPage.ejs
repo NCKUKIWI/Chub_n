@@ -19,15 +19,15 @@
 	<div class="icon_logo clickable"></div>
 
 	<!-- Menu -->
-	<div class="menu">
+	<div class="menu" id="menu">
 		<div class="menu_cont">
-			<div class="menu_cont_title clickable_color on" onclick="window.location.hash='home'; ">Home</div>
-			<div class="menu_cont_title clickable_color" onclick="window.location.hash='intro'; ">What is C-Hub</div>
-			<div class="menu_cont_title clickable_color" onclick="window.location.hash='mission'; ">Mission</div>
-			<div class="menu_cont_title clickable_color" onclick="window.location.hash='project'; ">Project</div>
-			<div class="menu_cont_title clickable_color" onclick="window.location.hash='space'; ">Space</div>
-			<div class="menu_cont_title clickable_color" onclick="window.location.hash='chuber'; ">C-Huber</div>
-			<div class="menu_cont_title clickable_color" onclick="window.location.hash='contact'; ">Contact</div>
+			<div class="menu_cont_title clickable_color on" @click="closeAllProject()" onclick="window.location.hash='home'; ">Home</div>
+			<div class="menu_cont_title clickable_color" @click="closeAllProject()"  onclick="window.location.hash='intro'; ">What is C-Hub</div>
+			<div class="menu_cont_title clickable_color" @click="closeAllProject()"  onclick="window.location.hash='mission'; ">Mission</div>
+			<div class="menu_cont_title clickable_color" @click="showAllProject()"  onclick="window.location.hash='project'; ">Project</div>
+			<div class="menu_cont_title clickable_color" @click="closeAllProject()"  onclick="window.location.hash='space'; ">Space</div>
+			<div class="menu_cont_title clickable_color" @click="closeAllProject()"  onclick="window.location.hash='chuber'; ">C-Huber</div>
+			<div class="menu_cont_title clickable_color" @click="closeAllProject()"  onclick="window.location.hash='contact'; ">Contact</div>
 		</div>
 	</div>
 
@@ -187,8 +187,8 @@
 		</div>
 		<div class="project_browser swiper-container" data-aos="fade-up" data-aos-duration="1500">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide" v-for="(project, index) in previewList">
-					<div class="project_item open_project_main switch_to_item">
+				<div class="swiper-slide" v-for="(project, index) in previewList" @click="showProject(project.id)">
+					<div class="project_item">
 						<img class="project_item_pic" src="/public/img/ex_project_1.png">
 						<p class="project_item_title">{{project.name}}</p>
 						<p class="project_item_detail">{{project.subtitle}}</p>
@@ -340,77 +340,55 @@
 	</div>
 
 	<!-- Page 10: Project Full -->
-	<div class="project_main" id="project_main">
+	<div class="project_main" v-bind:class="{'on': pageShow}" id="project_main">
 		<div class="project_main_title bg_orange tiny">
 			<p class="project_main_title_text">Project</p>
 			<div class="line_section line_project_main"></div>
 		</div>
-		<div class="project_main_area">
+		<div class="project_main_area" v-bind:class="{'tiny_nav': pageShow}">
 			<!-- Page 10-1: Project List -->
-			<div class="project_main_cont project_list_full now">
-				<div class="icon_logo clickable close_project_main"></div>
-				<div class="project_item_in_list switch_to_item">
+			<div class="project_main_cont project_list_full" v-bind:class="{'now': 'list' == showType}">
+				<div class="icon_logo clickable" @click="closeAllProject()"></div>
+				<div class="project_item_in_list" v-for="(project, index) in projectList" @click="showProject(project.id)">
 					<img class="project_item_in_list_pic" src="/public/img/ex_project_1.png">
-					<p class="project_item_in_list_title">微課程：整體美學營造</p>
+					<p class="project_item_in_list_title">{{project.name}}</p>
 					<div class="line_section line_project_item_in_list"></div>
-					<p class="project_item_in_list_detail">客製你的專屬妝容與美感</p>
-					<p class="project_item_in_list_date">01.13－02.01 / 2017</p>
+					<p class="project_item_in_list_detail">{{project.subtitle}}</p>
+					<p class="project_item_in_list_date">{{project.duration}}</p>
 				</div>
-				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_2.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
-				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_3.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
-				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_1.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
-				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_2.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
-				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_3.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
-				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_1.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
-				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_2.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
-				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_3.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
-				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_1.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
-				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_2.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
-				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_3.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
-				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_1.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
-				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_2.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
-				<div class="project_item_in_list switch_to_item"><img class="project_item_in_list_pic" src="/public/img/ex_project_3.png"><p class="project_item_in_list_title">微課程：整體美學營造</p><div class="line_section line_project_item_in_list"></div><p class="project_item_in_list_detail">客製你的專屬妝容與美感</p><p class="project_item_in_list_date">01.13－02.01 / 2017</p></div>
 			</div>
 			<!-- Page 10-2: Project Item -->
-			<div class="project_main_cont project_item_full">
-				<div class="icon_logo back clickable switch_to_list"></div>
+			<div class="project_main_cont project_item_full" v-bind:class="{'now': 'item' == showType}">
+				<div class="icon_logo back clickable" @click="showAllProject"></div>
 				<img class="project_item_full_pic" src="/public/img/ex_project_full.png">
 				<div class="project_item_full_brief">
-					<p class="project_item_full_brief_title">E-ink Research</p>
-					<p class="project_item_full_brief_cont">
-						從數位內容到智慧內容，<br>
-						娛樂無所不在數位內容為將內容加以數位化，<br>
-						2017科技產業關鍵趨勢
-					</p>
+					<p class="project_item_full_brief_title">{{nowProject.name}}</p>
+					<p class="project_item_full_brief_cont">{{nowProject.subtitle}}</p>
 					<div class="line_section line_project_item_full"></div>
 				</div>
 				<div class="project_item_full_cont_text">
 					<div class="project_item_full_cont_text_item">
 						<p class="project_item_full_cont_text_item_title">Duration</p>
-						<p class="project_item_full_cont_text_item_detail">DD / MM / YEAR — DD / MM / YEAR</p>
+						<p class="project_item_full_cont_text_item_detail">{{nowProject.duration}}</p>
 					</div>
 					<div class="project_item_full_cont_text_item">
 						<p class="project_item_full_cont_text_item_title">Introduction</p>
-						<p class="project_item_full_cont_text_item_detail">
-							這個案子在 2015 年由成大建築系薛丞倫與柳川肯兩位助理教授帶領團隊與元太科技合作開始，主要成員有楊翰霖、顏嘉慶等助理，以及之後加入的電機系李嘉猷老師與其研究室的幾位研究生等人，共同研究與開發電子紙在建築設計與產業應用的可能。
-							<br><br>
-							過程中 Research by Design、以及 Design by Research 交互模式進行，成為此案關鍵的幾個階段：以設計來探索各種應用的空間情境、發掘材料特性在防護、模矩、控制、施工的相容性等等限制與挑戰；再有明確的研究及測試原型的方向，跨域整合科技、技術等非建築系內的資源，並且製作原型 prototyping 及展示的真實裝置來展現、測試、並且不斷反饋到更進一步的研究與設計。
-						</p>
+						<p class="project_item_full_cont_text_item_detail" style="white-space: pre-wrap;">{{nowProject.introduction}}</p>
 					</div>
-					<div class="project_item_full_cont_text_item">
+					<!-- <div class="project_item_full_cont_text_item">
 						<p class="project_item_full_cont_text_item_title">Mission</p>
 						<p class="project_item_full_cont_text_item_detail">
 							現階段成果有兩個方向：一個是探索電子紙多種新的特性，研究控制、資訊呈現的界面，讓電子紙得以成為設計媒材或建材，來配合建築師、設計師、藝術家等進行創作。 另一個方向是與電機系合作，建築系透過 C-Hub 作為跨領域整合角色，探索磁耦感應線圈結合電子紙磁磚，讓電子紙得以走出科技廠房，與建築產業無縫接軌，並帶來革命性的建築材料變革。 
 							<br><br>
 							如同在紙上的建築圖面，與建造完成的建築物之間的關係，虛擬與真實兩者的聯結與斷裂是建築教育裡最重要的一個課題；團隊的角色，真實面對一直以來校內學術與校外實務互相拉扯的關係與挑戰，更不再侷限以建築物的設計，而是以跨領域知識的整合、創新的組織架構、以及介入社會、社交等形式來思考當代的世界，期望作出貢獻。
 						</p>
-					</div>
+					</div> -->
 				</div>
 				<div class="project_item_full_cont_media">
-					<div class="project_item_full_cont_media_video">
+					<div v-show='nowProject.url !=""' class="project_item_full_cont_media_video">
 						<p class="project_item_full_cont_media_item_title">Video</p>
 						<div class="project_item_full_cont_media_video_cont">
-							<iframe src="https://www.youtube.com/embed/BeI6an1Fy6E?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+							<iframe v-bind:src="nowProject.url" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 						</div>
 					</div>
 					<div class="project_item_full_cont_media_gallery">
