@@ -113,14 +113,47 @@ $(function () {
                     data: projectData,
                     method: "POST",
                     success: function (project) {
-                        if ($("#image").val() != "") {
+                        if ($("#cover").val() != "") {
                             uploadImg(
-                                "/projects/image/" + project.id,
-                                "#image",
-                                "#projectImageForm",
+                                "/projects/image/cover/" + project.id,
+                                "#cover",
+                                "#projectCoverForm",
                                 function(response) {
                                     if (response == "ok") {
-                                        $("#image").val("");
+                                        $("#cover").val("");
+                                    }
+                            });
+                        }
+                        if ($("#coverPreview").val() != "") {
+                            uploadImg(
+                                "/projects/image/coverpreview/" + project.id,
+                                "#coverPreview",
+                                "#projectCoverPreviewForm",
+                                function(response) {
+                                    if (response == "ok") {
+                                        $("#coverPreview").val("");
+                                    }
+                            });
+                        }
+                        if ($("#gallery").val() != "") {
+                            uploadImg(
+                                "/projects/image/gallery/" + project.id,
+                                "#gallery",
+                                "#projectGalleryForm",
+                                function(response) {
+                                    if (response == "ok") {
+                                        $("#gallery").val("");
+                                    }
+                            });
+                        }
+                        if ($("#galleryPreview").val() != "") {
+                            uploadImg(
+                                "/projects/image/gallerypreview/" + project.id,
+                                "#galleryPreview",
+                                "#projectGalleryPreviewForm",
+                                function(response) {
+                                    if (response == "ok") {
+                                        $("#galleryPreview").val("");
                                     }
                             });
                         }
@@ -160,14 +193,51 @@ $(function () {
                     method: "POST",
                     data: updateProject,
                     success: function () {
-                        if ($("#image").val() != "") {
+                        if ($("#cover").val() != "") {
                             uploadImg(
-                                "/projects/image/" + id,
-                                "#image",
-                                "#projectImageForm",
+                                "/projects/image/cover/" + id,
+                                "#cover",
+                                "#projectCoverForm",
                                 function(response) {
                                     if (response == "ok") {
-                                        $("#image").val("");
+                                        $("#cover").val("");
+                                        vue_project.refreshProject(id);
+                                    }
+                            });
+                        }
+                        if ($("#coverPreview").val() != "") {
+                            uploadImg(
+                                "/projects/image/coverpreview/" + id,
+                                "#coverPreview",
+                                "#projectCoverPreviewForm",
+                                function(response) {
+                                    if (response == "ok") {
+                                        $("#coverPreview").val("");
+                                        vue_project.refreshProject(id);
+                                    }
+                            });
+                        }
+                        if ($("#gallery").val() != "") {
+                            uploadImg(
+                                "/projects/image/gallery/" + id,
+                                "#gallery",
+                                "#projectGalleryForm",
+                                function(response) {
+                                    if (response == "ok") {
+                                        $("#gallery").val("");
+                                        vue_project.refreshProject(id);
+                                    }
+                            });
+                        }
+                        if ($("#galleryPreview").val() != "") {
+                            uploadImg(
+                                "/projects/image/gallerypreview/" + id,
+                                "#galleryPreview",
+                                "#projectGalleryPreviewForm",
+                                function(response) {
+                                    if (response == "ok") {
+                                        $("#galleryPreview").val("");
+                                        vue_project.refreshProject(id);
                                     }
                             });
                         }
@@ -180,31 +250,71 @@ $(function () {
                                     if (response == "ok") {
                                         $("#banner").val("");
                                         toastr.success("更新成功");
-                                        updateProject.id = id
-                                        updateProject.banner = 1;
-                                        vue_project.projects[vue_project.index] = updateProject;
-                                        vue_project.showList();
+                                        vue_project.refreshProject(id);
                                     }
                             });
                         } else {
                             toastr.success("更新成功");
-                            vue_project.projects[vue_project.index] = updateProject;
-                            vue_project.projects[vue_project.index].id = id;
-                            vue_project.showList();
+                            vue_project.refreshProject(id);
                         }
                     }
                 });
             },
             deleteProject: function (id) {
                 $.ajax({
-                    url: "/projects/delete/" + id,
+                    url: "/projects/" + id,
                     method: "DELETE",
                     success: function (msg) {
                         toastr.success(msg);
                         vue_project.projects.splice(vue_project.index, 1);
                         vue_project.showList();
                     }
-                })
+                });
+            },
+            deleteImage: function (id) {
+                if (confirm("確定要刪除這張圖片嗎?")) {
+                    $.ajax({
+                        url: "/projects/image/" + id,
+                        method: "DELETE",
+                        success: function (msg) {
+                            toastr.success(msg);
+                            $.ajax({
+                                type: "GET",
+                                url: "/projects/" + vue_project.project.id,
+                                success: function (project) {
+                                    vue_project.project = project;
+                                }
+                            });
+                        }
+                    });
+                }
+            },
+            deleteBanner: function(id) {
+                if (confirm("確定要刪除這張圖片嗎?")) {
+                    $.ajax({
+                        url: "/projects/banner/" + id,
+                        method: "DELETE",
+                        success: function (msg) {
+                            toastr.success(msg);
+                            $.ajax({
+                                type: "GET",
+                                url: "/projects/" + id,
+                                success: function (project) {
+                                    vue_project.project = project;
+                                }
+                            });
+                        }
+                    });
+                }
+            },
+            refreshProject: function(id) {
+                $.ajax({
+                    type: "GET",
+                    url: "/projects/" + id,
+                    success: function (project) {
+                        vue_project.project = project;
+                    }
+                });
             },
             parseURL: function(){
             	console.log(this.project.url);

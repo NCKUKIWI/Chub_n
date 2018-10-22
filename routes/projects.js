@@ -31,7 +31,10 @@ var imageStorage = multer.diskStorage({
         if (!fs.existsSync(`${__dirname}/../uploads/project/${req.params.id}`)) {
             fs.mkdirSync(`${__dirname}/../uploads/project/${req.params.id}`);
         }
-        cb(null, `${__dirname}/../uploads/project/${req.params.id}`);
+        if (!fs.existsSync(`${__dirname}/../uploads/project/${req.params.id}/${req.params.type}`)) {
+            fs.mkdirSync(`${__dirname}/../uploads/project/${req.params.id}/${req.params.type}`);
+        }
+        cb(null, `${__dirname}/../uploads/project/${req.params.id}/${req.params.type}`);
     },
     filename: function (req, file, cb) {
         var timestamp = new Date().getTime();
@@ -77,24 +80,6 @@ router.post('/update/:id', function (req, res) {
         }
     }).then(function () {
         res.send("更新成功");
-    })
-});
-
-router.delete('/delete/:id', function (req, res) {
-    var id = parseInt(req.params.id);
-    Project.destroy({
-        where: {
-            id: id
-        }
-    }).then(function () {
-        Image.destroy({
-            where: {
-                project_id: id
-            }
-        }).then(function () {
-            rimraf.sync(`${__dirname}/../uploads/project/${id}`);
-            res.send("刪除成功");
-        });
     });
 });
 
@@ -119,8 +104,9 @@ router.post('/banner/:id', function (req, res) {
     });
 });
 
-router.post('/image/:id', function (req, res) {
+router.post('/image/:type/:id', function (req, res) {
     var id = parseInt(req.params.id);
+    var type = req.params.type;
     imageUpload(req, res, function (err) {
         if (err) {
             res.send({
@@ -129,11 +115,58 @@ router.post('/image/:id', function (req, res) {
         } else {
             Image.create({
                 "project_id": id,
-                "name": req.file.filename
+                "name": req.file.filename,
+                "type": type
             }).then(function () {
                 res.send("ok");
             });
         }
+    });
+});
+
+router.delete('/banner/:id', function (req, res) {
+    var id = parseInt(req.params.id);
+    Project.update({
+        "banner": 0
+    }, {
+        where: {
+            id: id
+        }
+    }).then(function () {
+        rimraf.sync(`${__dirname}/../uploads/project/${id}/banner.png`);
+        res.send("刪除成功");
+    });
+});
+
+router.delete('/image/:id', function (req, res) {
+    var id = parseInt(req.params.id);
+    Image.findById(id).then(image => {
+        Image.destroy({
+            where: {
+                id: id
+            }
+        }).then(function () {
+            rimraf.sync(`${__dirname}/../uploads/project/${image.project_id}/${image.name}`);
+            res.send("刪除成功");
+        });
+    });
+});
+
+router.delete('/:id', function (req, res) {
+    var id = parseInt(req.params.id);
+    Project.destroy({
+        where: {
+            id: id
+        }
+    }).then(function () {
+        Image.destroy({
+            where: {
+                project_id: id
+            }
+        }).then(function () {
+            rimraf.sync(`${__dirname}/../uploads/project/${id}`);
+            res.send("刪除成功");
+        });
     });
 });
 
