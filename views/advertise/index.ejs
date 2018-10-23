@@ -46,6 +46,7 @@
             <div class="ui top attached tabular menu">
                 <a class="item active" data-tab="ad_Info">Info</a>
                 <a class="item" data-tab="ad_Image">Image</a>
+                <a class="item" data-tab="ad_Image_mobile">Mobile Image</a>
             </div>
             <div class="ui bottom attached tab segment active" data-tab="ad_Info">
                 <div class="ui form">
@@ -61,11 +62,23 @@
                 <form class="ui form" id="adImageForm">
                     <div class="field">
                         <label>image</label>
-                        <input type="file" name="image" id="ad_image">
+                        <input type="file" name="image" id="ad_image" @change="onFileChange">
                     </div>
                 </form>
                 <br>
-                <img width="100%" v-if="ad.image" v-bind:src="'/uploads/advertisement/' + ad.id + '/image.png?' + new Date().getTime()">
+                <img width="100%" v-if="url == ''" v-bind:src="'/uploads/advertisement/' + ad.id + '/image.png?' + new Date().getTime()">
+				<img width="100%" v-if="url != ''" v-bind:src="url">
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="ad_Image_mobile">
+                <form class="ui form" id="adImageMobileForm">
+                    <div class="field">
+                        <label>Mobile Image</label>
+                        <input type="file" name="imageMobile" id="ad_image_mobile" @change="onMobileFileChange">
+                    </div>
+                </form>
+                <br>
+                <img width="100%" v-if="mobileUrl == ''" v-bind:src="'/uploads/advertisement/' + ad.id + '/imageMobile.png?' + new Date().getTime()">
+				<img width="100%" v-if="!mobileUrl == ''" v-bind:src="mobileUrl">
             </div>
         </div>
     </div>

@@ -321,7 +321,11 @@ $(function () {
             parseURL: function(){
             	var youtube_id = this.project.url.split(/\?v=|\&/g)[1];
             	this.project.url = 'https://www.youtube.com//embed/' + youtube_id;
-            }
+            },
+		    onFileChange(e) {
+		      const file = e.target.files[0];
+		      vue_project.project.url = URL.createObjectURL(file);
+		    }
         }
     });
 
@@ -340,7 +344,9 @@ $(function () {
                 id: "",
                 name: "",
                 image: "",
-            }
+            },
+            url: "",
+            mobileUrl: "",
         },
         created: function () {
             $.ajax({
@@ -389,35 +395,52 @@ $(function () {
             	vue_ad.ad = vue_ad.adList[index];
             	vue_ad.show.list = false;
             	vue_ad.show.form = true;
+            	vue_ad.url = "";
+            	vue_ad.mobileUrl = "";
     		},
     		createItem: function(){
+            	vue_ad.url = "";
+            	vue_ad.mobileUrl = "";
 	            var itemData = {
 	                name: vue_ad.ad.name
 	            };
+	            if($("#ad_image").val() == ""){
+	            	toastr.error('請上傳網頁版照片');
+	            	return;
+	            }
+	            if($("#ad_image_mobile").val() == ""){
+	            	toastr.error('請上傳手機版照片');
+	            	return;
+	            }
 	            $.ajax({
 	            	type:"POST",
 	            	url:"/advertisements",
 	            	data: itemData,
 	            	success: function(ad){
-	                    if($("#ad_image").val() != "") {
-	                        uploadImg(
-	                            "/advertisements/image/" + ad.id,
-	                            "#ad_image",
-	                            "#adImageForm",
-	                            function(response) {
-	                                if (response.result == "ok") {
-	                                    $("#ad_image").val("");
-	                                    toastr.success("新增成功");
-	                                    ad.image = 1;
-	                                    vue_ad.adList.push(ad);
-	                                    vue_ad.showList();
-	                                }
-	                        });
-	                    } else {
-	                        toastr.success("新增成功");
-	                        vue_ad.adList.push(ad);
-	                        vue_ad.showList();
-	                    }
+	            		uploadImg(
+                            "/advertisements/image/" + ad.id,
+                            "#ad_image",
+                            "#adImageForm",
+                            function(response) {
+                                if (response == "ok") {
+                                    $("#ad_image").val("");
+                                    // toastr.success("新增桌機版照片成功");
+                                }
+	                    });
+	            		uploadImg(
+                            "/advertisements/imageMobile/" + ad.id,
+                            "#ad_image_mobile",
+                            "#adImageMobileForm",
+                            function(response) {
+                            	console.log(response);
+                                if (response == "ok") {
+                                    $("#ad_image_mobile").val("");
+                                    // toastr.success("新增手機版照片成功");
+                                }
+	                    });
+	                    toastr.success("新增成功");
+                        vue_ad.adList.push(ad);
+                        vue_ad.showList();
 	            	}
 	            })
     		},
@@ -464,7 +487,15 @@ $(function () {
 	            			vue_ad.showList();
 	            	}
 	            })
-    		}
+    		},
+		    onFileChange(e) {
+		      const file = e.target.files[0];
+		      vue_ad.url = URL.createObjectURL(file);
+		    },
+		    onMobileFileChange(e) {
+		      const file = e.target.files[0];
+		      vue_ad.mobileUrl = URL.createObjectURL(file);
+		    }
         }
     });
 

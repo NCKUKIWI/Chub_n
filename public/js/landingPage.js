@@ -67,6 +67,8 @@ $(function () {
 
 			],
 			nowProject: {},
+			nowGallery: [],
+			nowGalleryPreview: [],
 			showType: 'list',
 			pageShow: false,
 
@@ -82,6 +84,19 @@ $(function () {
                     url: "/projects/" + id,
                     success: function (project) {
                         vue_project_main.nowProject = project;
+                        vue_project_main.nowGallery = [];
+                        vue_project_main.nowGalleryPreview = [];
+                        for(var index in project.images){
+                        	var img = project.images[index];
+                        	console.log(img);
+                        	if (img.type == 'gallery'){
+                        		vue_project_main.nowGallery.push(img)
+                        	}
+                        	else if (img.type == 'gallerypreview'){
+                        		vue_project_main.nowGalleryPreview.push(img);
+                        	}
+                        }
+                        // initPhotoSwipeFromDOM('.my-gallery');
                     }
                 });
 				vue_project_main.pageShow = true;
@@ -168,13 +183,13 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 
             linkEl = figureEl.children[0]; // <a> element
 
-            size = linkEl.getAttribute('data-size').split('x');
+            // size = linkEl.getAttribute('data-size').split('x');
 
             // create slide object
             item = {
                 src: linkEl.getAttribute('href'),
-                w: parseInt(size[0], 10),
-                h: parseInt(size[1], 10)
+                w: 0,
+                h: 0
             };
 
 
@@ -329,6 +344,18 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 
         // Pass data to PhotoSwipe and initialize it
         gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+		gallery.listen('gettingData', function(index, item) {
+		        if (item.w < 1 || item.h < 1) { // unknown size
+		        var img = new Image(); 
+		        img.onload = function() { // will get size after load
+		        item.w = this.width; // set image width
+		        item.h = this.height; // set image height
+		           gallery.invalidateCurrItems(); // reinit Items
+		           gallery.updateSize(true); // reinit Items
+		        }
+		    img.src = item.src; // let's download image
+		    }
+		});
         gallery.init();
     };
 

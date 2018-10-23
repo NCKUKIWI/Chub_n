@@ -25,6 +25,25 @@ var imageUpload = multer({
     storage: imageStorage
 }).single("image");
 
+var imageMobileStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        if (!fs.existsSync(`${__dirname}/../uploads/advertisement/${req.params.id}`)) {
+            fs.mkdirSync(`${__dirname}/../uploads/advertisement/${req.params.id}`);
+        }
+        if (fs.existsSync(`${__dirname}/../uploads/advertisement/${req.params.id}/imageMobile.png`)) {
+            rimraf.sync(`${__dirname}/../uploads/advertisement/${req.params.id}/imageMobile.png`);
+        }
+        cb(null, `${__dirname}/../uploads/advertisement/${req.params.id}`);
+    },
+    filename: function (req, file, cb) {
+        cb(null, "imageMobile.png");
+    }
+});
+
+var imageMobileUpload = multer({
+    storage: imageMobileStorage
+}).single("imageMobile");
+
 router.get('/', function (req, res) {
     Advertisement.findAll().then(ad => {
         res.send(ad);
@@ -74,15 +93,19 @@ router.post('/image/:id', function (req, res) {
             console.log(err);
             res.send({error:err})
         } else {
-            Advertisement.update({
-                image: 1
-            }, {
-                where: {
-                    id: id
-                }
-            }).then(function () {
-                res.send("ok");
-            });
+        	res.send("ok");
+        }
+    });
+});
+
+router.post('/imageMobile/:id', function (req, res) {
+    var id = parseInt(req.params.id);
+    imageMobileUpload(req, res, function(err){
+        if (err) {
+            console.log(err);
+            res.send({error:err})
+        } else {
+			res.send("ok");
         }
     });
 });

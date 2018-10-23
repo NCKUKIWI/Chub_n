@@ -105,15 +105,18 @@
                         <form class="ui form" id="projectCoverForm">
                             <div class="field">
                                 <label>Cover</label>
-                                <input type="file" name="image" id="cover">
+                                <input type="file" name="image" id="cover" @change="onFileChange">
                             </div>
                         </form>
                     </div>
                     <template v-if="project.images && project.images.length > 0">
                         <div class="column" v-for="image in project.images" v-if="image.type == 'cover'">
-                            <div class="ui fluid card">
+							<div v-if="project.url" class="ui fluid card">
+								<img style="max-width: 100%" :src="project.url" />
+							</div>
+                            <div v-if="!project.url" class="ui fluid card">
                                 <div class="image">
-                                    <img v-on:click="deleteImage(image.id)" v-bind:src="'/uploads/project/' + project.id + '/' + image.type + '/' + image.name + '?' + new Date().getTime()">
+                                    <img style="max-width: 100%" v-on:click="deleteImage(image.id)" v-bind:src="'/uploads/project/' + project.id + '/' + image.type + '/' + image.name + '?' + new Date().getTime()">
                                 </div>
                             </div>
                         </div>
