@@ -124,7 +124,7 @@ router.post('/image/:type/:id', function (req, res) {
             }).then(function (image) {
                 res.send({
                     "result":"ok",
-                    "image": image
+                    "images": image
                 });
             });
         }

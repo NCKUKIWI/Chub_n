@@ -239,7 +239,7 @@ $(function () {
                                 function(response) {
                                     if (response.result == "ok") {
                                         $("#cover").val("");
-                                        vue_project.refreshProject(id);
+                                        vue_project.refreshProject(vue_project.project.id);
                                     }
                             });
                         }
@@ -249,28 +249,16 @@ $(function () {
                                 "#coverPreview",
                                 "#projectCoverPreviewForm",
                                 function(response) {
+                                	console.log(response);
                                     if (response.result == "ok") {
                                         $("#coverPreview").val("");
-                                        vue_project.refreshProject(id);
+                                        vue_project.refreshProject(vue_project.project.id);
                                     }
                             });
                         }
-                        if($("#banner").val() != "") {
-                            uploadImg(
-                                "/projects/banner/" + id,
-                                "#banner",
-                                "#projectBannerForm",
-                                function(response) {
-                                    if (response.result == "ok") {
-                                        $("#banner").val("");
-                                        toastr.success("更新成功");
-                                        vue_project.refreshProject(id);
-                                    }
-                            });
-                        } else {
-                            toastr.success("更新成功");
-                            vue_project.refreshProject(id);
-                        }
+						toastr.success("更新成功");
+                        vue_project.refreshProject(vue_project.project.id);
+                        // vue_project.showList();
                     }
                 });
             },
@@ -459,21 +447,28 @@ $(function () {
                                 "#ad_image",
                                 "#adImageForm",
                                 function(response) {
-                                    if (response.result == "ok") {
+                                    if (response == "ok") {
                                         $("#ad_image").val("");
-                                        toastr.success("更新成功");
-                                        itemData.id = id
-                                        itemData.image = 1;
-                                        vue_ad.adList[vue_ad.index] = itemData;
-                                        vue_ad.showList();
                                     }
                             });
-                        } else {
-                            toastr.success("更新成功");
-                            vue_ad.adList[vue_ad.index] = itemData;
-                            vue_ad.adList[vue_ad.index].id = id;
-                            vue_ad.showList();
                         }
+                        if($("#ad_image_mobile").val() != ""){
+		            		uploadImg(
+	                            "/advertisements/imageMobile/" + id,
+	                            "#ad_image_mobile",
+	                            "#adImageMobileForm",
+	                            function(response) {
+	                            	console.log(response);
+	                                if (response == "ok") {
+	                                    $("#ad_image_mobile").val("");
+	                                    // toastr.success("新增手機版照片成功");
+	                                }
+		                    });
+		                }
+                        toastr.success("更新成功");
+                        vue_ad.adList[vue_ad.index] = itemData;
+                        vue_ad.adList[vue_ad.index].id = id;
+                        vue_ad.showList();
 	            	}
 	            })
 	    	},

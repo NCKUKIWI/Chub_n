@@ -12,7 +12,7 @@ $(function () {
         			var group = [];
         			for(var i = 0; i < chubers.length; i++){
         				group.push(chubers[i]);
-        				if(group.length == 2 || i == chubers.length - 1){
+        				if(group.length == 4 || i == chubers.length - 1){
         					vue_chuber.chuberList.push(group);
         					group = [];
         				}
@@ -21,7 +21,29 @@ $(function () {
             })
 		},
 		async mounted() {
-			AOS.init();
+			AOS.init({
+        		offset: 300,
+        		delay: 0,
+        		duration: 2500,
+        		once: true,
+       			mirror: false
+    		});
+		    var swiper = new Swiper('.chuber_browser', {
+		        slidesPerView: 3,
+		        spaceBetween: 18,
+		        breakpoints: {
+		            650: {
+		                slidesPerView: 1
+		            },
+		            1050: {
+		                slidesPerView: 2
+		            }
+		        },
+		        pagination: {
+		            el: '.chuber_dots',
+		            clickable: true,
+		        },
+		    });
 		}
 	})
 
@@ -56,7 +78,13 @@ $(function () {
 			}
 		},
 		async mounted() {
-			AOS.init();
+			AOS.init({
+        		offset: 300,
+        		delay: 0,
+        		duration: 2500,
+        		once: true,
+       			mirror: false
+    		});
 		}
 	})
 
@@ -117,6 +145,8 @@ $(function () {
         },
         mounted: function () {
 			initPhotoSwipeFromDOM('.my-gallery');
+
+
         }
 	})
 
@@ -140,6 +170,28 @@ $(function () {
 		},
 		async mounted() {
 			AOS.init();
+		    var swiper = new Swiper('.project_browser', {
+		        slidesPerView: 3,
+		        spaceBetween: 10,
+		        allowSlidePrev: false,
+		        allowSlideNext: false,
+		        breakpoints: {
+		            650: {
+		                allowSlidePrev: true,
+		                allowSlideNext: true,
+		                slidesPerView: 1
+		            },
+		            1050: {
+		                allowSlidePrev: true,
+		                allowSlideNext: true,
+		                slidesPerView: 2
+		            }
+		        },
+		        pagination: {
+		            el: '.project_dots',
+		            clickable: true,
+		        },
+		    });
 		}
 	})
 

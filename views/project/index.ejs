@@ -77,7 +77,7 @@
                     </div>
                 </div>
             </div>
-            <div class="ui bottom attached tab segment" data-tab="project_Banner">
+            <!-- <div class="ui bottom attached tab segment" data-tab="project_Banner">
                 <form class="ui form" id="projectBannerForm">
                     <div class="field">
                         <label>Banner</label>
@@ -86,7 +86,7 @@
                 </form>
                 <br>
                 <img width="100%" v-if="project.banner" v-on:click="deleteBanner(project.id)" v-bind:src="'/uploads/project/' + project.id + '/banner.png?' + new Date().getTime()">
-            </div>
+            </div> -->
             <div class="ui bottom attached tab segment" data-tab="project_Video" style="height: 100vh">
                 <div class="ui form">
                     <div class="inline field">
@@ -100,60 +100,35 @@
                 </iframe>
             </div>
             <div class="ui bottom attached tab segment" data-tab="project_Cover">
-                <div class="ui three column grid">
-                    <div class="column">
-                        <form class="ui form" id="projectCoverForm">
-                            <div class="field">
-                                <label>Cover</label>
-                                <input type="file" name="image" id="cover" @change="onFileChange">
-                            </div>
-                        </form>
+                <form class="ui form" id="projectCoverForm">
+                    <div class="field">
+                        <label>Cover</label>
+                        <input type="file" name="image" id="cover">
                     </div>
-                    <template v-if="project.images && project.images.length > 0">
-                        <div class="column" v-for="image in project.images" v-if="image.type == 'cover'">
-							<div v-if="project.url" class="ui fluid card">
-								<img style="max-width: 100%" :src="project.url" />
-							</div>
-                            <div v-if="!project.url" class="ui fluid card">
-                                <div class="image">
-                                    <img style="max-width: 100%" v-on:click="deleteImage(image.id)" v-bind:src="'/uploads/project/' + project.id + '/' + image.type + '/' + image.name + '?' + new Date().getTime()">
-                                </div>
-                            </div>
-                        </div>
-                    </template>
-                </div>
+                </form>
+                <br>
+                <img style="max-width: 100%" v-on:click="deleteImage(image.id)" v-bind:src="'/uploads/project/' + project.id + '/cover/cover.jpg?' + new Date().getTime()">
             </div>
             <div class="ui bottom attached tab segment" data-tab="project_Cover_Preview">
-                <div class="ui three column grid">
-                    <div class="column">
-                        <form class="ui form" id="projectCoverPreviewForm">
-                            <div class="field">
-                                <label>Cover Preview</label>
-                                <input type="file" name="image" id="coverPreview">
-                            </div>
-                        </form>
+
+                <form class="ui form" id="projectCoverPreviewForm">
+                    <div class="field">
+                        <label>Cover Preview</label>
+                        <input type="file" name="image" id="coverPreview">
                     </div>
-                    <template v-if="project.images && project.images.length > 0">
-                        <div class="column" v-for="image in project.images" v-if="image.type == 'coverpreview'">
-                            <div class="ui fluid card">
-                                <div class="image">
-                                    <img v-on:click="deleteImage(image.id)" v-bind:src="'/uploads/project/' + project.id + '/' + image.type + '/' + image.name + '?' + new Date().getTime()">
-                                </div>
-                            </div>
-                        </div>
-                    </template>
-                </div>
+                </form>
+                <br>
+                <img v-on:click="deleteImage(image.id)" v-bind:src="'/uploads/project/' + project.id + '/coverpreview/coverpreview.jpg?' + new Date().getTime()">
             </div>
             <div class="ui bottom attached tab segment" data-tab="project_Gallery">
+	            <form class="ui form" id="projectGalleryForm">
+	                <div class="field">
+	                    <label>Gallery</label>
+	                    <input type="file" name="image" id="gallery">
+	                </div>
+	            </form>
+                <br>
                 <div class="ui three column grid">
-                    <div class="column">
-                        <form class="ui form" id="projectGalleryForm">
-                            <div class="field">
-                                <label>Gallery</label>
-                                <input type="file" name="image" id="gallery">
-                            </div>
-                        </form>
-                    </div>
                     <template v-if="project.images && project.images.length > 0">
                         <div class="column" v-for="image in project.images" v-if="image.type == 'gallery'">
                             <div class="ui fluid card">
@@ -166,15 +141,14 @@
                 </div>
             </div>
             <div class="ui bottom attached tab segment" data-tab="project_Gallery_Preview">
-                <div class="ui three column grid">
-                    <div class="column">
-                        <form class="ui form" id="projectGalleryPreviewForm">
-                            <div class="field">
-                                <label>Gallery Preview</label>
-                                <input type="file" name="image" id="galleryPreview">
-                            </div>
-                        </form>
+                <form class="ui form" id="projectGalleryPreviewForm">
+                    <div class="field">
+                        <label>Gallery Preview</label>
+                        <input type="file" name="image" id="galleryPreview">
                     </div>
+                </form>
+				<br>
+                <div class="ui three column grid">
                     <template v-if="project.images && project.images.length > 0">
                         <div class="column" v-for="image in project.images" v-if="image.type == 'gallerypreview'">
                             <div class="ui fluid card">
