@@ -145,8 +145,6 @@ $(function () {
         },
         mounted: function () {
 			initPhotoSwipeFromDOM('.my-gallery');
-
-
         }
 	})
 

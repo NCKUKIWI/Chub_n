@@ -48,8 +48,9 @@
                 <a class="item" data-tab="project_Video">Video</a>
                 <a class="item" data-tab="project_Cover">Cover</a>
                 <a class="item" data-tab="project_Cover_Preview">Cover Preview</a>
-                <a class="item" data-tab="project_Gallery">Gallery</a>
-                <a class="item" data-tab="project_Gallery_Preview">Gallery Preview</a>
+                <!-- <a class="item" data-tab="project_Gallery">Gallery</a> -->
+                <!-- <a class="item" data-tab="project_Gallery_Preview">Gallery Preview</a> -->
+                <a class="item" data-tab="project_Gallery_upload">Gallery Upload</a>
             </div>
             <div class="ui bottom attached tab segment active" data-tab="project_Info">
                 <div class="ui form">
@@ -77,16 +78,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="ui bottom attached tab segment" data-tab="project_Banner">
-                <form class="ui form" id="projectBannerForm">
-                    <div class="field">
-                        <label>Banner</label>
-                        <input type="file" name="banner" id="banner">
-                    </div>
-                </form>
-                <br>
-                <img width="100%" v-if="project.banner" v-on:click="deleteBanner(project.id)" v-bind:src="'/uploads/project/' + project.id + '/banner.png?' + new Date().getTime()">
-            </div> -->
             <div class="ui bottom attached tab segment" data-tab="project_Video" style="height: 100vh">
                 <div class="ui form">
                     <div class="inline field">
@@ -120,7 +111,7 @@
                 <br>
                 <img v-on:click="deleteImage(image.id)" v-bind:src="'/uploads/project/' + project.id + '/coverpreview/coverpreview.jpg?' + new Date().getTime()">
             </div>
-            <div class="ui bottom attached tab segment" data-tab="project_Gallery">
+            <!-- <div class="ui bottom attached tab segment" data-tab="project_Gallery">
 	            <form class="ui form" id="projectGalleryForm">
 	                <div class="field">
 	                    <label>Gallery</label>
@@ -159,7 +150,64 @@
                         </div>
                     </template>
                 </div>
+            </div> -->
+            <div class="ui bottom attached tab segment" data-tab="project_Gallery_upload">
+            	<div class="ui two column grid">
+            		<div class="column">
+						<form class="ui form" id="projectGalleryForm">
+			                <div class="field">
+			                    <label>Gallery</label>
+			                    <input type="file" name="image" id="gallery">
+			                </div>
+			            </form>
+            		</div>
+					<div class="column">
+		                <form class="ui form" id="projectGalleryPreviewForm">
+		                    <div class="field">
+		                        <label>Gallery preview</label>
+		                        <input type="file" name="image" id="galleryPreview">
+		                    </div>
+		                </form>
+					</div>
+            	</div>
+				<div class="project_item_full_cont_media_gallery">
+					<div class="project_item_full_cont_media_gallery_cont backend_gallery">
+						<figure v-for="(img, index) in nowGallery">
+							<a v-bind:href="'/uploads/project/' + img.project_id + '/gallery/' + img.name" itemprop="contentUrl">
+								<img v-bind:src="'/uploads/project/' + nowGalleryPreview[index].project_id + '/gallerypreview/' + nowGalleryPreview[index].name" itemprop="thumbnail">
+							</a>
+							<button class="ui button" v-on:click="deleteImage(img.id, nowGalleryPreview[index].id)" style="width: 100%;">
+							  delete
+							</button>
+						</figure>
+					</div>
+				</div>
             </div>
         </div>
     </div>
 </div>
+
+<style type="text/css">
+    .project_item_full_cont_media_gallery {
+      display: block; }
+      .project_item_full_cont_media_gallery_cont {
+        margin-top: 4vh;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-content: flex-start;
+        width: calc(60vw + 10px);
+        height: calc(36vw + 6px);
+        float: left;}
+        .project_item_full_cont_media_gallery_cont img {
+          width: 100%;
+          height: 100%; }
+        .project_item_full_cont_media_gallery_cont figure {
+          display: block;
+          width: calc(60vw / 5 - 8px);
+          height: calc(60vw / 5 - 8px);
+          margin: 0 10px 10px 0; }
+        .project_item_full_cont_media_gallery_cont figcaption {
+          display: none; }
+</style>
