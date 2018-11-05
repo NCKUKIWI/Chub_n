@@ -57,9 +57,11 @@ $(function () {
                 mission: "",
                 introduction: "",
                 url: "",
-            },
-			nowGallery: [],
-			nowGalleryPreview: []
+                gallery: [],
+                galleryPreview: [],
+                cover:[],
+                coverPreview:[]
+            }
         },
         created: function () {
             $.ajax({
@@ -72,27 +74,16 @@ $(function () {
         },
         methods: {
             showProject: function (id, index) {
+                console.log(id);
                 $.ajax({
                     type: "GET",
                     url: "/projects/" + id,
                     success: function (project) {
+                        console.log(project);
                         vue_project.index = index;
                         vue_project.project = project;
                         vue_project.show.list = false;
                         vue_project.show.form = true;
-
-                        vue_project.nowGallery = [];
-                        vue_project.nowGalleryPreview = [];
-                        for(var index in project.images){
-                        	var img = project.images[index];
-                        	console.log(img);
-                        	if (img.type == 'gallery'){
-                        		vue_project.nowGallery.push(img)
-                        	}
-                        	else if (img.type == 'gallerypreview'){
-                        		vue_project.nowGalleryPreview.push(img);
-                        	}
-                        }
                     }
                 });
             },
@@ -109,7 +100,11 @@ $(function () {
                     duration: "",
                     mission: "",
                     introduction: "",
-                    url: ""
+                    url: "",
+                    gallery: [],
+                    galleryPreview: [],
+                    cover:[],
+                    coverPreview:[]
                 };
                 vue_project.show.form = false;
                 vue_project.show.list = true;
@@ -127,7 +122,7 @@ $(function () {
                 	toastr.error("請上傳cover照片");
                 	return;
                 }
-                else if ($("#coverPreview").val() == ""){
+                if ($("#coverPreview").val() == ""){
                 	toastr.error("請上傳coverPreview照片");
                 	return;
                 }
@@ -148,8 +143,9 @@ $(function () {
                                 "#gallery",
                                 "#projectGalleryForm",
                                 function(response) {
-                                    if (response.result == "ok") {
-                                        $("#gallery").val("");
+                                    $("#gallery").val("");
+                                    if (response.result != "ok") {
+                                        toastr.error("Gallery 超過5MB限制");
                                     }
                                 });
                             uploadImg(
@@ -157,8 +153,21 @@ $(function () {
                                 "#galleryPreview",
                                 "#projectGalleryPreviewForm",
                                 function(response) {
-                                    if (response.result == "ok") {
-                                        $("#galleryPreview").val("");
+                                    $("#galleryPreview").val("");
+                                    if (response.result != "ok") {
+                                        toastr.error("Gallery Preview 超過5MB限制");
+                                    }
+                                });
+                        }
+                        if ($("#coverPreview").val() != "") {
+                            uploadImg(
+                                "/projects/image/coverpreview/" + project.id,
+                                "#coverPreview",
+                                "#projectCoverPreviewForm",
+                                function(response) {
+                                    $("#coverPreview").val("");
+                                    if (response.result != "ok") {
+                                        toastr.error("Cover Preview 超過5MB限制");
                                     }
                                 });
                         }
@@ -168,40 +177,15 @@ $(function () {
                                 "#cover",
                                 "#projectCoverForm",
                                 function(response) {
-                                    if (response.result == "ok") {
-                                        $("#cover").val("");
-                                    }
-                            });
-                        }
-                        if ($("#coverPreview").val() != "") {
-                            uploadImg(
-                                "/projects/image/coverpreview/" + project.id,
-                                "#coverPreview",
-                                "#projectCoverPreviewForm",
-                                function(response) {
-                                    if (response.result == "ok") {
-                                        $("#coverPreview").val("");
-                                    }
-                            });
-                        }
-                        if($("#banner").val() != "") {
-                            uploadImg(
-                                "/projects/banner/" + project.id,
-                                "#banner",
-                                "#projectBannerForm",
-                                function(response) {
-                                    if (response.result == "ok") {
-                                        $("#banner").val("");
+                                    $("#cover").val("");
+                                    if (response.result != "ok") {
+                                        toastr.error("Cover 超過5MB限制");
+                                    } else {
                                         toastr.success("新增成功");
-                                        project.banner = 1;
                                         vue_project.projects.push(project);
                                         vue_project.showList();
                                     }
-                            });
-                        } else {
-                            toastr.success("新增成功");
-                            vue_project.projects.push(project);
-                            vue_project.showList();
+                                });
                         }
                     }
                 })
@@ -232,8 +216,11 @@ $(function () {
                                 "#gallery",
                                 "#projectGalleryForm",
                                 function(response) {
-                                    if (response.result == "ok") {
-                                        $("#gallery").val("");
+                                    $("#gallery").val("");
+                                    if (response.result != "ok") {
+                                        toastr.error("Gallery 超過5MB限制");
+                                    } else {
+                                        vue_project.refreshProject(vue_project.project.id);
                                     }
                                 });
                             uploadImg(
@@ -241,8 +228,11 @@ $(function () {
                                 "#galleryPreview",
                                 "#projectGalleryPreviewForm",
                                 function(response) {
-                                    if (response.result == "ok") {
-                                        $("#galleryPreview").val("");
+                                    $("#galleryPreview").val("");
+                                    if (response.result != "ok") {
+                                        toastr.error("Gallery Preview 超過5MB限制");
+                                    } else {
+                                        vue_project.refreshProject(vue_project.project.id);
                                     }
                                 });
                         }
@@ -252,8 +242,10 @@ $(function () {
                                 "#cover",
                                 "#projectCoverForm",
                                 function(response) {
-                                    if (response.result == "ok") {
-                                        $("#cover").val("");
+                                    $("#cover").val("");
+                                    if (response.result != "ok") {
+                                        toastr.error("Cover 超過5MB限制");
+                                    } else {
                                         vue_project.refreshProject(vue_project.project.id);
                                     }
                             });
@@ -264,9 +256,10 @@ $(function () {
                                 "#coverPreview",
                                 "#projectCoverPreviewForm",
                                 function(response) {
-                                	console.log(response);
-                                    if (response.result == "ok") {
-                                        $("#coverPreview").val("");
+                                    $("#coverPreview").val("");
+                                    if (response.result != "ok") {
+                                        toastr.error("Cover Preview 超過5MB限制");
+                                    } else {
                                         vue_project.refreshProject(vue_project.project.id);
                                     }
                             });
@@ -288,10 +281,10 @@ $(function () {
                     }
                 });
             },
-            deleteImage: function (imageId_main, imageID_preview) {
+            deleteImage: function (imageID_main, imageID_preview) {
                 if (confirm("確定要刪除這張圖片嗎?")) {
                     $.ajax({
-                        url: "/projects/image/" + imageId_main,
+                        url: "/projects/image/" + imageID_main,
                         method: "DELETE",
                         success: function (msg) {
                             toastr.success(msg);
@@ -299,23 +292,10 @@ $(function () {
                         }
                     });
                     $.ajax({
-                        url: "/projects/image/" + imageId_preview,
+                        url: "/projects/image/" + imageID_preview,
                         method: "DELETE",
                         success: function (msg) {
-                            toastr.success(msg);
                             vue_project.refreshProject(vue_project.project.id);
-                        }
-                    });
-                }
-            },
-            deleteBanner: function(id) {
-                if (confirm("確定要刪除這張圖片嗎?")) {
-                    $.ajax({
-                        url: "/projects/banner/" + id,
-                        method: "DELETE",
-                        success: function (msg) {
-                            toastr.success(msg);
-                            vue_project.refreshProject(id);
                         }
                     });
                 }
@@ -325,13 +305,14 @@ $(function () {
                     type: "GET",
                     url: "/projects/" + id,
                     success: function (project) {
+                        console.log(project);
                         vue_project.project = project;
                     }
                 });
             },
             parseURL: function(){
             	var youtube_id = this.project.url.split(/\?v=|\&/g)[1];
-            	this.project.url = 'https://www.youtube.com//embed/' + youtube_id;
+            	this.project.url = 'https://www.youtube.com/embed/' + youtube_id;
             },
 		    onFileChange(e) {
 		      const file = e.target.files[0];
@@ -353,7 +334,7 @@ $(function () {
     var vue_ad = new Vue({
         el: "#backend_ad",
         data: {
-        		index: -1,
+            index: -1,
             show: {
                 total: false,
                 form: false,
@@ -370,18 +351,18 @@ $(function () {
         },
         created: function () {
             $.ajax({
-            		type: "GET",
-            		url:"/advertisements/",
-            		success: function(ads){
-            				vue_ad.adList = ads;
-            		}
+                type: "GET",
+                url:"/advertisements/",
+                success: function(ads){
+                        vue_ad.adList = ads;
+                }
             })
         },
         methods: {
     		showForm: function(){
     			vue_ad.ad = {
-        				id: "",
-        				name: ""
+                    id: "",
+                    name: ""
         		};
             	vue_ad.show.list = false;
             	vue_ad.show.form = true;
@@ -667,6 +648,10 @@ $(function () {
     //上傳圖片功能
     function uploadImg(api, inputSelector, formSelector, cb) {
         var img = $(inputSelector)[0].files[0];
+        if (img.size > (5)) {
+            cb({"result":"fail"});
+            return;
+        }
         if(img.type == "image/png" || img.type == "image/jpeg"){
             var formData = new FormData($(formSelector)[0]);
             $.ajax({
@@ -687,7 +672,7 @@ $(function () {
 
 var initPhotoSwipeFromDOM = function(gallerySelector) {
 
-    // parse slide data (url, title, size ...) from DOM elements 
+    // parse slide data (url, title, size ...) from DOM elements
     // (children of gallerySelector)
     var parseThumbnailElements = function(el) {
         var thumbElements = el.childNodes,
@@ -702,7 +687,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 
             figureEl = thumbElements[i]; // <figure> element
 
-            // include only element nodes 
+            // include only element nodes
             if(figureEl.nodeType !== 1) {
                 continue;
             }
@@ -722,13 +707,13 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 
             if(figureEl.children.length > 1) {
                 // <figcaption> content
-                item.title = figureEl.children[1].innerHTML; 
+                item.title = figureEl.children[1].innerHTML;
             }
 
             if(linkEl.children.length > 0) {
                 // <img> thumbnail element, retrieving thumbnail url
                 item.msrc = linkEl.children[0].getAttribute('src');
-            } 
+            }
 
             item.el = figureEl; // save link to element for getThumbBoundsFn
             items.push(item);
@@ -767,8 +752,8 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
             index;
 
         for (var i = 0; i < numChildNodes; i++) {
-            if(childNodes[i].nodeType !== 1) { 
-                continue; 
+            if(childNodes[i].nodeType !== 1) {
+                continue;
             }
 
             if(childNodes[i] === clickedListItem) {
@@ -801,10 +786,10 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
             if(!vars[i]) {
                 continue;
             }
-            var pair = vars[i].split('=');  
+            var pair = vars[i].split('=');
             if(pair.length < 2) {
                 continue;
-            }           
+            }
             params[pair[0]] = pair[1];
         }
 
@@ -833,7 +818,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
                 // See Options -> getThumbBoundsFn section of documentation for more info
                 var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
                     pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
-                    rect = thumbnail.getBoundingClientRect(); 
+                    rect = thumbnail.getBoundingClientRect();
 
                 return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
             }
@@ -843,7 +828,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
         // PhotoSwipe opened from URL
         if(fromURL) {
             if(options.galleryPIDs) {
-                // parse real index when custom PIDs are used 
+                // parse real index when custom PIDs are used
                 // http://photoswipe.com/documentation/faq.html#custom-pid-in-url
                 for(var j = 0; j < items.length; j++) {
                     if(items[j].pid == index) {
@@ -872,7 +857,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
         gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
 		gallery.listen('gettingData', function(index, item) {
 		        if (item.w < 1 || item.h < 1) { // unknown size
-		        var img = new Image(); 
+		        var img = new Image();
 		        img.onload = function() { // will get size after load
 		        item.w = this.width; // set image width
 		        item.h = this.height; // set image height

@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <br><br>
-                <iframe style="position:absolute;top:0;left:0;width:80%;height:80%; margin: 10%" v-bind:src="project.url">
+                <iframe v-if="project.url" style="position:absolute;top:0;left:0;width:80%;height:80%; margin: 10%" v-bind:src="project.url">
                 </iframe>
             </div>
             <div class="ui bottom attached tab segment" data-tab="project_Cover">
@@ -98,7 +98,7 @@
                     </div>
                 </form>
                 <br>
-                <img style="max-width: 100%" v-on:click="deleteImage(image.id)" v-bind:src="'/uploads/project/' + project.id + '/cover/cover.jpg?' + new Date().getTime()">
+                <img v-if="project.cover.length > 0" style="max-width: 100%" v-on:click="deleteImage(project.cover[0].id)" v-bind:src="'/uploads/project/' + project.id + '/cover/cover.jpg?' + new Date().getTime()">
             </div>
             <div class="ui bottom attached tab segment" data-tab="project_Cover_Preview">
 
@@ -109,7 +109,7 @@
                     </div>
                 </form>
                 <br>
-                <img v-on:click="deleteImage(image.id)" v-bind:src="'/uploads/project/' + project.id + '/coverpreview/coverpreview.jpg?' + new Date().getTime()">
+                <img v-if="project.coverPreview.length > 0" v-on:click="deleteImage(project.cover[0].id)" v-bind:src="'/uploads/project/' + project.id + '/coverpreview/coverpreview.jpg?' + new Date().getTime()">
             </div>
             <!-- <div class="ui bottom attached tab segment" data-tab="project_Gallery">
 	            <form class="ui form" id="projectGalleryForm">
@@ -172,14 +172,14 @@
             	</div>
 				<div class="project_item_full_cont_media_gallery">
 					<div class="project_item_full_cont_media_gallery_cont backend_gallery">
-						<figure v-for="(img, index) in nowGallery">
-							<a v-bind:href="'/uploads/project/' + img.project_id + '/gallery/' + img.name" itemprop="contentUrl">
-								<img v-bind:src="'/uploads/project/' + nowGalleryPreview[index].project_id + '/gallerypreview/' + nowGalleryPreview[index].name" itemprop="thumbnail">
+						<figure v-for="(img, index) in project.gallery">
+							<a v-bind:href="'/uploads/project/' + project.id + '/gallery/' + img.name" itemprop="contentUrl">
+								<img v-bind:src="'/uploads/project/' + project.galleryPreview[index].project_id + '/gallerypreview/' + project.galleryPreview[index].name" itemprop="thumbnail">
 							</a>
-							<button class="ui button" v-on:click="deleteImage(img.id, nowGalleryPreview[index].id)" style="width: 100%;">
+							<button class="ui button" v-on:click="deleteImage(img.id, project.galleryPreview[index].id)" style="width: 100%;">
 							  delete
 							</button>
-						</figure>
+                        </figure>
 					</div>
 				</div>
             </div>

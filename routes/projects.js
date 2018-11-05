@@ -7,24 +7,24 @@ var bcrypt = require('bcrypt');
 var Project = require("../models/Project");
 var Image = require("../models/Image");
 
-var bannerStorage = multer.diskStorage({
+var coverStorage = multer.diskStorage({
     destination: function (req, file, cb) {
         if (!fs.existsSync(`${__dirname}/../uploads/project/${req.params.id}`)) {
             fs.mkdirSync(`${__dirname}/../uploads/project/${req.params.id}`);
         }
-        if (fs.existsSync(`${__dirname}/../uploads/project/${req.params.id}/banner.png`)) {
-            rimraf.sync(`${__dirname}/../uploads/project/${req.params.id}/banner.png`);
+        if (fs.existsSync(`${__dirname}/../uploads/project/${req.params.id}/cover.png`)) {
+            rimraf.sync(`${__dirname}/../uploads/project/${req.params.id}/cover.png`);
         }
         cb(null, `${__dirname}/../uploads/project/${req.params.id}`);
     },
     filename: function (req, file, cb) {
-        cb(null, "banner.png");
+        cb(null, "cover.png");
     }
 });
 
-var bannerUpload = multer({
-    storage: bannerStorage
-}).single("banner");
+var coverUpload = multer({
+    storage: coverStorage
+}).single("cover");
 
 var imageStorage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -67,10 +67,24 @@ router.get('/:id', function (req, res) {
     Project.findById(id).then(project => {
         Image.findAll({
             where: {
-                project_id: id
+                project_id: id,
             }
         }).then(images => {
-    		project["images"] = images;
+            project["galleryPreview"] = [];
+            project["gallery"] = [];
+            project["cover"] = [];
+            project["coverPreview"] = [];
+            for (var i in images) {
+                if (images[i].type == "cover") {
+                    project["cover"].push(images[i]);
+                } else if (images[i].type == "coverpreview") {
+                    project["coverPreview"].push(images[i]);
+                } else if (images[i].type == "gallery") {
+                    project["gallery"].push(images[i]);
+                } else if (images[i].type == "gallerypreview") {
+                    project["galleryPreview"].push(images[i]);
+                }
+            }
             res.send(project);
         });
     })
@@ -84,27 +98,6 @@ router.post('/update/:id', function (req, res) {
         }
     }).then(function () {
         res.send("更新成功");
-    });
-});
-
-router.post('/banner/:id', function (req, res) {
-    var id = parseInt(req.params.id);
-    bannerUpload(req, res, function (err) {
-        if (err) {
-            res.send({
-                error: err
-            });
-        } else {
-            Project.update({
-                banner: 1
-            }, {
-                where: {
-                    id: id
-                }
-            }).then(function () {
-                res.send("ok");
-            });
-        }
     });
 });
 
@@ -131,29 +124,16 @@ router.post('/image/:type/:id', function (req, res) {
     });
 });
 
-router.delete('/banner/:id', function (req, res) {
-    var id = parseInt(req.params.id);
-    Project.update({
-        "banner": 0
-    }, {
-        where: {
-            id: id
-        }
-    }).then(function () {
-        rimraf.sync(`${__dirname}/../uploads/project/${id}/banner.png`);
-        res.send("刪除成功");
-    });
-});
-
 router.delete('/image/:id', function (req, res) {
     var id = parseInt(req.params.id);
-    Image.findById(id).then(image => {
+    Image.findById(id).then(img => {
+        console.log(img);
         Image.destroy({
             where: {
                 id: id
             }
         }).then(function () {
-            rimraf.sync(`${__dirname}/../uploads/project/${image.project_id}/${image.name}`);
+            rimraf.sync(`${__dirname}/../uploads/project/${img.project_id}/${img.type}/${img.name}`);
             res.send("刪除成功");
         });
     });
