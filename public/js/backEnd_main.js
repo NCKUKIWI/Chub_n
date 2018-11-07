@@ -648,7 +648,7 @@ $(function () {
     //上傳圖片功能
     function uploadImg(api, inputSelector, formSelector, cb) {
         var img = $(inputSelector)[0].files[0];
-        if (img.size > (5)) {
+        if (img.size > (55*1024*1024*1024)) {
             cb({"result":"fail"});
             return;
         }
