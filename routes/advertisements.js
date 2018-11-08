@@ -30,6 +30,9 @@ var imageUpload = multer({
 
 var imageMobileStorage = multer.diskStorage({
     destination: function (req, file, cb) {
+        if (!fs.existsSync(`${__dirname}/../uploads/advertisement`)) {
+            fs.mkdirSync(`${__dirname}/../uploads/advertisement`);
+        }
         if (!fs.existsSync(`${__dirname}/../uploads/advertisement/${req.params.id}`)) {
             fs.mkdirSync(`${__dirname}/../uploads/advertisement/${req.params.id}`);
         }
