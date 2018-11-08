@@ -8,6 +8,9 @@ var Chuber = require("../models/Chuber");
 
 var imageStorage = multer.diskStorage({
     destination: function (req, file, cb) {
+        if (!fs.existsSync(`${__dirname}/../uploads/chuber`)) {
+            fs.mkdirSync(`${__dirname}/../uploads/chuber`);
+        }
         if (!fs.existsSync(`${__dirname}/../uploads/chuber/${req.params.id}`)) {
             fs.mkdirSync(`${__dirname}/../uploads/chuber/${req.params.id}`);
         }

@@ -9,6 +9,9 @@ var Image = require("../models/Image");
 
 var coverStorage = multer.diskStorage({
     destination: function (req, file, cb) {
+    	if (!fs.existsSync(`${__dirname}/../uploads/project`)) {
+            fs.mkdirSync(`${__dirname}/../uploads/project`);
+        }
         if (!fs.existsSync(`${__dirname}/../uploads/project/${req.params.id}`)) {
             fs.mkdirSync(`${__dirname}/../uploads/project/${req.params.id}`);
         }
