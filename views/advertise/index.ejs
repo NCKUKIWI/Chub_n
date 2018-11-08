@@ -66,7 +66,7 @@
                     </div>
                 </form>
                 <br>
-                <img width="100%" v-if="url == ''" v-bind:src="'/uploads/advertisement/' + ad.id + '/image.png?' + new Date().getTime()">
+                <img width="100%" v-if="url == '' && ad.id != ''" v-bind:src="'/uploads/advertisement/' + ad.id + '/image.png?' + new Date().getTime()">
 				<img width="100%" v-if="url != ''" v-bind:src="url">
             </div>
             <div class="ui bottom attached tab segment" data-tab="ad_Image_mobile">
@@ -77,7 +77,7 @@
                     </div>
                 </form>
                 <br>
-                <img width="100%" v-if="mobileUrl == ''" v-bind:src="'/uploads/advertisement/' + ad.id + '/imageMobile.png?' + new Date().getTime()">
+                <img width="100%" v-if="mobileUrl == '' && ad.id != ''" v-bind:src="'/uploads/advertisement/' + ad.id + '/imageMobile.png?' + new Date().getTime()">
 				<img width="100%" v-if="!mobileUrl == ''" v-bind:src="mobileUrl">
             </div>
         </div>

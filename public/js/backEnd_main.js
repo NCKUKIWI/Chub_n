@@ -74,12 +74,10 @@ $(function () {
         },
         methods: {
             showProject: function (id, index) {
-                console.log(id);
                 $.ajax({
                     type: "GET",
                     url: "/projects/" + id,
                     success: function (project) {
-                        console.log(project);
                         vue_project.index = index;
                         vue_project.project = project;
                         vue_project.show.list = false;
@@ -305,7 +303,6 @@ $(function () {
                     type: "GET",
                     url: "/projects/" + id,
                     success: function (project) {
-                        console.log(project);
                         vue_project.project = project;
                     }
                 });
@@ -433,7 +430,6 @@ $(function () {
                             "#ad_image_mobile",
                             "#adImageMobileForm",
                             function(response) {
-                            	console.log(response);
                                 if (response == "ok") {
                                     $("#ad_image_mobile").val("");
                                     // toastr.success("新增手機版照片成功");
@@ -471,7 +467,6 @@ $(function () {
 	                            "#ad_image_mobile",
 	                            "#adImageMobileForm",
 	                            function(response) {
-	                            	console.log(response);
 	                                if (response == "ok") {
 	                                    $("#ad_image_mobile").val("");
 	                                    // toastr.success("新增手機版照片成功");
@@ -668,6 +663,7 @@ $(function () {
             toastr.error("請上傳jpg或png檔案");
         }
     }
+
 });
 
 var initPhotoSwipeFromDOM = function(gallerySelector) {
@@ -733,6 +729,8 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
 
         var eTarget = e.target || e.srcElement;
+
+        if(e.srcElement.tagName.toUpperCase() === 'BUTTON') return; // 防止delete按鈕被觸發
 
         // find root element of slide
         var clickedListItem = closest(eTarget, function(el) {

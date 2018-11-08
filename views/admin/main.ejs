@@ -22,7 +22,23 @@
 <body>
     <div id="main">
         <div id="sidebar">
-            <div class="ui secondary vertical pointing menu">
+			<div class="ui top fixed menu">
+			  <div class="item">
+			    <!-- <img class="ui mini image" src="/public/img/backend_logo.png"> -->
+			    <h2>C-Hub 後台管理系統</h2>
+			  </div>
+	            <a class="item" v-on:click.prevent="changeTab(1)" v-bind:class="{ 'active': tab == 1 }">
+	                專案管理
+	            </a>
+	            <a class="item" v-on:click.prevent="changeTab(2)" v-bind:class="{ 'active': tab == 2 }">
+	                新聞管理
+	            </a>
+	            <a class="item" v-on:click.prevent="changeTab(3)" v-bind:class="{ 'active': tab == 3 }">
+	                人員管理
+	            </a>
+			</div>
+<!--             <div class="ui secondary vertical pointing menu">
+            	<h2>後台管理系統</h2>
                 <a class="item" v-on:click.prevent="changeTab(1)" v-bind:class="{ 'active': tab == 1 }">
                     專案管理
                 </a>
@@ -32,7 +48,7 @@
                 <a class="item" v-on:click.prevent="changeTab(3)" v-bind:class="{ 'active': tab == 3 }">
                     人員管理
                 </a>
-            </div>
+            </div> -->
         </div>
         <!-- 專案 -->
         <% include ../project/index %>
@@ -89,13 +105,13 @@
     }
 
     #sidebar {
-        background-color: grey;
         padding-top: 3%;
     }
 
     .function_main {
         padding: 3%;
         width: 100%;
+        padding-top: 80px;
     }
 
     .function_header {

@@ -301,7 +301,7 @@
 			<div class="contact_link">
 				<div class="button style_3">C-Hub FB</div>
 				<div class="button style_3">C-Hub Café FB</div>
-				<div class="button style_3">C-Hub Instgrame</div>
+				<div class="button style_3">C-Hub Instagram</div>
 			</div>
 		</div>
 	</div>
@@ -416,7 +416,7 @@
 					<div class="project_item_full_cont_media_gallery">
 						<p class="project_item_full_cont_media_item_title">Gallery</p>
 						<div class="project_item_full_cont_media_gallery_cont my-gallery">
-							<figure v-for="(img, index) in gallery">
+							<figure v-for="(img, index) in nowGallery">
 								<a v-bind:href="'/uploads/project/' + img.project_id + '/gallery/' + img.name" itemprop="contentUrl">
 									<img v-bind:src="'/uploads/project/' + galleryPreview[index].project_id + '/gallerypreview/' + galleryPreview[index].name" itemprop="thumbnail">
 								</a>
