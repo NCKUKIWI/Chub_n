@@ -49,7 +49,7 @@
 	<div class="fullpage bg_grey" id="banner">	
 		<div class="fullpage_element line_2"></div>
 		<div class="banner_board">
-			<div v-for="(banner, index) in bannerList" class="banner_item clickable" v-bind:class="{'on': index == nowShow}">
+			<a v-for="(banner, index) in bannerList" class="banner_item clickable" v-bind:class="{'on': index == nowShow}" target="_blank" :href="banner.url">
 				<picture>
 					<source v-bind:srcset="'/uploads/advertisement/' + banner.id + '/imageMobile.png'" media="(max-width: 1050px)">
 					<img class="banner_item_pic" v-bind:src="'/uploads/advertisement/' + banner.id + '/image.png'">
@@ -59,7 +59,7 @@
 					<div class="line_section line_banner"></div>
 					<p class="banner_item_text_cont"></p>		
 				</div>
-			</div>
+			</a>
 			<!-- <div class="banner_item banner_2 clickable">
 				<picture>
 					<source srcset="/public/img/ex_banner_m_2.png" media="(max-width: 1050px)">
@@ -296,12 +296,18 @@
 					若您認同我們的理念，我們誠摯地歡迎您，藉由實際的行動支持來參與 C-Hub 的教育創新，讓 C-Hub 成為社會創新計畫的實現基地，並促使我們讓大學教育更加多元及美好。
 					<br><br>
 					C-Hub was founded through the cooperation of several entrepreneurs, professors, students, politicians, and wider society. We genuinely invite you and other entrepreneurs to invest more resources, to maintain our current growth and keep improving our organization.
+					<br>
+					<br>企業合作專線
+					<br>電話：+886-912-396-972
+					<br>Email：chub.business2018@gmail.com
+					<br>Line＠：<a target="blank" href="https://line.me/R/ti/p/%40tjr0289q" style="color: white;">點我</a>
+
 				</p>
 			</div>
 			<div class="contact_link">
-				<div class="button style_3">C-Hub FB</div>
-				<div class="button style_3">C-Hub Café FB</div>
-				<div class="button style_3">C-Hub Instagram</div>
+				<div class="button style_3" onclick="window.open('https://www.facebook.com/chub.tainan/?ref=br_rs', '_blank');">C-Hub FB</div>
+				<div class="button style_3" onclick="window.open('https://www.facebook.com/chub.cafe/?ref=br_rs', '_blank');">C-Hub Café FB</div>
+				<div class="button style_3" onclick="window.open('https://web.ncku.edu.tw/index.php', '_blank');">C-Hub Instagram</div>
 			</div>
 		</div>
 	</div>
@@ -335,35 +341,6 @@
 				<div class="footer_info_icon mail"></div>
 				<p class="footer_info_detail">
 					chub.ncku2015@gmail.com
-				</p>
-			</div>
-		</div>
-		<div class="footer_cont">
-			<div class="footer_info">
-				<!-- <div class="footer_info_icon addr"></div> -->
-				<!-- <p class="footer_info_detail">
-					台南市東區大學路1號<span class="text_orange"> / </span><span class="text_small">
-					國立成功大學光復校區 小東路與前鋒路交叉口</span>
-				</p> -->
-				<p class="footer_info_detail" >
-					<h3 style="color: white;">企業合作專線:</h3>
-				</p>
-			</div>
-			<div class="footer_info">
-				<div class="footer_info_icon tele"></div>
-				<!-- <p class="footer_info_detail">
-					06-2757575<span class="text_orange"> ext 50239 / </span>
-					06-2360426<span class="text_orange"> / </span>
-					06-2004230
-				</p> -->
-				<p class="footer_info_detail">
-					T：＋886-912-396-972
-				</p>
-			</div>
-			<div class="footer_info">
-				<div class="footer_info_icon mail"></div>
-				<p class="footer_info_detail">
-					chub.business2018@gmail.com
 				</p>
 			</div>
 		</div>

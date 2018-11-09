@@ -342,8 +342,9 @@ $(function () {
                 id: "",
                 name: "",
                 image: "",
+                url: "",
             },
-            url: "",
+            imgUrl: "",
             mobileUrl: "",
         },
         created: function () {
@@ -359,7 +360,9 @@ $(function () {
     		showForm: function(){
     			vue_ad.ad = {
                     id: "",
-                    name: ""
+                    name: "",
+	                image: "",
+	                url: "",
         		};
             	vue_ad.show.list = false;
             	vue_ad.show.form = true;
@@ -393,14 +396,15 @@ $(function () {
             	vue_ad.ad = vue_ad.adList[index];
             	vue_ad.show.list = false;
             	vue_ad.show.form = true;
-            	vue_ad.url = "";
+            	vue_ad.imgUrl = "";
             	vue_ad.mobileUrl = "";
     		},
     		createItem: function(){
-            	vue_ad.url = "";
+            	vue_ad.imgUrl = "";
             	vue_ad.mobileUrl = "";
 	            var itemData = {
-	                name: vue_ad.ad.name
+	                name: vue_ad.ad.name,
+	                url: vue_ad.ad.url
 	            };
 	            if($("#ad_image").val() == ""){
 	            	toastr.error('請上傳網頁版照片');
@@ -443,7 +447,8 @@ $(function () {
     		},
     		updateItem: function(id){
 	            var itemData = {
-	                name: this.ad.name
+	                name: this.ad.name,
+	                url: this.ad.url
 	            };
 	            $.ajax({
 	            	type:"POST",

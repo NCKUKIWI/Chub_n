@@ -52,8 +52,14 @@
                 <div class="ui form">
                     <div class="inline fields">
                         <div class="eight wide field">
-                            <label>Name:</label>
+                            <label>Title:</label>
                             <input type="text" placeholder="" v-model.lazy="ad.name">
+                        </div>
+                    </div>
+                    <div class="inline fields">
+                        <div class="eight wide field">
+                            <label>Url:</label>
+                            <input type="text" placeholder="" v-model.lazy="ad.url">
                         </div>
                     </div>
                 </div>
@@ -66,8 +72,8 @@
                     </div>
                 </form>
                 <br>
-                <img width="100%" v-if="url == '' && ad.id != ''" v-bind:src="'/uploads/advertisement/' + ad.id + '/image.png?' + new Date().getTime()">
-				<img width="100%" v-if="url != ''" v-bind:src="url">
+                <img width="100%" v-if="imgUrl == '' && ad.id != ''" v-bind:src="'/uploads/advertisement/' + ad.id + '/image.png?' + new Date().getTime()">
+				<img width="100%" v-if="imgUrl != ''" v-bind:src="imgUrl">
             </div>
             <div class="ui bottom attached tab segment" data-tab="ad_Image_mobile">
                 <form class="ui form" id="adImageMobileForm">
