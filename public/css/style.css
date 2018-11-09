@@ -550,7 +550,8 @@ html, body {
       background: #EB8A33; }
   .project_item_detail {
     color: white;
-    font-size: 0.9rem; }
+    font-size: 0.9rem;
+    text-align: center; }
   .project_item_date {
     color: white;
     opacity: 0.8;
