@@ -418,7 +418,7 @@
 						<div class="project_item_full_cont_media_gallery_cont my-gallery">
 							<figure v-for="(img, index) in nowGallery">
 								<a v-bind:href="'/uploads/project/' + img.project_id + '/gallery/' + img.name" itemprop="contentUrl">
-									<img v-bind:src="'/uploads/project/' + galleryPreview[index].project_id + '/gallerypreview/' + galleryPreview[index].name" itemprop="thumbnail">
+									<img v-bind:src="'/uploads/project/' + nowGalleryPreview[index].project_id + '/gallerypreview/' + nowGalleryPreview[index].name" itemprop="thumbnail">
 								</a>
 							</figure>
 						</div>
