@@ -21,7 +21,7 @@ var projectSchema = {
         type: Sequelize.STRING
     },
     introduction: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
     },
     url: {
         type: Sequelize.STRING
