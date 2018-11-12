@@ -572,7 +572,7 @@ $(function () {
                                 "#chuber_image",
                                 "#chuberImageForm",
                                 function(response) {
-                                    if (response.result == "ok") {
+                                    if (response == "ok") {
                                         $("#chuber_image").val("");
                                         toastr.success("新增成功");
                                         chuber.image = 1;
@@ -605,7 +605,7 @@ $(function () {
                                 "#chuber_image",
                                 "#chuberImageForm",
                                 function(response) {
-                                    if (response.result == "ok") {
+                                    if (response== "ok") {
                                         $("#chuber_image").val("");
                                         toastr.success("更新成功");
                                         itemData.id = id
