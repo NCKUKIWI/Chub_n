@@ -48,9 +48,7 @@
                 <a class="item" data-tab="project_Video">Video</a>
                 <a class="item" data-tab="project_Cover">Cover</a>
                 <a class="item" data-tab="project_Cover_Preview">Cover Preview</a>
-                <!-- <a class="item" data-tab="project_Gallery">Gallery</a> -->
-                <!-- <a class="item" data-tab="project_Gallery_Preview">Gallery Preview</a> -->
-                <a class="item" data-tab="project_Gallery_upload">Gallery Upload</a>
+                <a class="item" v-show='project.id != ""' data-tab="project_Gallery_upload">Gallery Upload</a>
             </div>
             <div class="ui bottom attached tab segment active" data-tab="project_Info">
                 <div class="ui form">
@@ -170,6 +168,7 @@
 		                </form>
 					</div>
             	</div>
+            	<div class="fluid ui button" style="margin-top: 10px;" @click="updateProject(project.id)">upload</div>
 				<div class="project_item_full_cont_media_gallery">
 					<div class="project_item_full_cont_media_gallery_cont backend_gallery">
 						<figure v-for="(img, index) in project.gallery">

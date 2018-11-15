@@ -7,6 +7,9 @@ var ADSchema = {
         autoIncrement: true,
         primaryKey: true,
     },
+    url: {
+    	type: Sequelize.STRING,
+    },
     name: {
         type: Sequelize.STRING,
         unique: true

@@ -7,6 +7,8 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+<!-- 	<script type="module" scr="https://cdn.jsdelivr.net/npm/sortablejs@1.7.0/Sortable.min.js"></script>
+	<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.15.0/vuedraggable.min.js"></script> -->
     <script src="/public/js/swiper.min.js"></script>
 	<script src="/public/js/photoswipe.min.js"></script>
 	<script src="/public/js/photoswipe-ui-default.min.js"></script> 
@@ -22,7 +24,23 @@
 <body>
     <div id="main">
         <div id="sidebar">
-            <div class="ui secondary vertical pointing menu">
+			<div class="ui top fixed menu">
+			  <div class="item">
+			    <!-- <img class="ui mini image" src="/public/img/backend_logo.png"> -->
+			    <h2>C-Hub 後台管理系統</h2>
+			  </div>
+	            <a class="item" v-on:click.prevent="changeTab(1)" v-bind:class="{ 'active': tab == 1 }">
+	                專案管理
+	            </a>
+	            <a class="item" v-on:click.prevent="changeTab(2)" v-bind:class="{ 'active': tab == 2 }">
+	                新聞管理
+	            </a>
+	            <a class="item" v-on:click.prevent="changeTab(3)" v-bind:class="{ 'active': tab == 3 }">
+	                人員管理
+	            </a>
+			</div>
+<!--             <div class="ui secondary vertical pointing menu">
+            	<h2>後台管理系統</h2>
                 <a class="item" v-on:click.prevent="changeTab(1)" v-bind:class="{ 'active': tab == 1 }">
                     專案管理
                 </a>
@@ -32,7 +50,7 @@
                 <a class="item" v-on:click.prevent="changeTab(3)" v-bind:class="{ 'active': tab == 3 }">
                     人員管理
                 </a>
-            </div>
+            </div> -->
         </div>
         <!-- 專案 -->
         <% include ../project/index %>
@@ -89,13 +107,13 @@
     }
 
     #sidebar {
-        background-color: grey;
         padding-top: 3%;
     }
 
     .function_main {
         padding: 3%;
         width: 100%;
+        padding-top: 80px;
     }
 
     .function_header {

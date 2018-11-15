@@ -112,19 +112,8 @@ $(function () {
                     url: "/projects/" + id,
                     success: function (project) {
                         vue_project_main.nowProject = project;
-                        vue_project_main.nowGallery = [];
-                        vue_project_main.nowGalleryPreview = [];
-                        for(var index in project.images){
-                        	var img = project.images[index];
-                        	console.log(img);
-                        	if (img.type == 'gallery'){
-                        		vue_project_main.nowGallery.push(img)
-                        	}
-                        	else if (img.type == 'gallerypreview'){
-                        		vue_project_main.nowGalleryPreview.push(img);
-                        	}
-                        }
-                        // initPhotoSwipeFromDOM('.my-gallery');
+                        vue_project_main.nowGallery = project.gallery;
+                        vue_project_main.nowGalleryPreview = project.galleryPreview;
                     }
                 });
 				vue_project_main.pageShow = true;

@@ -74,12 +74,10 @@ $(function () {
         },
         methods: {
             showProject: function (id, index) {
-                console.log(id);
                 $.ajax({
                     type: "GET",
                     url: "/projects/" + id,
                     success: function (project) {
-                        console.log(project);
                         vue_project.index = index;
                         vue_project.project = project;
                         vue_project.show.list = false;
@@ -305,7 +303,6 @@ $(function () {
                     type: "GET",
                     url: "/projects/" + id,
                     success: function (project) {
-                        console.log(project);
                         vue_project.project = project;
                     }
                 });
@@ -345,8 +342,9 @@ $(function () {
                 id: "",
                 name: "",
                 image: "",
+                url: "",
             },
-            url: "",
+            imgUrl: "",
             mobileUrl: "",
         },
         created: function () {
@@ -362,7 +360,9 @@ $(function () {
     		showForm: function(){
     			vue_ad.ad = {
                     id: "",
-                    name: ""
+                    name: "",
+	                image: "",
+	                url: "",
         		};
             	vue_ad.show.list = false;
             	vue_ad.show.form = true;
@@ -396,14 +396,15 @@ $(function () {
             	vue_ad.ad = vue_ad.adList[index];
             	vue_ad.show.list = false;
             	vue_ad.show.form = true;
-            	vue_ad.url = "";
+            	vue_ad.imgUrl = "";
             	vue_ad.mobileUrl = "";
     		},
     		createItem: function(){
-            	vue_ad.url = "";
+            	vue_ad.imgUrl = "";
             	vue_ad.mobileUrl = "";
 	            var itemData = {
-	                name: vue_ad.ad.name
+	                name: vue_ad.ad.name,
+	                url: vue_ad.ad.url
 	            };
 	            if($("#ad_image").val() == ""){
 	            	toastr.error('請上傳網頁版照片');
@@ -433,7 +434,6 @@ $(function () {
                             "#ad_image_mobile",
                             "#adImageMobileForm",
                             function(response) {
-                            	console.log(response);
                                 if (response == "ok") {
                                     $("#ad_image_mobile").val("");
                                     // toastr.success("新增手機版照片成功");
@@ -447,7 +447,8 @@ $(function () {
     		},
     		updateItem: function(id){
 	            var itemData = {
-	                name: this.ad.name
+	                name: this.ad.name,
+	                url: this.ad.url
 	            };
 	            $.ajax({
 	            	type:"POST",
@@ -471,7 +472,6 @@ $(function () {
 	                            "#ad_image_mobile",
 	                            "#adImageMobileForm",
 	                            function(response) {
-	                            	console.log(response);
 	                                if (response == "ok") {
 	                                    $("#ad_image_mobile").val("");
 	                                    // toastr.success("新增手機版照片成功");
@@ -572,7 +572,7 @@ $(function () {
                                 "#chuber_image",
                                 "#chuberImageForm",
                                 function(response) {
-                                    if (response.result == "ok") {
+                                    if (response == "ok") {
                                         $("#chuber_image").val("");
                                         toastr.success("新增成功");
                                         chuber.image = 1;
@@ -605,7 +605,7 @@ $(function () {
                                 "#chuber_image",
                                 "#chuberImageForm",
                                 function(response) {
-                                    if (response.result == "ok") {
+                                    if (response== "ok") {
                                         $("#chuber_image").val("");
                                         toastr.success("更新成功");
                                         itemData.id = id
@@ -648,7 +648,7 @@ $(function () {
     //上傳圖片功能
     function uploadImg(api, inputSelector, formSelector, cb) {
         var img = $(inputSelector)[0].files[0];
-        if (img.size > (5)) {
+        if (img.size > (55*1024*1024*1024)) {
             cb({"result":"fail"});
             return;
         }
@@ -668,6 +668,7 @@ $(function () {
             toastr.error("請上傳jpg或png檔案");
         }
     }
+
 });
 
 var initPhotoSwipeFromDOM = function(gallerySelector) {
@@ -733,6 +734,8 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
 
         var eTarget = e.target || e.srcElement;
+
+        if(e.srcElement.tagName.toUpperCase() === 'BUTTON') return; // 防止delete按鈕被觸發
 
         // find root element of slide
         var clickedListItem = closest(eTarget, function(el) {
