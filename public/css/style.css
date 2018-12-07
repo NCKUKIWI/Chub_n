@@ -537,7 +537,8 @@ html, body {
   .project_item_title {
     color: #EB8A33;
     font-size: 1rem;
-    margin: 12px 0px 4px 0px; }
+    margin: 12px 0px 4px 0px;
+    text-align: center; }
     .project_item_title::after {
       position: relative;
       content: '';
