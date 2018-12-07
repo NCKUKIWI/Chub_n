@@ -4,5 +4,5 @@ config.*
 npm-debug.log
 *.log
 uploads
-config/
+db.json
 Todo.txt
