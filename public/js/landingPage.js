@@ -17,34 +17,36 @@ $(function () {
         					group = [];
         				}
         			}
-					AOS.init({
-		        		offset: 300,
-		        		delay: 0,
-		        		duration: 2500,
-		        		once: true,
-		       			mirror: false
-		    		});
-				    var swiper = new Swiper('.chuber_browser', {
-				        slidesPerView: 3,
-				        spaceBetween: 18,
-				        breakpoints: {
-				            650: {
-				                slidesPerView: 1
-				            },
-				            1050: {
-				                slidesPerView: 2
-				            }
-				        },
-				        pagination: {
-				            el: '.chuber_dots',
-				            clickable: true,
-				        },
-				    });
+        			vue_chuber.chuberList.sort(function(a, b){
+        				return a.order > b.order;
+        			})
         		}
             })
 		},
-		async mounted() {
-
+		async updated() {
+			AOS.init({
+        		offset: 300,
+        		delay: 0,
+        		duration: 2500,
+        		once: true,
+       			mirror: false
+    		});
+		    var swiper = new Swiper('.chuber_browser', {
+		        slidesPerView: 3,
+		        spaceBetween: 18,
+		        breakpoints: {
+		            650: {
+		                slidesPerView: 1
+		            },
+		            1050: {
+		                slidesPerView: 2
+		            }
+		        },
+		        pagination: {
+		            el: '.chuber_dots',
+		            clickable: true,
+		        },
+		    });
 		}
 	})
 
