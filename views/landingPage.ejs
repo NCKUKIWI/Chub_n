@@ -16,7 +16,7 @@
 
 	<!-- Icons -->
 	<div class="icon_menu clickable switch_menu"></div>
-	<div class="icon_logo clickable"></div>
+	<div class="icon_logo now clickable"></div>
 
 	<!-- Menu -->
 	<div class="menu" id="menu">
@@ -91,7 +91,9 @@
 				<div class="swiper-slide" v-for="(project, index) in previewList" @click="showProject(project.id)">
 					<div class="project_item">
 						<img class="project_item_pic" v-bind:src="'/uploads/project/' + project.id + '/coverpreview/coverpreview.jpg'">
-						<p class="project_item_title">{{project.name}}</p>
+						<div class="project_item_title_adjust">
+							<p class="project_item_title">{{project.name}}</p>
+						</div>
 						<p class="project_item_detail">{{project.subtitle}}</p>
 						<p class="project_item_date">{{project.duration}}</p>
 					</div>
@@ -348,14 +350,15 @@
 
 	<!-- Page 10: Project Full -->
 	<div class="project_main" v-bind:class="{'on': pageShow}" id="project_main">
+		<div class="icon_logo clickable" @click="closeAllProject()" v-bind:class="{'now': 'list' == showType}"></div>
+		<div class="icon_logo back clickable" @click="showAllProject()" v-bind:class="{'now': 'item' == showType}"></div>
 		<div class="project_main_title bg_orange tiny">
 			<p class="project_main_title_text">Project</p>
 			<div class="line_section line_project_main"></div>
 		</div>
-		<div class="project_main_area" v-bind:class="{'tiny_nav': pageShow}">
+		<div class="project_main_area">
 			<!-- Page 10-1: Project List -->
 			<div class="project_main_cont project_list_full" v-bind:class="{'now': 'list' == showType}">
-				<div class="icon_logo clickable" @click="closeAllProject()"></div>
 				<div class="project_item_in_list" v-for="(project, index) in projectList" @click="showProject(project.id)">
 					<img class="project_item_in_list_pic" v-bind:src="'/uploads/project/' + project.id + '/coverpreview/coverpreview.jpg'">
 					<p class="project_item_in_list_title">{{project.name}}</p>
@@ -366,7 +369,6 @@
 			</div>
 			<!-- Page 10-2: Project Item -->
 			<div class="project_main_cont project_item_full" v-bind:class="{'now': 'item' == showType}">
-				<div class="icon_logo back clickable" @click="showAllProject"></div>
 				<img class="project_item_full_pic" v-bind:src="'/uploads/project/' + nowProject.id + '/cover/cover.jpg'">
 				<div class="project_item_full_brief">
 					<p class="project_item_full_brief_title">{{nowProject.name}}</p>
@@ -400,7 +402,7 @@
 							</figure>
 						</div>
 					</div>
-					<a class="project_item_full_cont_media_facebook clickable"></a>
+					<!-- <a class="project_item_full_cont_media_facebook clickable"></a> -->
 				</div>
 			</div>
 			<div class="footer bg_dark_grey">

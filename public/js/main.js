@@ -47,12 +47,6 @@ $(document).ready(function(){
     //     if ( ! $( ".project_item_full" ).hasClass( "now" ))  { project_main_cont( "item" ); }
     // })
     
-    // Project Page 滾動
-    // $ ( ".project_main_area" ).scroll( function() {
-    //     $( ".project_main" ).addClass( "tiny_nav" );
-    // })
-
-    
     // Banner 操作
     // $ ( ".icon_go_next" ).click( function()          { banner( "next" ); })
     // $ ( ".icon_go_prev" ).click( function()          { banner( "prev" ); })
@@ -82,7 +76,7 @@ function project_main ( command ) {
         $( ".project_main" ).addClass( "on" );
     }
     else if ( command == "close" ) {
-        $( ".project_main" ).removeClass( "on" ).removeClass( "tiny_nav" );
+        $( ".project_main" ).removeClass( "on" );
     }
 }
 
