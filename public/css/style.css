@@ -670,10 +670,16 @@ html, body {
 .chuber_dots {
   top: 66vh; }
 
+  .contact_page {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; }
+
 .contact_title {
   position: absolute;
   left: 10vw;
-  top: 18vh;
+  top: 14vh;
   padding-left: 20px; }
   .contact_title_text {
     color: white;
@@ -681,9 +687,9 @@ html, body {
 
 .contact_cont {
   position: absolute;
-  top: calc(18vh + 60px);
+  top: calc(14vh + 110px);
   left: calc(10vw + 20px);
-  height: calc(58vh - 60px);
+  height: calc(62vh- 110px);
   width: calc(80vw - 40px);
   display: flex;
   flex-direction: row;
@@ -1360,7 +1366,7 @@ html, body {
   .scroll_element.items_4 {
     top: 500vh; }
   .contact_cont {
-    height: calc(72vh - 60px); }
+    height: calc(76vh - 60px); }
   .contact_text {
     width: calc(50vw - 20px); }
   .contact_link {
@@ -1848,6 +1854,13 @@ html, body {
     height: 78vh; }
   .chuber_dots {
     top: 70vh; }
+
+    .contact_page {
+      position: relative;
+      height: auto;
+      width: 100vw;
+      overflow: hidden; }
+
   .contact_title {
     position: relative;
     display: flex;
@@ -1862,9 +1875,14 @@ html, body {
       color: white;
       line-height: 1.5rem; }
   .contact_cont {
-    position: absolute;
-    top: calc(6vh + 60px);
-    height: calc(90vh - 60px);
+    /* position: absolute; */
+    position: relative;
+    /* top: calc(6vh + 60px); */
+    top: 0;
+    padding-top: 20px;
+    padding-bottom: 35px;
+    /* height: calc(90vh - 60px); */
+    height: auto;
     left: 10vw;
     width: 80vw;
     flex-direction: column;
@@ -1874,7 +1892,7 @@ html, body {
   .contact_link {
     width: 100%;
     margin-left: 0;
-    margin-top: 30px; }
+    margin-top: 20px; }
   .footer {
     padding: 30px 0 40px 0;
     width: 100vw;

@@ -80,6 +80,44 @@
 		<div class="icon_page_down"></div>
 	</div>
 
+	<!-- Page 5: Project Preview -->
+	<div class="fullpage bg_dark_grey" id="project">	
+		<div class="project_title">
+			<p class="project_title_text" data-aos="fade-in">Project</p>
+			<div class="line_section line_title"></div>
+		</div>
+		<div class="project_browser swiper-container" data-aos="fade-up" data-aos-duration="1500">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide" v-for="(project, index) in previewList" @click="showProject(project.id)">
+					<div class="project_item">
+						<img class="project_item_pic" v-bind:src="'/uploads/project/' + project.id + '/coverpreview/coverpreview.jpg'">
+						<p class="project_item_title">{{project.name}}</p>
+						<p class="project_item_detail">{{project.subtitle}}</p>
+						<p class="project_item_date">{{project.duration}}</p>
+					</div>
+				</div>
+				<!-- <div class="swiper-slide">
+					<div class="project_item open_project_main switch_to_item">
+						<img class="project_item_pic" src="/public/img/ex_project_2.png">
+						<p class="project_item_title">微課程：整體美學營造</p>
+						<p class="project_item_detail">客製你的專屬妝容與美感</p>
+						<p class="project_item_date">01.13－02.01 / 2017</p>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="project_item open_project_main switch_to_item">
+						<img class="project_item_pic" src="/public/img/ex_project_3.png">
+						<p class="project_item_title">微課程：整體美學營造</p>
+						<p class="project_item_detail">客製你的專屬妝容與美感</p>
+						<p class="project_item_date">01.13－02.01 / 2017</p>
+					</div>
+				</div> -->
+			</div>
+			<div class="project_dots swiper-pagination"></div>
+		</div>
+		<div class="button style_1" @click="showAllProject()">View All</div>
+	</div>
+
 	<!-- Page 3: Intro -->
 	<div id="intro">
 		<div class="page_brief">
@@ -179,44 +217,6 @@
 		</div>
 	</div>
 
-	<!-- Page 5: Project Preview -->
-	<div class="fullpage bg_dark_grey" id="project">	
-		<div class="project_title">
-			<p class="project_title_text" data-aos="fade-in">Project</p>
-			<div class="line_section line_title"></div>
-		</div>
-		<div class="project_browser swiper-container" data-aos="fade-up" data-aos-duration="1500">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide" v-for="(project, index) in previewList" @click="showProject(project.id)">
-					<div class="project_item">
-						<img class="project_item_pic" v-bind:src="'/uploads/project/' + project.id + '/coverpreview/coverpreview.jpg'">
-						<p class="project_item_title">{{project.name}}</p>
-						<p class="project_item_detail">{{project.subtitle}}</p>
-						<p class="project_item_date">{{project.duration}}</p>
-					</div>
-				</div>
-				<!-- <div class="swiper-slide">
-					<div class="project_item open_project_main switch_to_item">
-						<img class="project_item_pic" src="/public/img/ex_project_2.png">
-						<p class="project_item_title">微課程：整體美學營造</p>
-						<p class="project_item_detail">客製你的專屬妝容與美感</p>
-						<p class="project_item_date">01.13－02.01 / 2017</p>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="project_item open_project_main switch_to_item">
-						<img class="project_item_pic" src="/public/img/ex_project_3.png">
-						<p class="project_item_title">微課程：整體美學營造</p>
-						<p class="project_item_detail">客製你的專屬妝容與美感</p>
-						<p class="project_item_date">01.13－02.01 / 2017</p>
-					</div>
-				</div> -->
-			</div>
-			<div class="project_dots swiper-pagination"></div>
-		</div>
-		<div class="button style_1" @click="showAllProject()">View All</div>
-	</div>
-
 	<!-- Page 6: Space -->
 	<div class="fullpage bg_mid_grey" id="space">
 		<div class="fullpage_element space"></div>
@@ -283,7 +283,7 @@
 	</div>
 
 	<!-- Page 8: Contact -->
-	<div class="fullpage bg_orange" id="contact">
+	<div class="contact_page bg_orange" id="contact">
 		<div class="fullpage_element items_3"></div>
 		<div class="contact_title">
 			<p class="contact_title_text" data-aos="fade-in">Contact</p>
