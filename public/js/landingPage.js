@@ -158,7 +158,7 @@ $(function () {
 			showAllProject: vue_project_main.showAllProject,
 			showProject: vue_project_main.showProject
 		},
-		async updated() {
+		async mounted() {
 			AOS.init();
 		    var swiper = new Swiper('.project_browser', {
 		        slidesPerView: 3,
