@@ -10,6 +10,9 @@ $(function () {
         		url:"/chubers/",
         		success: function(chubers){
         			var group = [];
+        			chubers = chubers.sort(function(a, b){
+        				return a.order > b.order ? 1 : -1;
+        			})
         			for(var i = 0; i < chubers.length; i++){
         				group.push(chubers[i]);
         				if(group.length == 4 || i == chubers.length - 1){
@@ -20,7 +23,7 @@ $(function () {
         		}
             })
 		},
-		async mounted() {
+		async updated() {
 			AOS.init({
         		offset: 300,
         		delay: 0,
@@ -155,7 +158,7 @@ $(function () {
 			showAllProject: vue_project_main.showAllProject,
 			showProject: vue_project_main.showProject
 		},
-		async mounted() {
+		async updated() {
 			AOS.init();
 		    var swiper = new Swiper('.project_browser', {
 		        slidesPerView: 3,

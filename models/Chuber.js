@@ -20,6 +20,10 @@ var chuberSchema = {
     image: {
         type: Sequelize.INTEGER,
         defaultValue: 0
+    },
+    order: {
+    	type: Sequelize.INTEGER,
+    	defaultValue: 0
     }
 }
 
