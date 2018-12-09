@@ -17,33 +17,34 @@ $(function () {
         					group = [];
         				}
         			}
+					AOS.init({
+		        		offset: 300,
+		        		delay: 0,
+		        		duration: 2500,
+		        		once: true,
+		       			mirror: false
+		    		});
+				    var swiper = new Swiper('.chuber_browser', {
+				        slidesPerView: 3,
+				        spaceBetween: 18,
+				        breakpoints: {
+				            650: {
+				                slidesPerView: 1
+				            },
+				            1050: {
+				                slidesPerView: 2
+				            }
+				        },
+				        pagination: {
+				            el: '.chuber_dots',
+				            clickable: true,
+				        },
+				    });
         		}
             })
 		},
 		async mounted() {
-			AOS.init({
-        		offset: 300,
-        		delay: 0,
-        		duration: 2500,
-        		once: true,
-       			mirror: false
-    		});
-		    var swiper = new Swiper('.chuber_browser', {
-		        slidesPerView: 3,
-		        spaceBetween: 18,
-		        breakpoints: {
-		            650: {
-		                slidesPerView: 1
-		            },
-		            1050: {
-		                slidesPerView: 2
-		            }
-		        },
-		        pagination: {
-		            el: '.chuber_dots',
-		            clickable: true,
-		        },
-		    });
+
 		}
 	})
 
