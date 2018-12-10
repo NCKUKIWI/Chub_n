@@ -14,7 +14,41 @@
 </head>
 
 <body>
-
+	<style type="text/css">
+/*		body::-webkit-scrollbar { 
+		    display: none; 
+		}*/
+	</style>
+	<script type="text/javascript">
+	function myBrowser() {
+	    var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+	    var isOpera = userAgent.indexOf("Opera") > -1;
+	    if (isOpera) {
+	        return "Opera"
+	    }; //判断是否Opera浏览器
+	    if (userAgent.indexOf("Firefox") > -1) {
+	        return "FF";
+	    } //判断是否Firefox浏览器
+	    if (userAgent.indexOf("Chrome") > -1){
+	  		return "Chrome";
+	 	}
+	    if (userAgent.indexOf("Safari") > -1) {
+	        return "Safari";
+	    } //判断是否Safari浏览器
+	    if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {
+	        return "IE";
+	    }; //判断是否IE浏览器
+	}
+	//先設定只有chrome, safari才可以看到
+	var mb = myBrowser();
+	console.log(mb);
+	if (mb === undefined) {
+		location.href = "http://c-hub.ncku.edu.tw/space"
+	}
+	if ("Chrome" == !mb && "Safari" == !mb) {
+		location.href = "http://c-hub.ncku.edu.tw/space"
+	}
+	</script>
 	<!-- Icons -->
 	<div class="icon_menu clickable switch_menu"></div>
 	<div class="icon_logo now clickable"></div>
@@ -58,7 +92,7 @@
 				<div class="banner_item_text">
 					<p class="banner_item_text_title" style="white-space: pre-wrap;">{{banner.name}}</p>
 					<div class="line_section line_banner"></div>
-					<p class="banner_item_text_cont"></p>		
+					<!-- <p class="banner_item_text_cont"></p>		 -->
 				</div>
 			</a>
 			<!-- <div class="banner_item banner_2 clickable">
@@ -310,7 +344,7 @@
 			<div class="contact_link">
 				<div class="button style_3" onclick="window.open('https://www.facebook.com/chub.tainan/?ref=br_rs', '_blank');">C-Hub FB</div>
 				<div class="button style_3" onclick="window.open('https://www.facebook.com/chub.cafe/?ref=br_rs', '_blank');">C-Hub Café FB</div>
-				<div class="button style_3" onclick="window.open('https://web.ncku.edu.tw/index.php', '_blank');">C-Hub Instagram</div>
+				<!-- <div class="button style_3" onclick="window.open('https://web.ncku.edu.tw/index.php', '_blank');">C-Hub Instagram</div> -->
 			</div>
 		</div>
 	</div>
