@@ -36,6 +36,9 @@
 	//先設定只有chrome, safari才可以看到
 	var mb = myBrowser();
 	console.log(mb);
+	if (mb === undefined) {
+		location.href = "http://c-hub.ncku.edu.tw/space"
+	}
 	if ("Chrome" == !mb && "Safari" == !mb) {
 		location.href = "http://c-hub.ncku.edu.tw/space"
 	}
