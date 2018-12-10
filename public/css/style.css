@@ -6,6 +6,12 @@ html, body {
   line-height: 2rem;
   overflow-x: hidden; }
 
+  a:link, a:visited {
+    text-decoration:none;
+    }
+
+
+    
 .swiper-slide {
   display: -webkit-box;
   display: -ms-flexbox;
