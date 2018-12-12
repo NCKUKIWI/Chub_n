@@ -91,21 +91,10 @@
 				</picture>
 				<div class="banner_item_text">
 					<p class="banner_item_text_title" style="white-space: pre-wrap;">{{banner.name}}</p>
-					<div class="line_section line_banner"></div>
-					<!-- <p class="banner_item_text_cont"></p>		 -->
+					<div class="line_section banner_line"></div>
+					<!-- <p class="banner_item_text_cont">C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.</p>		 -->
 				</div>
 			</a>
-			<!-- <div class="banner_item banner_2 clickable">
-				<picture>
-					<source srcset="/public/img/ex_banner_m_2.png" media="(max-width: 1050px)">
-					<img class="banner_item_pic" src="/public/img/ex_banner_2.png">
-				</picture>
-				<div class="banner_item_text">
-					<p class="banner_item_text_title">MovISeee</p>
-					<div class="line_section line_banner"></div>
-					<p class="banner_item_text_cont">C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.</p>		
-				</div>
-			</div> -->
 		</div>
 		<div class="banner_control">
 			<div v-for="(banner, index) in bannerList" class="dots clickable" @click="bannerSwitch(index)"></div>	
@@ -115,11 +104,11 @@
 		<div class="icon_page_down"></div>
 	</div>
 
-	<!-- Page 5: Project Preview -->
+	<!-- Page 3: Project Preview -->
 	<div class="fullpage bg_dark_grey" id="project">	
-		<div class="project_title">
-			<p class="project_title_text" data-aos="fade-in">Project</p>
-			<div class="line_section line_title"></div>
+		<div class="title_block_center block_project">
+			<p class="title_block_center_text title_project" data-aos="fade-in">Project</p>
+			<div class="title_block_center_line line_section line_project"></div>
 		</div>
 		<div class="project_browser swiper-container" data-aos="fade-up" data-aos-duration="1500">
 			<div class="swiper-wrapper">
@@ -133,33 +122,19 @@
 						<p class="project_item_date">{{project.duration}}</p>
 					</div>
 				</div>
-				<!-- <div class="swiper-slide">
-					<div class="project_item open_project_main switch_to_item">
-						<img class="project_item_pic" src="/public/img/ex_project_2.png">
-						<p class="project_item_title">微課程：整體美學營造</p>
-						<p class="project_item_detail">客製你的專屬妝容與美感</p>
-						<p class="project_item_date">01.13－02.01 / 2017</p>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="project_item open_project_main switch_to_item">
-						<img class="project_item_pic" src="/public/img/ex_project_3.png">
-						<p class="project_item_title">微課程：整體美學營造</p>
-						<p class="project_item_detail">客製你的專屬妝容與美感</p>
-						<p class="project_item_date">01.13－02.01 / 2017</p>
-					</div>
-				</div> -->
 			</div>
 			<div class="project_dots swiper-pagination"></div>
 		</div>
 		<div class="button style_1" @click="showAllProject()">View All</div>
 	</div>
 
-	<!-- Page 3: Intro -->
+	<!-- Page 4: Intro -->
 	<div id="intro">
+		<div class="title_block_center block_intro">
+			<p class="title_block_center_text title_intro" data-aos="fade-in">What is C-Hub?</p>
+			<div class="title_block_center_line line_section line_intro"></div>
+		</div>
 		<div class="page_brief">
-			<p class="page_brief_title" data-aos="fade-in">What is C-Hub?</p>
-			<div class="line_section line_block"></div>
 			<p class="page_brief_cont" data-aos="fade-in">
 			有沒有一種可能，是大學、產業、城市共同實踐教育理想？<br><br>
  			
@@ -186,16 +161,17 @@
 		</div>
 	</div>
 
-	<!-- Page 4: Mission -->
+	<!-- Page 5: Mission -->
 	<div id="mission">
+		<div class="title_block_center block_mission">
+			<p class="title_block_center_text title_mission" data-aos="fade-in">Mission</p>
+			<div class="title_block_center_line line_section line_mission"></div>
+		</div>
 		<div class="page_brief">
-			<p class="page_brief_title" data-aos="fade-in">Mission</p>
-			<div class="line_section line_block"></div>
-			<p class="page_brief_cont" data-aos="fade-in">
-				改變目前的教育環境，培養學生自主學習的精神。透過在C-Hub成大創意基交換點子與想法，進而實作、體驗C-Hub內的設計經典，以連結產業資源，進一步帶到城市中實踐。
-				<br><br>
-				C-Hub’s mission is to change the current education environment, and to cultivate a spirit of self-learning for our students. By exchanging ideas and thoughts in the creative factory, and thereby prototyping, students can develop their design skills in C-Hub, and connect these with resources from industry, before ultimately bringing them into practice in the city.
-			</p>
+			改變目前的教育環境，培養學生自主學習的精神。透過在C-Hub成大創意基交換點子與想法，進而實作、體驗C-Hub內的設計經典，以連結產業資源，進一步帶到城市中實踐。
+			<br><br>
+			C-Hub’s mission is to change the current education environment, and to cultivate a spirit of self-learning for our students. By exchanging ideas and thoughts in the creative factory, and thereby prototyping, students can develop their design skills in C-Hub, and connect these with resources from industry, before ultimately bringing them into practice in the city.
+		</p>
 		</div>
 		<div class="mission_detail">
 			<div class="fullpage_element line_3 opac_8"></div>
@@ -258,9 +234,9 @@
 	<div class="fullpage bg_mid_grey" id="space">
 		<div class="fullpage_element space"></div>
 		<div class="space_intro">
-			<div class="space_intro_title">
-				<p class="space_intro_title_text" data-aos="fade-in">Floor Guide</p>
-				<div class="line_section line_space"></div>
+			<div class="title_block_left block_space">
+				<p class="title_block_left_text title_space" data-aos="fade-in">Floor Guide</p>
+				<div class="title_block_left_line line_section line_space"></div>
 			</div>
 			<div class="space_intro_building"></div>
 		</div>
@@ -298,10 +274,10 @@
 
 	<!-- Page 7: C-Huber -->
 	<div class="fullpage bg_light" id="chuber">
-		<div class="page_brief chuber bg_orange">
+		<div class="title_block_center block_chuber bg_orange">
 			<div class="fullpage_element items_2"></div>
-			<p class="page_brief_title chuber" data-aos="fade-in" data-aos-offset="200">We, working at C-Hub</p>
-			<div class="line_section line_chuber"></div>
+			<p class="title_block_center_text title_chuber" data-aos="fade-in" data-aos-offset="200">We, working at C-Hub</p>
+			<div class="title_block_center_line line_section line_chuber"></div>
 		</div>
 		<div class="chuber_browser swiper-container" data-aos="fade-in">
 			<div class="swiper-wrapper">
@@ -322,30 +298,27 @@
 	<!-- Page 8: Contact -->
 	<div class="contact_page bg_orange" id="contact">
 		<div class="fullpage_element items_3"></div>
-		<div class="contact_title">
-			<p class="contact_title_text" data-aos="fade-in">Contact</p>
-			<div class="line_section line_contact"></div>
+		<div class="title_block_left block_contact">
+			<p class="title_block_left_text title_contact" data-aos="fade-in">Contact</p>
+			<div class="title_block_left_line line_section line_contact"></div>
 		</div>
 		<div class="contact_cont">
-			<div class="contact_text">
-				<p class="contact_text_title" data-aos="fade-in" data-aos-offset="250" data-aos-duration="1500">How to collaborate with C-Hub</p>
-				<p class="contact_text_detail" data-aos="fade-in" data-aos-offset="250" data-aos-duration="1500">
-					若您認同我們的理念，我們誠摯地歡迎您，藉由實際的行動支持來參與 C-Hub 的教育創新，讓 C-Hub 成為社會創新計畫的實現基地，並促使我們讓大學教育更加多元及美好。
-					<br><br>
-					C-Hub was founded through the cooperation of several entrepreneurs, professors, students, politicians, and wider society. We genuinely invite you and other entrepreneurs to invest more resources, to maintain our current growth and keep improving our organization.
-					<br>
-					<br>企業合作專線
-					<br>電話：+886-912-396-972
-					<br>Email：chub.business2018@gmail.com
-					<br>Line＠：<a target="blank" href="https://line.me/R/ti/p/%40tjr0289q" style="color: white;">點我</a>
-
-				</p>
-			</div>
-			<div class="contact_link">
-				<div class="button style_3" onclick="window.open('https://www.facebook.com/chub.tainan/?ref=br_rs', '_blank');">C-Hub FB</div>
-				<div class="button style_3" onclick="window.open('https://www.facebook.com/chub.cafe/?ref=br_rs', '_blank');">C-Hub Café FB</div>
-				<!-- <div class="button style_3" onclick="window.open('https://web.ncku.edu.tw/index.php', '_blank');">C-Hub Instagram</div> -->
-			</div>
+			<p class="contact_cont_title" data-aos="fade-in" data-aos-offset="250" data-aos-duration="1500">How to collaborate with C-Hub</p>
+			<p class="contact_cont_detail" data-aos="fade-in" data-aos-offset="250" data-aos-duration="1500">
+				若您認同我們的理念，我們誠摯地歡迎您，藉由實際的行動支持來參與 C-Hub 的教育創新，讓 C-Hub 成為社會創新計畫的實現基地，並促使我們讓大學教育更加多元及美好。
+				<br><br>
+				C-Hub was founded through the cooperation of several entrepreneurs, professors, students, politicians, and wider society. We genuinely invite you and other entrepreneurs to invest more resources, to maintain our current growth and keep improving our organization.
+				<br>
+				<br>企業合作專線
+				<br>電話：+886-912-396-972
+				<br>Email：chub.business2018@gmail.com
+				<br>Line＠：<a target="blank" href="https://line.me/R/ti/p/%40tjr0289q" style="color: white;">點我</a>
+			</p>
+		</div>
+		<div class="contact_link">
+			<div class="button style_3" onclick="window.open('https://www.facebook.com/chub.tainan/?ref=br_rs', '_blank');">C-Hub FB</div>
+			<div class="button style_3" onclick="window.open('https://www.facebook.com/chub.cafe/?ref=br_rs', '_blank');">C-Hub Café FB</div>
+			<!-- <div class="button style_3" onclick="window.open('https://web.ncku.edu.tw/index.php', '_blank');">C-Hub Instagram</div> -->
 		</div>
 	</div>
 
@@ -355,21 +328,12 @@
 		<div class="footer_cont">
 			<div class="footer_info">
 				<div class="footer_info_icon addr"></div>
-				<!-- <p class="footer_info_detail">
-					台南市東區大學路1號<span class="text_orange"> / </span><span class="text_small">
-					國立成功大學光復校區 小東路與前鋒路交叉口</span>
-				</p> -->
 				<p class="footer_info_detail">
 					No.1, University Rd., East Dist., Tainan City 701, Taiwan (R.O.C)
 				</p>
 			</div>
 			<div class="footer_info">
 				<div class="footer_info_icon tele"></div>
-				<!-- <p class="footer_info_detail">
-					06-2757575<span class="text_orange"> ext 50239 / </span>
-					06-2360426<span class="text_orange"> / </span>
-					06-2004230
-				</p> -->
 				<p class="footer_info_detail">
 					T：＋886-6-2757575 ext. 50239, +886-6-2360426, +886-6-2004230
 				</p>
@@ -387,10 +351,13 @@
 	<div class="project_main" v-bind:class="{'on': pageShow}" id="project_main">
 		<div class="icon_logo clickable" @click="closeAllProject()" v-bind:class="{'now': 'list' == showType}"></div>
 		<div class="icon_logo back clickable" @click="showAllProject()" v-bind:class="{'now': 'item' == showType}"></div>
-		<div class="project_main_title bg_orange tiny">
+		<div class="project_main_title bg_orange">
 			<p class="project_main_title_text">Project</p>
 			<div class="line_section line_project_main"></div>
 		</div>
+		<!-- <div class="title_block_center block_mission">
+			<p class="title_block_center_text title_mission" data-aos="fade-in">Mission</p>
+		</div> -->
 		<div class="project_main_area">
 			<!-- Page 10-1: Project List -->
 			<div class="project_main_cont project_list_full" v-bind:class="{'now': 'list' == showType}">
@@ -437,7 +404,6 @@
 							</figure>
 						</div>
 					</div>
-					<!-- <a class="project_item_full_cont_media_facebook clickable"></a> -->
 				</div>
 			</div>
 			<div class="footer bg_dark_grey">
@@ -446,22 +412,19 @@
 					<div class="footer_info">
 						<div class="footer_info_icon addr"></div>
 						<p class="footer_info_detail">
-							台南市東區大學路1號<span class="text_orange"> / </span><span class="text_small">
-							國立成功大學光復校區 小東路與前鋒路交叉口</span>
+							No.1, University Rd., East Dist., Tainan City 701, Taiwan (R.O.C)
 						</p>
 					</div>
 					<div class="footer_info">
 						<div class="footer_info_icon tele"></div>
 						<p class="footer_info_detail">
-							06-2757575<span class="text_orange"> ext 50239 / </span>
-							06-2360426<span class="text_orange"> / </span>
-							06-2004230
+							T：＋886-6-2757575 ext. 50239, +886-6-2360426, +886-6-2004230
 						</p>
 					</div>
 					<div class="footer_info">
 						<div class="footer_info_icon mail"></div>
 						<p class="footer_info_detail">
-							chub.ncku@gmail.com
+							chub.ncku2015@gmail.com
 						</p>
 					</div>
 				</div>
