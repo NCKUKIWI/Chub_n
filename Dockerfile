@@ -16,8 +16,8 @@ RUN npm rebuild bcrypt --build-from-source
 
 RUN npm install -g pm2
 
-# Open 3000 Port
-EXPOSE 3000
+# Open 8000 Port
+EXPOSE 8000
 
 # Run npm start when container start
 CMD [ "pm2", "start", "app.js", "--no-daemon"]
