@@ -86,8 +86,8 @@
 		<div class="banner_board">
 			<a v-for="(banner, index) in bannerList" class="banner_item clickable" v-bind:class="{'on': index == nowShow}" target="_blank" :href="banner.url">
 				<picture>
-					<source v-bind:srcset="'/uploads/advertisement/' + banner.id + '/imageMobile.png'" media="(max-width: 1050px)">
-					<img class="banner_item_pic" v-bind:src="'/uploads/advertisement/' + banner.id + '/image.png'">
+					<source v-bind:srcset="'/uploads/banner/' + banner.id + '/imageMobile.png'" media="(max-width: 1050px)">
+					<img class="banner_item_pic" v-bind:src="'/uploads/banner/' + banner.id + '/image.png'">
 				</picture>
 				<div class="banner_item_text">
 					<p class="banner_item_text_title" style="white-space: pre-wrap;">{{banner.name}}</p>

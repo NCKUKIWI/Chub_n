@@ -59,7 +59,7 @@ $(function () {
 		created: function(){
             $.ajax({
         		type: "GET",
-        		url:"/advertisements/",
+        		url:"/banners/",
         		success: function(banners){
         			vue_banner.bannerList = banners;
         		}

@@ -2,7 +2,7 @@
 
 module.exports = {
     up: function (queryInterface, Sequelize) {
-        return queryInterface.createTable('advertisements', {
+        return queryInterface.createTable('banners', {
             id: {
                 type: Sequelize.INTEGER,
                 autoIncrement: true,
@@ -27,6 +27,6 @@ module.exports = {
         });
     },
     down: function (queryInterface, Sequelize) {
-        return queryInterface.dropTable('advertisements');
+        return queryInterface.dropTable('banners');
     }
 };

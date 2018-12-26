@@ -60,7 +60,7 @@ app.use(function (err, req, res, next) {
 app.use('/users', require('./routes/users'));
 app.use('/admin', require('./routes/admin'));
 app.use('/projects', require('./routes/projects'));
-app.use('/advertisements', require('./routes/advertisements'));
+app.use('/banners', require('./routes/banners'));
 app.use('/chubers', require('./routes/chubers'));
 app.use('/space', require('./routes/space'));
 

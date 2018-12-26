@@ -1,5 +1,5 @@
 <div id="backend_ad" style="width:100%;" v-show="show.total">
-		<!-- advertisement list -->
+		<!-- banner list -->
     <div class="function_main" v-show="show.list">
         <div class="function_header">
             <h1>新聞列表</h1>
@@ -23,7 +23,7 @@
             </table>
         </div>
     </div>
-    <!-- advertisement -->
+    <!-- banner -->
     <div class="function_main" v-show="show.form">
         <div class="function_header">
             <h1>廣告內容</h1>
@@ -72,7 +72,7 @@
                     </div>
                 </form>
                 <br>
-                <img width="100%" v-if="imgUrl == '' && ad.id != ''" v-bind:src="'/uploads/advertisement/' + ad.id + '/image.png?' + new Date().getTime()">
+                <img width="100%" v-if="imgUrl == '' && ad.id != ''" v-bind:src="'/uploads/banner/' + ad.id + '/image.png?' + new Date().getTime()">
 				<img width="100%" v-if="imgUrl != ''" v-bind:src="imgUrl">
             </div>
             <div class="ui bottom attached tab segment" data-tab="ad_Image_mobile">
@@ -83,7 +83,7 @@
                     </div>
                 </form>
                 <br>
-                <img width="100%" v-if="mobileUrl == '' && ad.id != ''" v-bind:src="'/uploads/advertisement/' + ad.id + '/imageMobile.png?' + new Date().getTime()">
+                <img width="100%" v-if="mobileUrl == '' && ad.id != ''" v-bind:src="'/uploads/banner/' + ad.id + '/imageMobile.png?' + new Date().getTime()">
 				<img width="100%" v-if="!mobileUrl == ''" v-bind:src="mobileUrl">
             </div>
         </div>
