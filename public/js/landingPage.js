@@ -23,7 +23,7 @@ $(function () {
         		}
             })
 		},
-		async updated() {
+		updated() {
 			AOS.init({
         		offset: 300,
         		delay: 0,
@@ -80,7 +80,7 @@ $(function () {
     			vue_banner.nowShow = next_index;
 			}
 		},
-		async mounted() {
+		mounted() {
 			AOS.init({
         		offset: 300,
         		delay: 0,
@@ -158,7 +158,7 @@ $(function () {
 			showAllProject: vue_project_main.showAllProject,
 			showProject: vue_project_main.showProject
 		},
-		async updated() {
+		updated() {
 			AOS.init();
 		    var swiper = new Swiper('.project_browser', {
 		        slidesPerView: 3,
