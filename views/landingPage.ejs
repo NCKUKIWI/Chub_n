@@ -349,8 +349,8 @@
 
 	<!-- Page 10: Project Full -->
 	<div class="project_main" v-bind:class="{'on': pageShow}" id="project_main">
-		<div class="icon_logo clickable" @click="closeAllProject()" v-bind:class="{'now': 'list' == showType}"></div>
-		<div class="icon_logo back clickable" @click="showAllProject()" v-bind:class="{'now': 'item' == showType}"></div>
+		<div class="icon_logo clickable" @click="closeAllProject()" v-if="pageShow" v-bind:class="{'now': 'list' == showType}"></div>
+		<div class="icon_logo back clickable" @click="showAllProject()"  v-if="pageShow" v-bind:class="{'now': 'item' == showType}"></div>
 		<div class="project_main_title bg_orange">
 			<p class="project_main_title_text">Project</p>
 			<div class="line_section line_project_main"></div>

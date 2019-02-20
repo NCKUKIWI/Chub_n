@@ -123,7 +123,7 @@ $(function () {
 				vue_project_main.showType = 'item';
 			},
 			closeAllProject: function() {
-				vue_project_main.pageShow = false;
+                vue_project_main.pageShow = false;
 			}
 		},
         created: function () {

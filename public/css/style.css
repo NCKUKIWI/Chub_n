@@ -332,7 +332,6 @@ div::-webkit-scrollbar {
 }
 
 .block_contact {
-  z-index: 100;
   padding-left: 12vw;
   padding-top: 15vh;
   height: calc( 25vh - 15vh );
