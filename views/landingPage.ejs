@@ -20,34 +20,34 @@
 		}*/
 	</style>
 	<script type="text/javascript">
-	function myBrowser() {
-	    var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
-	    var isOpera = userAgent.indexOf("Opera") > -1;
-	    if (isOpera) {
-	        return "Opera"
-	    }; //判断是否Opera浏览器
-	    if (userAgent.indexOf("Firefox") > -1) {
-	        return "FF";
-	    } //判断是否Firefox浏览器
-	    if (userAgent.indexOf("Chrome") > -1){
-	  		return "Chrome";
-	 	}
-	    if (userAgent.indexOf("Safari") > -1) {
-	        return "Safari";
-	    } //判断是否Safari浏览器
-	    if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {
-	        return "IE";
-	    }; //判断是否IE浏览器
-	}
-	//先設定只有chrome, safari才可以看到
-	var mb = myBrowser();
-	console.log(mb);
-	if (mb === undefined) {
-		location.href = "http://c-hub.ncku.edu.tw/space"
-	}
-	if ("Chrome" == !mb && "Safari" == !mb) {
-		location.href = "http://c-hub.ncku.edu.tw/space"
-	}
+		function myBrowser() {
+		    var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+		    var isOpera = userAgent.indexOf("Opera") > -1;
+		    if (isOpera) {
+		        return "Opera"
+		    }; //判断是否Opera浏览器
+		    if (userAgent.indexOf("Firefox") > -1) {
+		        return "FF";
+		    } //判断是否Firefox浏览器
+		    if (userAgent.indexOf("Chrome") > -1){
+		  		return "Chrome";
+		 	}
+		    if (userAgent.indexOf("Safari") > -1) {
+		        return "Safari";
+		    } //判断是否Safari浏览器
+		    if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {
+		        return "IE";
+		    }; //判断是否IE浏览器
+		}
+		//先設定只有chrome, safari才可以看到
+		var mb = myBrowser();
+		console.log(mb);
+		if (mb === undefined) {
+			location.href = "http://c-hub.ncku.edu.tw/space"
+		}
+		if ("Chrome" == !mb && "Safari" == !mb) {
+			location.href = "http://c-hub.ncku.edu.tw/space"
+		}
 	</script>
 	<!-- Icons -->
 	<div class="icon_menu clickable switch_menu"></div>
@@ -86,8 +86,8 @@
 		<div class="banner_board">
 			<a v-for="(banner, index) in bannerList" class="banner_item clickable" v-bind:class="{'on': index == nowShow}" target="_blank" :href="banner.url">
 				<picture>
-					<source v-bind:srcset="'/uploads/advertisement/' + banner.id + '/imageMobile.png'" media="(max-width: 1050px)">
-					<img class="banner_item_pic" v-bind:src="'/uploads/advertisement/' + banner.id + '/image.png'">
+					<source v-bind:srcset="'/uploads/banner/' + banner.id + '/imageMobile.png'" media="(max-width: 1050px)">
+					<img class="banner_item_pic" v-bind:src="'/uploads/banner/' + banner.id + '/image.png'">
 				</picture>
 				<div class="banner_item_text">
 					<p class="banner_item_text_title" style="white-space: pre-wrap;">{{banner.name}}</p>

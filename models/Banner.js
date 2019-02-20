@@ -28,8 +28,8 @@ var ADSchema = {
     },
 }
 
-var Advertisement = db.define('advertisements', ADSchema, {
+var Banner = db.define('banners', ADSchema, {
     timestamps: false
 });
 
-module.exports = Advertisement;
+module.exports = Banner;

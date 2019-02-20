@@ -327,7 +327,7 @@ $(function () {
         }
     });
 
-    // vue advertisement list
+    // vue Banner list
     var vue_ad = new Vue({
         el: "#backend_ad",
         data: {
@@ -350,7 +350,7 @@ $(function () {
         created: function () {
             $.ajax({
                 type: "GET",
-                url:"/advertisements/",
+                url:"/banners/",
                 success: function(ads){
                         vue_ad.adList = ads;
                 }
@@ -383,7 +383,7 @@ $(function () {
 				now_ad.show = status;
 	            // $.ajax({
 	            // 		type: "POST",
-	            // 		url:"/advertisements/",
+	            // 		url:"/banners/",
 	            // 		data: {'stauts': status},
 	            // 		success: function(msg){
 	            // 				if(status) toastr.success(now_ad.name + "已上架");
@@ -416,11 +416,11 @@ $(function () {
 	            }
 	            $.ajax({
 	            	type:"POST",
-	            	url:"/advertisements",
+	            	url:"/banners",
 	            	data: itemData,
 	            	success: function(ad){
 	            		uploadImg(
-                            "/advertisements/image/" + ad.id,
+                            "/banners/image/" + ad.id,
                             "#ad_image",
                             "#adImageForm",
                             function(response) {
@@ -430,7 +430,7 @@ $(function () {
                                 }
 	                    });
 	            		uploadImg(
-                            "/advertisements/imageMobile/" + ad.id,
+                            "/banners/imageMobile/" + ad.id,
                             "#ad_image_mobile",
                             "#adImageMobileForm",
                             function(response) {
@@ -452,12 +452,12 @@ $(function () {
 	            };
 	            $.ajax({
 	            	type:"POST",
-	            	url:"/advertisements/update/" + id,
+	            	url:"/banners/update/" + id,
 	            	data: itemData,
 	            	success: function(msg){
                         if($("#ad_image").val() != "") {
                             uploadImg(
-                                "/advertisements/image/" + id,
+                                "/banners/image/" + id,
                                 "#ad_image",
                                 "#adImageForm",
                                 function(response) {
@@ -468,7 +468,7 @@ $(function () {
                         }
                         if($("#ad_image_mobile").val() != ""){
 		            		uploadImg(
-	                            "/advertisements/imageMobile/" + id,
+	                            "/banners/imageMobile/" + id,
 	                            "#ad_image_mobile",
 	                            "#adImageMobileForm",
 	                            function(response) {
@@ -488,7 +488,7 @@ $(function () {
 	    	deleteItem: function(id){
 	            $.ajax({
 	            	type:"DELETE",
-	            	url:"/advertisements/delete/" + id,
+	            	url:"/banners/delete/" + id,
 	            	success: function(msg){
 	            			toastr.success(msg);
 	            			vue_ad.adList.splice(vue_ad.index, 1);

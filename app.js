@@ -60,7 +60,7 @@ app.use(function (err, req, res, next) {
 app.use('/users', require('./routes/users'));
 app.use('/admin', require('./routes/admin'));
 app.use('/projects', require('./routes/projects'));
-app.use('/advertisements', require('./routes/advertisements'));
+app.use('/banners', require('./routes/banners'));
 app.use('/chubers', require('./routes/chubers'));
 app.use('/space', require('./routes/space'));
 
@@ -74,5 +74,5 @@ app.get('*', function (req, res, next) {
     res.status(404).send('Page not found');
 });
 
-app.listen(process.env.PORT || 3000);
-console.log("running on port 3000");
+app.listen(process.env.PORT || 8000);
+console.log("running on port 8000");
