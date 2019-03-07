@@ -82,8 +82,27 @@
 
 	<!-- Page 2: Banner -->
 	<div class="fullpage bg_grey" id="banner">	
-		<div class="fullpage_element line_2"></div>
-		<div class="banner_board">
+		<!-- <div class="fullpage_element line_2"></div> -->
+		<!-- todo -->
+
+		<div class="swiper-container banner_browser">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">Slide 1</div>
+				<div class="swiper-slide">Slide 2</div>
+				<div class="swiper-slide">Slide 3</div>
+				<div class="swiper-slide">Slide 4</div>
+				<div class="swiper-slide">Slide 5</div>
+				<div class="swiper-slide">Slide 6</div>
+				<div class="swiper-slide">Slide 7</div>
+				<div class="swiper-slide">Slide 8</div>
+				<div class="swiper-slide">Slide 9</div>
+				<div class="swiper-slide">Slide 10</div>
+			</div>
+			<div class="banner_dots swiper-pagination"></div>
+		</div>
+		
+
+		<!-- <div class="banner_board">
 			<a v-for="(banner, index) in bannerList" class="banner_item clickable" v-bind:class="{'on': index == nowShow}" target="_blank" :href="banner.url">
 				<picture>
 					<source v-bind:srcset="'/uploads/banner/' + banner.id + '/imageMobile.png'" media="(max-width: 1050px)">
@@ -92,7 +111,7 @@
 				<div class="banner_item_text">
 					<p class="banner_item_text_title" style="white-space: pre-wrap;">{{banner.name}}</p>
 					<div class="line_section banner_line"></div>
-					<!-- <p class="banner_item_text_cont">C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.</p>		 -->
+					<p class="banner_item_text_cont">C-Hub is a creative space came about from the interconnection among Creativity, Human, Urban, and Building Environment.</p>
 				</div>
 			</a>
 		</div>
@@ -100,8 +119,11 @@
 			<div v-for="(banner, index) in bannerList" class="dots clickable" @click="bannerSwitch(index)"></div>	
 			<div class="icon_go_prev clickable"  @click="bannerSwitch(nowShow - 1)"></div>
 			<div class="icon_go_next clickable"  @click="bannerSwitch(nowShow + 1)"></div>
-		</div>
-		<div class="icon_page_down"></div>
+		</div> -->
+		<!-- ^ todo -->
+
+
+		<!-- <div class="icon_page_down"></div> -->
 	</div>
 
 	<!-- Page 3: Project Preview -->
@@ -479,7 +501,6 @@
 	<script src="/public/js/jquery-scrollto.js"></script>
 	<script src="/public/js/picturefill.min.js"></script>
 	<script src="/public/js/swiper.min.js"></script>
-	<script src="/public/js/swiper_control.js"></script>
 	<script src="/public/js/photoswipe.min.js"></script>
 	<script src="/public/js/photoswipe-ui-default.min.js"></script> 
 	<script src="/public/js/photoswipe_control.js"></script>

@@ -80,7 +80,7 @@ $(function () {
     			vue_banner.nowShow = next_index;
 			}
 		},
-		mounted: function() {
+        mounted: function() {
 			AOS.init({
         		offset: 300,
         		delay: 0,
@@ -88,6 +88,13 @@ $(function () {
         		once: true,
        			mirror: false
     		});
+		    var banner_swiper = new Swiper('.banner_browser', {
+                direction: 'vertical',
+                pagination: {
+                    el: '.banner_dots',
+                    clickable: true,
+                },
+            });
 		}
 	})
 
